@@ -1,17 +1,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Julan&#39;s Blog</title>
-    <link>https://example.com/</link>
+    <link>https://cluckl.github.io/</link>
     <description>Recent content on Julan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 24 Apr 2021 00:13:24 +0800</lastBuildDate><atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 24 Apr 2021 00:13:24 +0800</lastBuildDate><atom:link href="https://cluckl.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
     <title>IPC</title>
-    <link>https://example.com/posts/os/ipc/</link>
+    <link>https://cluckl.github.io/posts/OS/IPC/</link>
     <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
     
-    <guid>https://example.com/posts/os/ipc/</guid>
+    <guid>https://cluckl.github.io/posts/OS/IPC/</guid>
     <description>
         &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;进程间通信 (Inter-process Communication, IPC)&lt;/strong&gt;: 两个(或多个)不同的进程，通过内核或其他共享资源进行通信，来传递控制信息或数据。
@@ -128,10 +128,10 @@
     
     <item>
     <title>内存管理</title>
-    <link>https://example.com/posts/os/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+    <link>https://cluckl.github.io/posts/OS/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
     <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
     
-    <guid>https://example.com/posts/os/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+    <guid>https://cluckl.github.io/posts/OS/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
     <description>
         &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
 &lt;p&gt;虚拟内存： 为了让不同的应用程序&lt;strong&gt;高效安全&lt;/strong&gt;地使用物理内存资源，加入一个在&lt;strong&gt;应用程序&lt;/strong&gt;与&lt;strong&gt;物理内存&lt;/strong&gt;之间的抽象。&lt;/p&gt;
@@ -244,10 +244,10 @@
     
     <item>
     <title>同步原语</title>
-    <link>https://example.com/posts/os/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</link>
+    <link>https://cluckl.github.io/posts/OS/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</link>
     <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
     
-    <guid>https://example.com/posts/os/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</guid>
+    <guid>https://cluckl.github.io/posts/OS/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</guid>
     <description>
         &lt;p&gt;在多道程序的环境下，存在着不同的制约关系，为了协调&lt;a href=&#34;%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B#%E8%BF%9B%E7%A8%8B&#34;&gt;进程&lt;/a&gt;间互相制约的关系，实现资源共享和进程协作，引入了进程同步。&lt;/p&gt;
 &lt;ul&gt;
@@ -269,10 +269,10 @@
     
     <item>
     <title>死锁</title>
-    <link>https://example.com/posts/os/%E6%AD%BB%E9%94%81/</link>
+    <link>https://cluckl.github.io/posts/OS/%E6%AD%BB%E9%94%81/</link>
     <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
     
-    <guid>https://example.com/posts/os/%E6%AD%BB%E9%94%81/</guid>
+    <guid>https://cluckl.github.io/posts/OS/%E6%AD%BB%E9%94%81/</guid>
     <description>
         &lt;p&gt;&lt;strong&gt;死锁(deadlock)&lt;/strong&gt;： 在&lt;a href=&#34;%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD.md&#34;&gt;同步原语&lt;/a&gt;的情况下，有一组线程因为组内所有线程都在等待组内其他线程释放资源而&lt;strong&gt;相互无限等待&lt;/strong&gt;的现象。
 &lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124823.png&#34; alt=&#34;200&#34;&gt;&lt;/p&gt;
@@ -335,10 +335,10 @@
     
     <item>
     <title>进程与线程</title>
-    <link>https://example.com/posts/os/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</link>
+    <link>https://cluckl.github.io/posts/OS/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</link>
     <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
     
-    <guid>https://example.com/posts/os/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</guid>
+    <guid>https://cluckl.github.io/posts/OS/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</guid>
     <description>
         &lt;h1 id=&#34;进程&#34;&gt;进程&lt;/h1&gt;
 &lt;p&gt;进程是计算机程序运行时的抽象。&lt;/p&gt;
@@ -470,10 +470,10 @@ TLS寻址模式：基地址＋偏移量&lt;/p&gt;
     
     <item>
     <title>进程调度</title>
-    <link>https://example.com/posts/os/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</link>
+    <link>https://cluckl.github.io/posts/OS/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</link>
     <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
     
-    <guid>https://example.com/posts/os/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</guid>
+    <guid>https://cluckl.github.io/posts/OS/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</guid>
     <description>
         &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
 &lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/Pasted%20image%2020210416211921.png&#34; alt=&#34;&#34;&gt;
@@ -669,10 +669,10 @@ Boost可以防止长任务饥饿。
     
     <item>
     <title>传输层</title>
-    <link>https://example.com/posts/net/%E4%BC%A0%E8%BE%93%E5%B1%82/</link>
+    <link>https://cluckl.github.io/posts/Net/%E4%BC%A0%E8%BE%93%E5%B1%82/</link>
     <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
     
-    <guid>https://example.com/posts/net/%E4%BC%A0%E8%BE%93%E5%B1%82/</guid>
+    <guid>https://cluckl.github.io/posts/Net/%E4%BC%A0%E8%BE%93%E5%B1%82/</guid>
     <description>
         &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
 &lt;p&gt;传输层提供进程之间的逻辑通信服务。
@@ -838,10 +838,10 @@ TCP采用的是累计确认机制，即当接收端收到比期望序号大的�
     
     <item>
     <title>应用层</title>
-    <link>https://example.com/posts/net/%E5%BA%94%E7%94%A8%E5%B1%82/</link>
+    <link>https://cluckl.github.io/posts/Net/%E5%BA%94%E7%94%A8%E5%B1%82/</link>
     <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
     
-    <guid>https://example.com/posts/net/%E5%BA%94%E7%94%A8%E5%B1%82/</guid>
+    <guid>https://cluckl.github.io/posts/Net/%E5%BA%94%E7%94%A8%E5%B1%82/</guid>
     <description>
         &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
 &lt;p&gt;应用层通过不同的应用层协议为不同的应用提供通信服务。
@@ -1002,10 +1002,10 @@ HTTPS和&lt;a href=&#34;%E5%BA%94%E7%94%A8%E5%B1%82.md&#34;&gt;应用层&lt;/a&g
     
     <item>
     <title>数据链路层</title>
-    <link>https://example.com/posts/net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</link>
+    <link>https://cluckl.github.io/posts/Net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</link>
     <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
     
-    <guid>https://example.com/posts/net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</guid>
+    <guid>https://cluckl.github.io/posts/Net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</guid>
     <description>
         &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
 &lt;p&gt;数据链路层提供帧间的逻辑通信服务。
@@ -1086,10 +1086,10 @@ CD: 在传输过程中，若检测到冲突，节点立刻停止当前的传输�
     
     <item>
     <title>网络层</title>
-    <link>https://example.com/posts/net/%E7%BD%91%E7%BB%9C%E5%B1%82/</link>
+    <link>https://cluckl.github.io/posts/Net/%E7%BD%91%E7%BB%9C%E5%B1%82/</link>
     <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
     
-    <guid>https://example.com/posts/net/%E7%BD%91%E7%BB%9C%E5%B1%82/</guid>
+    <guid>https://cluckl.github.io/posts/Net/%E7%BD%91%E7%BB%9C%E5%B1%82/</guid>
     <description>
         &lt;h1 id=&#34;网络层&#34;&gt;网络层&lt;/h1&gt;
 &lt;p&gt;在&lt;a href=&#34;%E4%BC%A0%E8%BE%93%E5%B1%82.md&#34;&gt;传输层&lt;/a&gt;的基础上，提供主机到主机之间的&lt;strong&gt;逻辑通信&lt;/strong&gt;服务。&lt;/p&gt;
@@ -1213,10 +1213,10 @@ Ping 会根据时间和成功响应的次数估算出数据包往返时间以及
     
     <item>
     <title>Dynamic Scheduling</title>
-    <link>https://example.com/posts/cpu/dynamic-scheduling/</link>
+    <link>https://cluckl.github.io/posts/CPU/Dynamic-Scheduling/</link>
     <pubDate>Mon, 19 Apr 2021 00:13:24 +0800</pubDate>
     
-    <guid>https://example.com/posts/cpu/dynamic-scheduling/</guid>
+    <guid>https://cluckl.github.io/posts/CPU/Dynamic-Scheduling/</guid>
     <description>
         &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
 &lt;p&gt;Dynamic Scheduling（动态调度）：在&lt;strong&gt;程序的执行过程&lt;/strong&gt;中，依靠专门&lt;strong&gt;硬件&lt;/strong&gt;对代码进行调度，减少&lt;a href=&#34;Dependence.md#Data%20Dependence&#34;&gt;Data Dependence&lt;/a&gt;导致的停顿。&lt;/p&gt;
@@ -1325,10 +1325,10 @@ Indicates which functional unit will write each register, if one exists.&lt;/p&g
     
     <item>
     <title>Dependence</title>
-    <link>https://example.com/posts/cpu/dependence/</link>
+    <link>https://cluckl.github.io/posts/CPU/Dependence/</link>
     <pubDate>Sun, 18 Apr 2021 00:13:24 +0800</pubDate>
     
-    <guid>https://example.com/posts/cpu/dependence/</guid>
+    <guid>https://cluckl.github.io/posts/CPU/Dependence/</guid>
     <description>
         &lt;p&gt;&lt;strong&gt;Dependences&lt;/strong&gt; dictate ordering requirements between instructions.Also called &lt;strong&gt;Hazards&lt;/strong&gt;
 Two types:&lt;/p&gt;
