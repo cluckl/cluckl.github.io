@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="dark">
+    <title> 应用层 | Julan&#39;s Blog</title>
+    
+    
+    
+    <link rel="stylesheet" href="/sass/main.min.4e90cee935c47394b47f9cb7ffe8e3ffab18b88d82fea203918cc3f92eec5eb2.css">
+</head>
+
+    <body class="dark">
+        <nav class="navbar">
+    <div class="container">
+        <div class="flex">
+            <div>
+                <a class="brand" href="/">
+                    
+                    <span class="emoji">
+                        😎
+                    </span>
+                    
+                    Julan&#39;s Blog
+                    </a>
+            </div>
+            <div class="flex">
+                
+                <a href="/articles/">Articles</a>
+                
+                <button id="dark-mode-button"></button>
+            </div>
+            </div>
+    </div>
+</nav>
+        <main>
+            
+
+<div class="container">
+    <article>
+        <header class="article-header">
+            <div class="thumb">
+                <div>
+                    <h1>应用层</h1>
+                    <div class="post-meta">
+                        <div>
+                            By  on <time>April 22, 2021</time>
+                        </div>
+                        <div class="tags">
+                            
+                            <a href="/tags/net/">Net</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </article>
+
+    <div class="article-post">
+    <h1 id="heading"></h1>
+<h1 id="overview">Overview</h1>
+<p>应用层通过不同的应用层协议为不同的应用提供通信服务。
+常用协议：</p>
+<ul>
+<li><a href="#HTTP">HTTP</a></li>
+<li><a href="#HTTPS">HTTPS</a></li>
+<li><a href="#DNS">DNS</a></li>
+</ul>
+<p>用户输入网址到显示对应页面的全过程:
+<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143524.png" alt="100"></p>
+<ol>
+<li>输入网址URL。</li>
+<li>发送到DNS获得域对应的<a href="%E7%BD%91%E7%BB%9C%E5%B1%82.md">网络层</a>地址。</li>
+<li>客户端浏览器与WEB服务器建立<a href="%E4%BC%A0%E8%BE%93%E5%B1%82.md">传输层</a>连接。</li>
+<li>客户端浏览器向对应IP地址的WEB服务器发送相应的<a href="#HTTP">HTTP</a>或<a href="#HTTPS">HTTPS</a>请求。</li>
+<li>WEB服务器响应请求，返回指定的URL数据或错误信息；如果设定重定向，则重定向到新的URL地址。</li>
+<li>客户端浏览器下载数据，解析HTML源文件，在浏览器中显示基础的页面。</li>
+<li>分析页面中的超链接，显示在当前页面。</li>
+</ol>
+<h1 id="http">HTTP</h1>
+<p>Hyper Text Transfer Protocol(超文本传输协议）
+提供HTML(超文本标记语言)的发送和接收方法，一般基于<a href="%E4%BC%A0%E8%BE%93%E5%B1%82.md">传输层</a>/<a href="%E7%BD%91%E7%BB%9C%E5%B1%82.md">网络层</a>通信，使用B/S架构。</p>
+<h2 id="组成">组成</h2>
+<ul>
+<li>请求报文
+<ol>
+<li>请求行</li>
+<li>请求头</li>
+<li>请求正文</li>
+</ol>
+</li>
+<li>响应报文
+<ol>
+<li>状态行</li>
+<li>响应头</li>
+<li>响应报文</li>
+</ol>
+</li>
+</ul>
+<h2 id="常见请求方法">常见请求方法</h2>
+<ul>
+<li>GET：请求指定的信息并返回具体具体内容。</li>
+<li>HEAD：和GET类似，但不返回具体内容。</li>
+<li>POST：在服务器新建资源，数据被包含在请求体中。</li>
+<li>PUT：在服务器更新资源。</li>
+<li>DELETE：请求服务器删除指定的内容。</li>
+</ul>
+<blockquote>
+<p>POST和GET的区别：</p>
+<ul>
+<li>POST用于提交；GET用于查询。</li>
+<li>GET是直接添加到URL后面的，直接就可以在URL中看到内容；POST是放在报文内部的，用户无法直接看到。</li>
+<li>GET的数据长度有限（因为放在URL后面，URL根据不同的浏览器有不同长度限制）；POST没有长度限制。</li>
+<li>GET只支持URL编码，只支持ASCII字符格式的参数；支持多种编码且对字符格式没有限制。</li>
+</ul>
+</blockquote>
+<h2 id="响应状态码">响应状态码</h2>
+<p>HTTP的响应状态码由3个10进制数组成，第一个数有分类的作用。</p>
+<ul>
+<li>1xx：指示信息&ndash;表示请求正在处理</li>
+<li>2xx：成功&ndash;表示请求已被成功处理完毕</li>
+<li>3xx：需要重定向&ndash;要完成的请求需要进行附加操作</li>
+<li>4xx：客户端错误</li>
+<li>5xx：服务器错误</li>
+</ul>
+<hr>
+<p>常见状态码：</p>
+<ul>
+<li>200 OK - 客户端请求成功</li>
+<li>301 - 资源（网页等）被永久转移到其它URL</li>
+<li>302 - 临时跳转</li>
+<li>400 - 客户端请求有语法错误，服务器无法识别</li>
+<li>401 - 请求未经授权</li>
+<li>404 - 服务器无法找到对应资源</li>
+<li>500 - 服务器内部错误</li>
+<li>503 - 服务器正忙</li>
+</ul>
+<h2 id="持久和非持久连接">持久和非持久连接</h2>
+<p>持久连接：客户端发起第一次请求建立TCP连接之后的一段时间之内，不需要再次建立[[传输层]]连接
+非持久连接：每次传输对象都需要建立一次TCP连接。
+在 HTTP/1.1 及之后的版本中默认使用持久连接。
+注意：持久连接需要配置正确的keep-alive timeout参数，否则可能导致资源被长时间无效占用。</p>
+<h2 id="如何保存用户状态">如何保存用户状态</h2>
+<p>HTTP 是一种不保存状态，即无状态（stateless）协议。HTTP 协议自身不对请求和响应之间的通信状态进行保存。常有以下两种解决方法：</p>
+<ul>
+<li>基于Session实现的会话保持</li>
+</ul>
+<blockquote>
+<p>在客户端第一次向服务器发送HTTP请求时，服务器将会话状态保存起来，然后分配一个会话标识（SessionId）给客户端，以后每次浏览器发送HTTP请求都会带上Cookie中的SessionId到服务器，服务器拿到会话标识就可以把之前存储在服务器端的状态信息与会话联系起来，实现会话保持</p>
+</blockquote>
+<ul>
+<li>基于Cookie实现的会话保持</li>
+</ul>
+<blockquote>
+<p>基于Cookie实现会话保持与上述基于Session实现会话保持的最主要区别是前者完全将会话状态信息存储在浏览器Cookie中，这样一来每次浏览器发送HTTP请求的时候都会带上状态信息，因此也就可以实现状态保持。</p>
+</blockquote>
+<h1 id="https">HTTPS</h1>
+<p>Hyper Text Transfer Protocol over Secure Socket Layer
+HTTPS和<a href="%E5%BA%94%E7%94%A8%E5%B1%82.md">应用层</a>的最大区别是HTTPS多了一个<a href="HTTPS.md#SSL%E8%BF%87%E7%A8%8B">SSL过程</a></p>
+<h2 id="https的特点">HTTPS的特点</h2>
+<ul>
+<li>HTTPS传输过程是加密的</li>
+<li>服务器需要到CA申请证书</li>
+<li>响应较慢，需要经过一个SSL/TLS</li>
+</ul>
+<h2 id="ssl过程">SSL过程</h2>
+<p><img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143525.png" alt=""></p>
+<ol>
+<li>
+<p>客户端向服务器发出连接请求，内容包括 SSL 的版本、自身支持的加密算法列表等。</p>
+</li>
+<li>
+<p>服务器根据客户端的算法类列表选择一种自身支持的算法，将其和其他密钥组件发送给客户端。</p>
+</li>
+<li>
+<p>服务器向客户端发送第三方数字证书。</p>
+<blockquote>
+<p>数字证书包含颁发机构、网址、公钥、证书有效期等信息。</p>
+</blockquote>
+</li>
+<li>
+<p>客户端验证数字证书的真实性，如果有问题则出现提示警告；否则根据证书内的公钥使用对称加密算法生成密钥并发给服务器。</p>
+</li>
+<li>
+<p>服务器用私钥解密收到的内容得到对称加密的密钥，并用密钥发送内容给客户端。</p>
+</li>
+</ol>
+<h1 id="dns">DNS</h1>
+<p>Domain Name System，域名系统
+作用：用于将域名转换成IP地址，能够使用户更方便的访问互联网，而不用去记住能够被机器直接读取的IP数串。</p>
+<h2 id="层次结构">层次结构</h2>
+<p><img src="https://pic1.zhimg.com/v2-d4ebb1c03acc11c40aa2d0624e98f9f8_r.jpg" alt="preview">
+树状结构，从上到下依次为根域名服务器、顶级域名服务器和权威域名服务器等。</p>
+<p>注意：本地local DNS（也叫递归DNS）一般不包含在层次结构中，且不会配置任何数据，其数据均来自权威DNS的查询缓存。
+<img src="https://pic2.zhimg.com/v2-eabb1795b1e3b84a82fc280ba2154639_r.jpg" alt=""></p>
+<h2 id="解析过程">解析过程</h2>
+<p><img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143526.png" alt=""></p>
+<ol>
+<li>客户端根据要查询的DN想local DNS发起一个解析请求</li>
+<li>若local DNS缓存中有记录，则返回对应的IP，否则local DNS 向DNS层次结构从上到下依次查询并将查询结果发给local DNS，直到查到目标IP。
+上述解析过程包含了两种查询方式：递归查询和迭代查询</li>
+</ol>
+<h1 id="reference">Reference</h1>
+<ul>
+<li><a href="https://blog.csdn.net/donggx/article/details/71402871">输入网址到网页显示的过程是什么？</a></li>
+<li><a href="https://leetcode-cn.com/leetbook/read/networks-interview-highlights/es94bd/">网页解析全过程【用户输入网址到显示对应页面的全过程】</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/88260838">DNS原理及解析过程详解</a></li>
+<li><a href="https://www.csoonline.com/article/3246212/what-is-ssl-tls-and-how-this-encryption-protocol-works.html">What is SSL, TLS? And how this encryption protocol works</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/36981565">浅谈SSL/TLS工作原理</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/72616216">十分钟搞懂HTTP和HTTPS协议？</a></li>
+<li><a href="https://leetcode-cn.com/leetbook/read/networks-interview-highlights/ez30qs/">GET 和 POST 的区别</a></li>
+<li><a href="https://leetcode-cn.com/leetbook/read/networks-interview-highlights/eg0dl5/">Keep-Alive 和非 Keep-Alive 区别，对服务器性能有影响吗</a></li>
+</ul>
+
+    </div>
+</div>
+
+<div class="container">
+    
+    <nav class="flex container suggested">
+        
+        <a rel="prev" href="/posts/net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" title="Previous post (older)">
+            <span>Previous</span>
+            数据链路层
+            </a>
+        
+        
+        
+        <a rel="next" href="/posts/net/%E4%BC%A0%E8%BE%93%E5%B1%82/" title="Next post (newer)">
+            <span>Next</span>
+            传输层
+            </a> 
+        
+    </nav>
+    
+</div>
+</main>
+
+
+        </main>
+        <footer class="footer flex">
+    <section class="container">
+        <nav class="footer-links">
+            
+            <a href="/index.xml">RSS</a>
+            
+        </nav>
+    </section>
+    
+    <script async src="/js/features.min.c5d8f3350f5a652f526b982306299353824299adb7a3bd261ecffacc47087f66.js"></script>
+</footer>
+    </body>
+</html>

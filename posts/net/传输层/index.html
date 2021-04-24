@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="dark">
+    <title> 传输层 | Julan&#39;s Blog</title>
+    
+    
+    
+    <link rel="stylesheet" href="/sass/main.min.4e90cee935c47394b47f9cb7ffe8e3ffab18b88d82fea203918cc3f92eec5eb2.css">
+</head>
+
+    <body class="dark">
+        <nav class="navbar">
+    <div class="container">
+        <div class="flex">
+            <div>
+                <a class="brand" href="/">
+                    
+                    <span class="emoji">
+                        😎
+                    </span>
+                    
+                    Julan&#39;s Blog
+                    </a>
+            </div>
+            <div class="flex">
+                
+                <a href="/articles/">Articles</a>
+                
+                <button id="dark-mode-button"></button>
+            </div>
+            </div>
+    </div>
+</nav>
+        <main>
+            
+
+<div class="container">
+    <article>
+        <header class="article-header">
+            <div class="thumb">
+                <div>
+                    <h1>传输层</h1>
+                    <div class="post-meta">
+                        <div>
+                            By  on <time>April 22, 2021</time>
+                        </div>
+                        <div class="tags">
+                            
+                            <a href="/tags/net/">Net</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </article>
+
+    <div class="article-post">
+    <h1 id="overview">Overview</h1>
+<p>传输层提供进程之间的逻辑通信服务。
+<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143031.png" alt=""></p>
+<h2 id="port">Port</h2>
+<p>Port(端口)：<strong>区分每个<a href="../OS/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B.md#%E8%BF%9B%E7%A8%8B">进程</a>的标识符</strong>，1个端口号使用16位无符号整数（unsigned integer）来表示。<a href="#TCP">TCP</a>和<a href="#UDP">UDP</a>是互相独立的，因此TCP和UDP都各拥有65535个端口。</p>
+<ul>
+<li>1&ndash;1023 系统保留，只能由root用户使用。</li>
+<li>1024&mdash;4999 由客户端进程占有</li>
+<li>5000&mdash;65535 由服务器端进程自由分配</li>
+</ul>
+<p>在<a href="#UDP">UDP</a>中，源端口号可以选择要不要填上，如果设为0，则代表没有源端口号。</p>
+<h2 id="tsap">TSAP</h2>
+<p>TSAP(Transport Service Access Point) : 传输服务访问点,也称为传输层地址。
+TSAP = <a href="%E7%BD%91%E7%BB%9C%E5%B1%82.md#IP">IP</a> + <a href="#Port">Port</a>
+<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143032.png" alt=""></p>
+<h1 id="socket">Socket</h1>
+<p><strong>套接字（Socket）是为了使应用程序能够方便地使用协议栈软件进行通信的一种方法。</strong>
+<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143033.png" alt="">
+套接字上联==应用进程==，下联==网络协议栈==，是<a href="../OS/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B.md#%E8%BF%9B%E7%A8%8B">进程</a>通过网络协议栈进行通信的接口。
+结构：</p>
+<ul>
+<li>相关描述：{协议，本地<a href="%E7%BD%91%E7%BB%9C%E5%B1%82.md#IP">IP</a>地址，本地端口<a href="#Port">Port</a>}</li>
+<li>相关描述：{协议，本地地址，本地端口，<strong>远程地址，远程端口</strong>}</li>
+</ul>
+<h2 id="分类">分类</h2>
+<ul>
+<li><strong>Stream</strong> Socket
+<ul>
+<li>面向连接、可靠</li>
+<li>按顺序接收</li>
+<li><strong>字节流</strong></li>
+</ul>
+</li>
+<li><strong>Datagram</strong> Socket
+<ul>
+<li>无连接</li>
+<li><strong>数据报</strong></li>
+<li>接收顺序不固定</li>
+</ul>
+</li>
+<li>Raw Socket
+<ul>
+<li>用于检验新的协议的实现</li>
+<li>允许对较低层次的协议</li>
+</ul>
+</li>
+</ul>
+<h1 id="udp">UDP</h1>
+<p>UDP(User Datagram Protocol)：用户数据报协议，一种以<strong>数据报</strong>为数据单元<strong>的面向无连接</strong>的传输层协议。
+UDP只提供了<strong>差错检测</strong>的功能，因此相对<a href="#TCP">TCP</a>速度更快。</p>
+<ul>
+<li>端对端</li>
+<li>不可靠，不需要连接</li>
+<li>面向数据报</li>
+<li>无拥塞控制</li>
+</ul>
+<h2 id="udp报头">UDP报头</h2>
+<p><img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143034.png" alt="">
+UDP为了能够计算校验和，必须加上伪头部。</p>
+<h2 id="connect和bind函数">connect和bind函数</h2>
+<ul>
+<li>bind：发送端调用 bind 函数时，就会将这个套接字指定一个端口，避免内核执行该操作，提高性能</li>
+<li>connect：记录IP及Port。和普通的 UDP 相比，调用 connect 的 UDP 会提升效率，并且在高并发服务中会增加系统稳定性。</li>
+</ul>
+<h1 id="tcp">TCP</h1>
+<p>TCP(Transmission Control Procotol): 提供以**报文段(Segment)**为数据单元的传输层通信服务。</p>
+<ul>
+<li>面向连接</li>
+<li>端对端</li>
+<li>可靠交付</li>
+<li>全双工</li>
+<li>基于字节流</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143035.png" alt=""></p>
+<h2 id="连接过程">连接过程</h2>
+<p>TCP协议的运行可划分为三个阶段：</p>
+<ol>
+<li><a href="#%E8%BF%9E%E6%8E%A5%E5%88%9B%E5%BB%BA">连接创建</a>(connection establishment)</li>
+<li>数据传送（data transfer）</li>
+<li><a href="#%E8%BF%9E%E6%8E%A5%E9%87%8A%E6%94%BE">连接释放</a>（connection termination）</li>
+</ol>
+<h3 id="连接创建">连接创建</h3>
+<p>TCP用==三次握手==（或称三路握手，three-way handshake）过程创建一个连接。
+<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143036.png" alt=""></p>
+<ol>
+<li>客户端（通过执行connect函数）向服务器端发送一个SYN包，请求一个主动打开。该包携带客户端为这个连接请求而设定的随机数x作为消息序列号。</li>
+<li>服务器端收到一个合法的SYN包后，把该包放入SYN队列中；回送一个SYN/ACK。ACK的确认码应为x+1，SYN/ACK包本身携带一个随机产生的序号y。</li>
+<li>客户端收到SYN/ACK包后，发送一个ACK包，该包的序号被设定为x+1，而ACK的确认码则为y+1。然后客户端的connect函数成功返回。</li>
+</ol>
+<h3 id="连接释放">连接释放</h3>
+<p><img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143037.png" alt=""></p>
+<ol>
+<li>客户端发送FIN包给服务器端，结束 ESTABLISHED 阶段并进入 FIN-WAIT-1 阶段</li>
+<li>服务器端收到客户端的FIN包后发送ACK包给客户端，结束 ESTABLISHED 阶段并进入CLOSE-WAIT 阶段</li>
+<li>客户端收到ACK包后进入FIN-WAIT-2 阶段</li>
+<li>服务器端将数据传送完毕后发送ACK/FIN包给客户端，结束CLOSE-WAIT阶段并进入 LAST-ACK 阶段</li>
+<li>客户端收到ACK/SYN包后进入TIME-WAIT 阶段并发送ACK包给服务器端</li>
+<li>客户端开始在 TIME-WAIT 阶段等待 <strong>2 MSL</strong>。服务器端收到从客户端发出的 TCP 报文之后结束 LAST-ACK 阶段，进入 CLOSED 阶段。</li>
+</ol>
+<blockquote>
+<p>客户端等待 2 MSL的原因：</p>
+<ul>
+<li>保证没有数据包滞留</li>
+<li>确保客户端发的ACK包被服务器端收到（如果服务器端没有收到将认为自己发送的ACK/SYN包没有收到而再次发送）</li>
+</ul>
+</blockquote>
+<h2 id="计时器">计时器</h2>
+<p>TCP主要有以下4种计时器</p>
+<ul>
+<li>重传计时器：当发送方发送的数据包后一段时间内没有收到对方发送的ACK包则重发该数据包。</li>
+<li>保活计时器：当接收方没有收到对方的数据包一段时间后，将发送一个探测包以检测对方是否正常在线。</li>
+<li>坚持计时器：当接收方收到对方的滑动窗口为0的数据包将停止发送数据包，等待一段时间后将发送一个探测包，避免死锁发生。</li>
+<li>时间等待计时器：在四次挥手中客户端收到ACK/SYN包后开始计时。</li>
+</ul>
+<p>除上述四种计时器外，还有FIN_WAIT_2 计时器、延迟应答计时器等等。</p>
+<h2 id="可靠性">可靠性</h2>
+<ul>
+<li>流量控制——滑动窗口</li>
+<li><a href="%E4%BC%A0%E8%BE%93%E5%B1%82.md#%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6">拥塞控制</a></li>
+<li>序列号及应答——确保数据能无重复地达到</li>
+<li>校验和——确保数据在传输的过程中没有发生变化</li>
+</ul>
+<h3 id="拥塞控制">拥塞控制</h3>
+<p>拥塞窗口（congestion window）：发送方确定能发送出去的字节数的控制因素之一，是阻止发送方至接收方之间的链路变得拥塞的手段。
+<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143038.png" alt="">
+慢启动：设置拥塞窗口值（cwnd）为1个MSS，发送方每收到一个ACK包cwnd加1（因此每个RTTcwnd加倍），直到cwnd达到慢开始门限ssthresh值或出现丢包。
+拥塞避免：接收方每经过一个RTT，cwnd加1(<strong>加法增大</strong>)，直到出现丢包。
+快恢复（Reno）：当出现丢包时，将ssthresh减半(<strong>乘法减小</strong>)并cwnd设置为ssthresh减半后的值,然后进入拥塞避免阶段。</p>
+<blockquote>
+<p>考虑到如果网络出现拥塞的话就不会收到好几个重复的确认，所以发送方现在认为网络可能没有出现拥塞。所以此时<strong>不执行慢开始</strong>算法。
+在这个过程中还涉及到<a href="%E4%BC%A0%E8%BE%93%E5%B1%82.md#%E5%BF%AB%E9%80%9F%E9%87%8D%E4%BC%A0%E6%9C%BA%E5%88%B6">快速重传机制</a>：<strong>接收方</strong>三次收到同一个失序的报文段后就立即发出重复确认。
+<u>注意：“拥塞避免”并非完全能够避免了阻塞，只能尽量避免网络拥塞出现。</u></p>
+</blockquote>
+<h2 id="快速重传机制">快速重传机制</h2>
+<p>虽然报文段丢失时，由于重传机制，发送端会重传分组，但会等待一定的周期，增加了<strong>端到端的时延</strong>，而快速重传机制可以有效减少时延。
+TCP采用的是累计确认机制，即当接收端收到比期望序号大的报文段时，便会重复发送最近一次确认的报文段的确认信号（冗余ACK，duplicate ACK），告诉接收方发送丢包。
+如果在超时重传定时器溢出之前，接收到连续的三个重复冗余ACK，发送端便会重传该报文段，<u>不需要等待超时重传定时器溢出</u>
+为什么是3次冗余ACK？</p>
+<blockquote>
+<p><strong>接收端收到比期望序号大的报文段时，便会重复发送最近一次确认的报文段的确认信号</strong>，但该报文段不一定已经丢失，也有可能在将来的某个时间到达。</p>
+</blockquote>
+<h2 id="粘包问题">粘包问题</h2>
+<p><u>严格来说，TCP是面向流的协议，不存在“粘包问题”。</u>
+粘包有两种含义</p>
+<ol>
+<li>由于发送方采用Nagle算法，将多个小报文放在一起发送出去。</li>
+<li>接收方一次收到多个应用层报文，即接收方的<a href="%E5%BA%94%E7%94%A8%E5%B1%82.md">应用层</a>来不及处理数据接收方又收到了新的报文。</li>
+</ol>
+<h1 id="reference">Reference</h1>
+<ul>
+<li><a href="https://leetcode-cn.com/leetbook/read/networks-interview-highlights/es7qwj/">UDP 为什么是不可靠的？bind 和 connect 对于 UDP 的作用是什么</a></li>
+<li><a href="https://leetcode-cn.com/leetbook/read/networks-interview-highlights/esegch/">三次握手和四次挥手机制- Leetcode</a></li>
+<li><a href="https://blog.csdn.net/LF_2016/article/details/60468161">TCP第四次挥手为什么要等待2MSL-CSDN博客</a></li>
+<li><a href="https://leetcode-cn.com/leetbook/read/networks-interview-highlights/esd47g/">TCP 协议中的定时器- Leetcode</a></li>
+<li><a href="https://blog.csdn.net/LF_2016/article/details/60468100">TCP使用的四种计时器_Sunnylunch-blog-CSDN博客</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6">TCP拥塞控制- 维基百科，自由的百科全书</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/37379780">TCP流量控制、拥塞控制- 知乎</a></li>
+</ul>
+
+    </div>
+</div>
+
+<div class="container">
+    
+    <nav class="flex container suggested">
+        
+        <a rel="prev" href="/posts/net/%E5%BA%94%E7%94%A8%E5%B1%82/" title="Previous post (older)">
+            <span>Previous</span>
+            应用层
+            </a>
+        
+        
+        
+        <a rel="next" href="/posts/os/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/" title="Next post (newer)">
+            <span>Next</span>
+            进程调度
+            </a> 
+        
+    </nav>
+    
+</div>
+</main>
+
+
+        </main>
+        <footer class="footer flex">
+    <section class="container">
+        <nav class="footer-links">
+            
+            <a href="/index.xml">RSS</a>
+            
+        </nav>
+    </section>
+    
+    <script async src="/js/features.min.c5d8f3350f5a652f526b982306299353824299adb7a3bd261ecffacc47087f66.js"></script>
+</footer>
+    </body>
+</html>

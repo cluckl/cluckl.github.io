@@ -16,5 +16,14 @@
       <description></description>
     </item>
     
+    <item>
+      <title>Net</title>
+      <link>https://example.com/tags/net/</link>
+      <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
+      
+      <guid>https://example.com/tags/net/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

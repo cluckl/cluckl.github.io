@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="dark">
+    <title> 数据链路层 | Julan&#39;s Blog</title>
+    
+    
+    
+    <link rel="stylesheet" href="/sass/main.min.4e90cee935c47394b47f9cb7ffe8e3ffab18b88d82fea203918cc3f92eec5eb2.css">
+</head>
+
+    <body class="dark">
+        <nav class="navbar">
+    <div class="container">
+        <div class="flex">
+            <div>
+                <a class="brand" href="/">
+                    
+                    <span class="emoji">
+                        😎
+                    </span>
+                    
+                    Julan&#39;s Blog
+                    </a>
+            </div>
+            <div class="flex">
+                
+                <a href="/articles/">Articles</a>
+                
+                <button id="dark-mode-button"></button>
+            </div>
+            </div>
+    </div>
+</nav>
+        <main>
+            
+
+<div class="container">
+    <article>
+        <header class="article-header">
+            <div class="thumb">
+                <div>
+                    <h1>数据链路层</h1>
+                    <div class="post-meta">
+                        <div>
+                            By  on <time>April 22, 2021</time>
+                        </div>
+                        <div class="tags">
+                            
+                            <a href="/tags/net/">Net</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </article>
+
+    <div class="article-post">
+    <h1 id="heading"></h1>
+<h1 id="overview">Overview</h1>
+<p>数据链路层提供帧间的逻辑通信服务。
+类型：</p>
+<ul>
+<li>点对点信道：也就是字面意思，点对点得通信方式。</li>
+<li>广播信道：这种信道是一对多的方式，所以整个过程也比较复杂。必须使用一些信道协议来协调网络中的主机数据发送。在半双工通信中有<a href="#CSMA">CSMA</a>等协议。</li>
+</ul>
+<p>数据链路层主要有两个功能：</p>
+<ul>
+<li>差错检测：使用<strong>循环冗余检验</strong>（CRC）来检查数据传输过程中是否产生比特差错</li>
+<li>流量控制：采用<strong>滑动窗口机制</strong></li>
+</ul>
+<h2 id="封装帧">封装帧</h2>
+<p>将<a href="%E7%BD%91%E7%BB%9C%E5%B1%82.md">网络层</a>传下来的分组前后分别添加首部和尾部，这样就构成了帧。
+<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143311.png" alt="">
+透明传输：帧使用首部和尾部进行定界。如果帧的数据部分含有和首部和尾部相同的内容，需要插入转义字符。这个过程透明传输的内容是转义字符，用户察觉不到转义字符的存在。</p>
+<h1 id="mac">MAC</h1>
+<p>确认网络设备位置的位址。
+由48位二进制数组成。一般用12个16进制数代表：
+<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143312.png" alt=""></p>
+<h1 id="csma">CSMA</h1>
+<p>CSMA(Carrier Sense Multiple Access): 载波侦听多路访问，<strong>用于半双工通信</strong>。</p>
+<h2 id="分类">分类</h2>
+<p>LBT机制:</p>
+<ul>
+<li>1-persistent CSMA：节点需要持续监听信道，一旦节点发现信道空闲后，则立刻发送数据。</li>
+<li>0-persistent CSMA：节点不连续监听信道，若该时刻节点监听信道为busy，那么等待一段时间后，再次进行监听。若节点该时刻监听信道为空闲，则立刻发送数据。</li>
+<li>p-persistentes CSMA：节点需要持续监听信道，一旦发现信道空闲后，节点以p的概率立刻发送数据，以1-p的概率不发送数据。若节点该时刻不发送数据，那么等待一段时间后，再次进行监听，并以p概率再次发送。</li>
+</ul>
+<h2 id="csmacd">CSMA/CD</h2>
+<p>Carrier Sense Multiple Access with Collision Detection
+CSMA/CD采用的是1-persistent CSMA。
+CD: 在传输过程中，若检测到冲突，节点立刻停止当前的传输，并且发送特定的干扰序列用以保证其余所有节点都检测到该次冲突。若检查到冲突，则执行<strong>二进制指数避退算法</strong>重传（当重传16次之后放弃重传）：</p>
+<blockquote>
+<ol>
+<li>从[0， 2^(k-1) ]从随机选择一个数R，（k=Min[重传次数，10]）</li>
+<li>重传时间为 2T * R（T为单程端到端的传播时延）</li>
+</ol>
+</blockquote>
+<p>注意：以太网规定了一个最短帧的长度为64个字节。避免检测到冲突时，数据帧已经传送完毕，无法被撤回。</p>
+<h2 id="csmaca">CSMA/CA</h2>
+<p>无线局域网在半双工通信下会遇到以下问题：
+<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143313.png" alt="">
+为了缓解该问题，一般使用CSMA/CA协议。CSMA/CA协议主要使用两种方法来避免碰撞：</p>
+<ol>
+<li>帧听到通道空闲时，维持一段帧间隔时间IFS (InterFrame Space)后，再等待一段随机的时间依然空闲时，才提交。
+<blockquote>
+<ul>
+<li>SIFS，短帧间间隔，如ACK帧、CTS帧</li>
+<li>DIFS，分布协调功能帧间间隔</li>
+</ul>
+</blockquote>
+</li>
+<li>RTS-CTS三向握手：设备欲发送帧前，先发送一个很小的RTS帧给最近的AP，等待目标端回应CTS帧后，才开始发送。</li>
+</ol>
+<p>过程：当信道为空的时候，首先等待一个帧间间隔，之后再监听信道，如果还为空，那么开始执行回退机制，回退机制之后，再次监听，如果还为空，那么就开始发送。</p>
+<h3 id="回退机制">回退机制：</h3>
+<p>竞争窗口（Contention Window）大小 = 2^(k -1)</p>
+<ol>
+<li>若传输成功，则k减1。</li>
+<li>若发生冲突后，在1~6次中，k加1翻倍，第6次时，窗口大小不变，若第7次传输失败，则进行丢包处理。</li>
+</ol>
+<p>后退时间= randomT * 单位时间，randomT是从（0，Cw）中的一个随机数。</p>
+<h1 id="reference">Reference</h1>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/20731045">802.11协议精读3：CSMA/CD与CSMA/CA - 知乎</a></li>
+<li><a href="https://blog.csdn.net/loveCC_orange/article/details/79177129">CSMA/CD协议详解！！！_loveCC_orange的博客-CSDN博客</a></li>
+<li><a href="https://blog.csdn.net/qq894040717/article/details/82426965">CSMA/CA协议详解【计算机网络】_周末参见-CSDN博客</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/%E8%BD%BD%E6%B3%A2%E4%BE%A6%E5%90%AC%E5%A4%9A%E8%B7%AF%E8%AE%BF%E9%97%AE">载波侦听多路访问- 维基百科，自由的百科全书</a></li>
+<li><a href="https://blog.csdn.net/hanzhen7541/article/details/79024068">802.11的CSMA/CA机制_hanzhen7541的博客-CSDN博客</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/69554474">【计算机网络】你真的理解数据链路层吗？ - 知乎</a></li>
+<li><a href="https://leetcode-cn.com/leetbook/read/networks-interview-highlights/e4ppa6/">数据链路层上的三个基本问题</a></li>
+</ul>
+
+    </div>
+</div>
+
+<div class="container">
+    
+    <nav class="flex container suggested">
+        
+        <a rel="prev" href="/posts/net/%E7%BD%91%E7%BB%9C%E5%B1%82/" title="Previous post (older)">
+            <span>Previous</span>
+            网络层
+            </a>
+        
+        
+        
+        <a rel="next" href="/posts/net/%E5%BA%94%E7%94%A8%E5%B1%82/" title="Next post (newer)">
+            <span>Next</span>
+            应用层
+            </a> 
+        
+    </nav>
+    
+</div>
+</main>
+
+
+        </main>
+        <footer class="footer flex">
+    <section class="container">
+        <nav class="footer-links">
+            
+            <a href="/index.xml">RSS</a>
+            
+        </nav>
+    </section>
+    
+    <script async src="/js/features.min.c5d8f3350f5a652f526b982306299353824299adb7a3bd261ecffacc47087f66.js"></script>
+</footer>
+    </body>
+</html>

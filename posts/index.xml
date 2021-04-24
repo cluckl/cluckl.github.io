@@ -9,10 +9,10 @@
     <lastBuildDate>Sat, 24 Apr 2021 00:13:24 +0800</lastBuildDate><atom:link href="https://example.com/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>IPC</title>
-      <link>https://example.com/posts/ipc/</link>
+      <link>https://example.com/posts/os/ipc/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/ipc/</guid>
+      <guid>https://example.com/posts/os/ipc/</guid>
       <description>Overview 进程间通信 (Inter-process Communication, IPC): 两个(或多个)不同的进程，通过内核或其他共享资源进行通信，来传递控制信息或数据。 直接通信和间接通信   直接通信：基于共享内存
  基于共享内存的消息传递核心抽象仍然是消息，而直接使用共享内存则不存在消息的抽象。
    间接通信：基于操作系统内核，每次发送消息经过一个信箱   消息传递的同步与异步 消息可以是阻塞的也可以是非阻塞的
@@ -24,10 +24,10 @@
     
     <item>
       <title>内存管理</title>
-      <link>https://example.com/posts/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+      <link>https://example.com/posts/os/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+      <guid>https://example.com/posts/os/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
       <description>Overview 虚拟内存： 为了让不同的应用程序高效安全地使用物理内存资源，加入一个在应用程序与物理内存之间的抽象。
  高效性：虚拟内存抽象下，程序使用虚拟地址访问主存，不会造成明显的性能开销。 安全性：每个应用程序拥有独立的虚拟地址空间，且只能访问属于自己的物理内存区域。  应用程序认为自己独占整个内存 应用程序不再看到物理地址     地址翻译： 在程序执行过程中，CPU中的内存管理单元（MMU, Memory Management Unit）会根据翻译规则把虚拟地址转换成物理地址，然后通过物理地址访问物理内存。
  翻译规则取决于虚拟内存采用的组织机制，包括：分段机制和分页机制。
@@ -45,10 +45,10 @@
     
     <item>
       <title>同步原语</title>
-      <link>https://example.com/posts/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</link>
+      <link>https://example.com/posts/os/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</guid>
+      <guid>https://example.com/posts/os/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</guid>
       <description>在多道程序的环境下，存在着不同的制约关系，为了协调进程间互相制约的关系，实现资源共享和进程协作，引入了进程同步。
  临界资源：只能同时被一个进程使用的资源。 临界区 ：访问临界资源的代码段。  同步机制的原则 空闲让进 当无进程处于临界区时，请求进入临界区的进程立即进入
 忙则等待 当有进程进入临界区时，其他要求访问临界资源的进程必须等待
@@ -58,10 +58,10 @@
     
     <item>
       <title>死锁</title>
-      <link>https://example.com/posts/%E6%AD%BB%E9%94%81/</link>
+      <link>https://example.com/posts/os/%E6%AD%BB%E9%94%81/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/%E6%AD%BB%E9%94%81/</guid>
+      <guid>https://example.com/posts/os/%E6%AD%BB%E9%94%81/</guid>
       <description>死锁(deadlock)： 在同步原语的情况下，有一组线程因为组内所有线程都在等待组内其他线程释放资源而相互无限等待的现象。 死锁产生的原因  互斥访问：资源只能最多被一个线程持有。 资源非抢占：资源只能由持有的线程主动放弃，不能被其他线程抢占。 持有并等待：线程拥有一些资源并等待一些资源。 循环等待： 多个线程形成一个循环，在该循环中每个线程都在等待下一个线程释放资源。  死锁的检测与恢复 不试图阻止死锁，而是当检测到死锁发生时，由操作系统等第三者采取措施进行恢复。
   检测： 检测资源和线程形成的有向图是否形成环路，若有环路说明出现循环等待，即出现死锁。  对于一种资源可被多个线程占有的情况下，需要使用拓扑排序算法。
    恢复
@@ -78,10 +78,10 @@
     
     <item>
       <title>进程与线程</title>
-      <link>https://example.com/posts/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</link>
+      <link>https://example.com/posts/os/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</guid>
+      <guid>https://example.com/posts/os/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</guid>
       <description>进程 进程是计算机程序运行时的抽象。
 进程的状态  新生状态（ new ）：进程刚被创建 运行状态（ running ）：进程正在处理器上运行 准备状态（ ready ）：进程可以运行，但没有被调度 阻塞状态（ blocked ）：进程进入等待状态，短时间不再运行 终结状态（ terminated ）：进程完成了执行   地址空间 进程具有独立的虚拟地址空间
  每个进程都具有&amp;quot;独占全部内存&amp;quot;的假象 内核中同样包含内核栈和内核代码、数据   进程是计算机程序运行时的抽象
@@ -96,16 +96,74 @@
     
     <item>
       <title>进程调度</title>
-      <link>https://example.com/posts/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</link>
+      <link>https://example.com/posts/os/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</guid>
+      <guid>https://example.com/posts/os/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</guid>
       <description>Overview 为了在有限的资源下通过对多个程序执行过程的管理，满足系统和应用的指标，调度器需要对线程进行调度(Scheduling)。
  线程是调度器的调度对象，但在Linux等OS常用任务(job/task)描述线程。
  执行结束条件  时间片结束 出现I/O请求 主动停止或进入睡眠 被系统打断（抢占式调度）  调度决策  下一个执行的任务 执行该任务的CPU核心 执行的时长，即时间片  调度指标 Scheduling Criteria（调度指标）
  周转时间：任务第一次进入系统到执行结束的时间 响应时间：任务第一次进入系统到第一次给用户输出的时间 实时性：在任务的截止时间内完成任务 公平性：每个任务都应该有机会执行，不能饿死 吞吐率：单位时间内处理的任务数量 开销低：调度器是为了优化系统，而非制造性能BUG 可扩展：随着任务数量增加，仍能正常工作  调度的挑战  缺少信息 线程/任务间的复杂交互 调度目标多样性：不同的系统可能关注不一样的调度指标  三级调度 进程调度可以分为三类：
  Long-Term Scheduler Short-Term Scheduler Medium-Term Scheduler  Long-Term Scheduler 也称为 job scheduler. goal: regulates the program and select process from the queue and loads them into memory for execution. 负责将处于新生状态的进程转为就绪状态，限制系统被短期调度管理的进程数量。
 Short-Term Scheduler 也称为 CPU scheduler.</description>
+    </item>
+    
+    <item>
+      <title>传输层</title>
+      <link>https://example.com/posts/net/%E4%BC%A0%E8%BE%93%E5%B1%82/</link>
+      <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
+      
+      <guid>https://example.com/posts/net/%E4%BC%A0%E8%BE%93%E5%B1%82/</guid>
+      <description>Overview 传输层提供进程之间的逻辑通信服务。 Port Port(端口)：区分每个进程的标识符，1个端口号使用16位无符号整数（unsigned integer）来表示。TCP和UDP是互相独立的，因此TCP和UDP都各拥有65535个端口。
+ 1&amp;ndash;1023 系统保留，只能由root用户使用。 1024&amp;mdash;4999 由客户端进程占有 5000&amp;mdash;65535 由服务器端进程自由分配  在UDP中，源端口号可以选择要不要填上，如果设为0，则代表没有源端口号。
+TSAP TSAP(Transport Service Access Point) : 传输服务访问点,也称为传输层地址。 TSAP = IP + Port Socket 套接字（Socket）是为了使应用程序能够方便地使用协议栈软件进行通信的一种方法。 套接字上联==应用进程==，下联==网络协议栈==，是进程通过网络协议栈进行通信的接口。 结构：
+ 相关描述：{协议，本地IP地址，本地端口Port} 相关描述：{协议，本地地址，本地端口，远程地址，远程端口}  分类  Stream Socket  面向连接、可靠 按顺序接收 字节流   Datagram Socket  无连接 数据报 接收顺序不固定   Raw Socket  用于检验新的协议的实现 允许对较低层次的协议    UDP UDP(User Datagram Protocol)：用户数据报协议，一种以数据报为数据单元的面向无连接的传输层协议。 UDP只提供了差错检测的功能，因此相对TCP速度更快。
+ 端对端 不可靠，不需要连接 面向数据报 无拥塞控制  UDP报头 UDP为了能够计算校验和，必须加上伪头部。</description>
+    </item>
+    
+    <item>
+      <title>应用层</title>
+      <link>https://example.com/posts/net/%E5%BA%94%E7%94%A8%E5%B1%82/</link>
+      <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
+      
+      <guid>https://example.com/posts/net/%E5%BA%94%E7%94%A8%E5%B1%82/</guid>
+      <description>Overview 应用层通过不同的应用层协议为不同的应用提供通信服务。 常用协议：
+ HTTP HTTPS DNS  用户输入网址到显示对应页面的全过程:  输入网址URL。 发送到DNS获得域对应的网络层地址。 客户端浏览器与WEB服务器建立传输层连接。 客户端浏览器向对应IP地址的WEB服务器发送相应的HTTP或HTTPS请求。 WEB服务器响应请求，返回指定的URL数据或错误信息；如果设定重定向，则重定向到新的URL地址。 客户端浏览器下载数据，解析HTML源文件，在浏览器中显示基础的页面。 分析页面中的超链接，显示在当前页面。  HTTP Hyper Text Transfer Protocol(超文本传输协议） 提供HTML(超文本标记语言)的发送和接收方法，一般基于传输层/网络层通信，使用B/S架构。
+组成  请求报文  请求行 请求头 请求正文   响应报文  状态行 响应头 响应报文    常见请求方法  GET：请求指定的信息并返回具体具体内容。 HEAD：和GET类似，但不返回具体内容。 POST：在服务器新建资源，数据被包含在请求体中。 PUT：在服务器更新资源。 DELETE：请求服务器删除指定的内容。   POST和GET的区别：
+ POST用于提交；GET用于查询。 GET是直接添加到URL后面的，直接就可以在URL中看到内容；POST是放在报文内部的，用户无法直接看到。 GET的数据长度有限（因为放在URL后面，URL根据不同的浏览器有不同长度限制）；POST没有长度限制。 GET只支持URL编码，只支持ASCII字符格式的参数；支持多种编码且对字符格式没有限制。   响应状态码 HTTP的响应状态码由3个10进制数组成，第一个数有分类的作用。
+ 1xx：指示信息&amp;ndash;表示请求正在处理 2xx：成功&amp;ndash;表示请求已被成功处理完毕 3xx：需要重定向&amp;ndash;要完成的请求需要进行附加操作 4xx：客户端错误 5xx：服务器错误   常见状态码：</description>
+    </item>
+    
+    <item>
+      <title>数据链路层</title>
+      <link>https://example.com/posts/net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</link>
+      <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
+      
+      <guid>https://example.com/posts/net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</guid>
+      <description>Overview 数据链路层提供帧间的逻辑通信服务。 类型：
+ 点对点信道：也就是字面意思，点对点得通信方式。 广播信道：这种信道是一对多的方式，所以整个过程也比较复杂。必须使用一些信道协议来协调网络中的主机数据发送。在半双工通信中有CSMA等协议。  数据链路层主要有两个功能：
+ 差错检测：使用循环冗余检验（CRC）来检查数据传输过程中是否产生比特差错 流量控制：采用滑动窗口机制  封装帧 将网络层传下来的分组前后分别添加首部和尾部，这样就构成了帧。 透明传输：帧使用首部和尾部进行定界。如果帧的数据部分含有和首部和尾部相同的内容，需要插入转义字符。这个过程透明传输的内容是转义字符，用户察觉不到转义字符的存在。
+MAC 确认网络设备位置的位址。 由48位二进制数组成。一般用12个16进制数代表： CSMA CSMA(Carrier Sense Multiple Access): 载波侦听多路访问，用于半双工通信。
+分类 LBT机制:
+ 1-persistent CSMA：节点需要持续监听信道，一旦节点发现信道空闲后，则立刻发送数据。 0-persistent CSMA：节点不连续监听信道，若该时刻节点监听信道为busy，那么等待一段时间后，再次进行监听。若节点该时刻监听信道为空闲，则立刻发送数据。 p-persistentes CSMA：节点需要持续监听信道，一旦发现信道空闲后，节点以p的概率立刻发送数据，以1-p的概率不发送数据。若节点该时刻不发送数据，那么等待一段时间后，再次进行监听，并以p概率再次发送。  CSMA/CD Carrier Sense Multiple Access with Collision Detection CSMA/CD采用的是1-persistent CSMA。 CD: 在传输过程中，若检测到冲突，节点立刻停止当前的传输，并且发送特定的干扰序列用以保证其余所有节点都检测到该次冲突。若检查到冲突，则执行二进制指数避退算法重传（当重传16次之后放弃重传）：
+  从[0， 2^(k-1) ]从随机选择一个数R，（k=Min[重传次数，10]） 重传时间为 2T * R（T为单程端到端的传播时延）   注意：以太网规定了一个最短帧的长度为64个字节。避免检测到冲突时，数据帧已经传送完毕，无法被撤回。
+CSMA/CA 无线局域网在半双工通信下会遇到以下问题： 为了缓解该问题，一般使用CSMA/CA协议。CSMA/CA协议主要使用两种方法来避免碰撞：
+ 帧听到通道空闲时，维持一段帧间隔时间IFS (InterFrame Space)后，再等待一段随机的时间依然空闲时，才提交。   SIFS，短帧间间隔，如ACK帧、CTS帧 DIFS，分布协调功能帧间间隔    RTS-CTS三向握手：设备欲发送帧前，先发送一个很小的RTS帧给最近的AP，等待目标端回应CTS帧后，才开始发送。  过程：当信道为空的时候，首先等待一个帧间间隔，之后再监听信道，如果还为空，那么开始执行回退机制，回退机制之后，再次监听，如果还为空，那么就开始发送。</description>
+    </item>
+    
+    <item>
+      <title>网络层</title>
+      <link>https://example.com/posts/net/%E7%BD%91%E7%BB%9C%E5%B1%82/</link>
+      <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
+      
+      <guid>https://example.com/posts/net/%E7%BD%91%E7%BB%9C%E5%B1%82/</guid>
+      <description>网络层 在传输层的基础上，提供主机到主机之间的逻辑通信服务。
+网络层包含有IP，ICMP，ARP等协议。
+IP IP(Internet Protocol)：提供无连接的**分组(packet)**通信服务，不能保证分组可靠的、按序到达。
+IP分组结构  版本：4位，表示IP协议版本，通常为0100（v4），若为0110则表示为v6版 区分服务：8位，以前称为服务类型，从未使用过。1998年改称区分服务。用于指明要求网络提供的服务，目前主要包括D、T、R等三种，分别代表延迟、吞吐量和可靠性要求。 总长度：16位，包括了首部长度和数据长度。 标识：16位，数据报计数器，用于区分数据报的唯一标识符。 标志：3 位，最高位保留；中间位是不分片（Don‘t Fragment，DF）标志，DF=1则不允许分片。最低位是有更多分片（More Fragment，MF）标志，除最后一个分片MF=0以外外其余都是MF=1。 片偏移：13 位，表示分片后，该片在原分组中的相对位置。片偏移以 8 个字节为偏移单位。 生存时间：8 位，表示数据报在网络中可通过的路由器数的最大值。若超出最大值，则丢弃数据包，并返回“目标不可达”。 协议：8位，指出此数据报使用何种协议。如ICMP协议 首部检验和：16位，只检验数据报首部。 源地址：32位，发送端主机IP地址。 目的地址：32位，接收端主机IP地址。  分类IP地址 IP地址被分为五类，分别称为A类、B类、C类、D类和E类： A、B和C类地址分别有两个固定长度的字段组成，其中一个字段是网络号（net-id），表示联网主机（或网络设备）所在的网络，另一个字段是主机号（host-id），表示联网主机（或网络设备）本身。D类和E类地址不区分网络和主机。 划分子网IP地址  将一个IP类网划分成几个较小的子网（subnet） 多个物理网共享同一个IP类网前缀  ==即，子网划分就是在32位中借了几位用来表示子网号。== 用==子网掩码==分离网络号和主机号： 特殊地址  host-id全为“1”的地址：本子网内的广播地址 host-id为零的IP地址表示该网络本身  保留地址 保留地址：又称为私网地址，各独立网络可以重复使用的IP地址。网络边界路由器（通常就是网关）不会向目标地址为这些保留地址的主机转发IP分组。也就是说，保留地址不会穿越内部网络。==即只在局域网内使用==。
+ A类：10.0.0.0 （1个网络） B类：172.16.0.0—172.31.0.0（16个网络） C类：192.168.0.0—192.168.255.0（256个网络） 注意：当采用静态或者动态转换时，一个保留地址对应一个公网地址；而采用端口复用的方式，在一个子网中的所有地址都采用一个公网地址。
+ CIDR Classless Inter-Domain Routing 特点  斜线记法 CIDR 地址块 聚合-&amp;gt;超网(supernetting) 最长前缀匹配原则  ICMP ICMP(Internet Control Message Protocol)：当IP丢包时向传输层报告丢包以及丢包的原因。
+ 基于IP 需要经过两次封装  结构 报头： 数据： 应用 Ping Ping(Packet InterNet Groper)：用来测试两个主机之间的连通性。</description>
     </item>
     
   </channel>

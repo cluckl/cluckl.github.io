@@ -8,10 +8,10 @@
     <lastBuildDate>Sat, 24 Apr 2021 00:13:24 +0800</lastBuildDate><atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
     <title>IPC</title>
-    <link>https://example.com/posts/ipc/</link>
+    <link>https://example.com/posts/os/ipc/</link>
     <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
     
-    <guid>https://example.com/posts/ipc/</guid>
+    <guid>https://example.com/posts/os/ipc/</guid>
     <description>
         &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
 &lt;p&gt;&lt;strong&gt;进程间通信 (Inter-process Communication, IPC)&lt;/strong&gt;: 两个(或多个)不同的进程，通过内核或其他共享资源进行通信，来传递控制信息或数据。
@@ -128,10 +128,10 @@
     
     <item>
     <title>内存管理</title>
-    <link>https://example.com/posts/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+    <link>https://example.com/posts/os/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
     <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
     
-    <guid>https://example.com/posts/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+    <guid>https://example.com/posts/os/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
     <description>
         &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
 &lt;p&gt;虚拟内存： 为了让不同的应用程序&lt;strong&gt;高效安全&lt;/strong&gt;地使用物理内存资源，加入一个在&lt;strong&gt;应用程序&lt;/strong&gt;与&lt;strong&gt;物理内存&lt;/strong&gt;之间的抽象。&lt;/p&gt;
@@ -244,10 +244,10 @@
     
     <item>
     <title>同步原语</title>
-    <link>https://example.com/posts/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</link>
+    <link>https://example.com/posts/os/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</link>
     <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
     
-    <guid>https://example.com/posts/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</guid>
+    <guid>https://example.com/posts/os/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</guid>
     <description>
         &lt;p&gt;在多道程序的环境下，存在着不同的制约关系，为了协调&lt;a href=&#34;%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B#%E8%BF%9B%E7%A8%8B&#34;&gt;进程&lt;/a&gt;间互相制约的关系，实现资源共享和进程协作，引入了进程同步。&lt;/p&gt;
 &lt;ul&gt;
@@ -269,10 +269,10 @@
     
     <item>
     <title>死锁</title>
-    <link>https://example.com/posts/%E6%AD%BB%E9%94%81/</link>
+    <link>https://example.com/posts/os/%E6%AD%BB%E9%94%81/</link>
     <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
     
-    <guid>https://example.com/posts/%E6%AD%BB%E9%94%81/</guid>
+    <guid>https://example.com/posts/os/%E6%AD%BB%E9%94%81/</guid>
     <description>
         &lt;p&gt;&lt;strong&gt;死锁(deadlock)&lt;/strong&gt;： 在&lt;a href=&#34;%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD.md&#34;&gt;同步原语&lt;/a&gt;的情况下，有一组线程因为组内所有线程都在等待组内其他线程释放资源而&lt;strong&gt;相互无限等待&lt;/strong&gt;的现象。
 &lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124823.png&#34; alt=&#34;200&#34;&gt;&lt;/p&gt;
@@ -335,10 +335,10 @@
     
     <item>
     <title>进程与线程</title>
-    <link>https://example.com/posts/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</link>
+    <link>https://example.com/posts/os/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</link>
     <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
     
-    <guid>https://example.com/posts/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</guid>
+    <guid>https://example.com/posts/os/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</guid>
     <description>
         &lt;h1 id=&#34;进程&#34;&gt;进程&lt;/h1&gt;
 &lt;p&gt;进程是计算机程序运行时的抽象。&lt;/p&gt;
@@ -472,10 +472,10 @@ TLS寻址模式：基地址＋偏移量&lt;/p&gt;
     
     <item>
     <title>进程调度</title>
-    <link>https://example.com/posts/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</link>
+    <link>https://example.com/posts/os/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</link>
     <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
     
-    <guid>https://example.com/posts/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</guid>
+    <guid>https://example.com/posts/os/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</guid>
     <description>
         &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
 &lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/Pasted%20image%2020210416211921.png&#34; alt=&#34;&#34;&gt;
@@ -665,6 +665,553 @@ Boost可以防止长任务饥饿。
 &lt;li&gt;&lt;a href=&#34;https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched-mlfq.pdf&#34;&gt;Multilevel Feedback Queues (MLFQ) - LASS-PDF&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://ipads.se.sjtu.edu.cn/courses/os/2020/schedule.shtml&#34;&gt;上海交通大学SE-315 · 操作系统（2020春)&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+    </description>
+    </item>
+    
+    <item>
+    <title>传输层</title>
+    <link>https://example.com/posts/net/%E4%BC%A0%E8%BE%93%E5%B1%82/</link>
+    <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
+    
+    <guid>https://example.com/posts/net/%E4%BC%A0%E8%BE%93%E5%B1%82/</guid>
+    <description>
+        &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+&lt;p&gt;传输层提供进程之间的逻辑通信服务。
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143031.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;port&#34;&gt;Port&lt;/h2&gt;
+&lt;p&gt;Port(端口)：&lt;strong&gt;区分每个&lt;a href=&#34;../OS/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B.md#%E8%BF%9B%E7%A8%8B&#34;&gt;进程&lt;/a&gt;的标识符&lt;/strong&gt;，1个端口号使用16位无符号整数（unsigned integer）来表示。&lt;a href=&#34;#TCP&#34;&gt;TCP&lt;/a&gt;和&lt;a href=&#34;#UDP&#34;&gt;UDP&lt;/a&gt;是互相独立的，因此TCP和UDP都各拥有65535个端口。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1&amp;ndash;1023 系统保留，只能由root用户使用。&lt;/li&gt;
+&lt;li&gt;1024&amp;mdash;4999 由客户端进程占有&lt;/li&gt;
+&lt;li&gt;5000&amp;mdash;65535 由服务器端进程自由分配&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在&lt;a href=&#34;#UDP&#34;&gt;UDP&lt;/a&gt;中，源端口号可以选择要不要填上，如果设为0，则代表没有源端口号。&lt;/p&gt;
+&lt;h2 id=&#34;tsap&#34;&gt;TSAP&lt;/h2&gt;
+&lt;p&gt;TSAP(Transport Service Access Point) : 传输服务访问点,也称为传输层地址。
+TSAP = &lt;a href=&#34;%E7%BD%91%E7%BB%9C%E5%B1%82.md#IP&#34;&gt;IP&lt;/a&gt; + &lt;a href=&#34;#Port&#34;&gt;Port&lt;/a&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143032.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;socket&#34;&gt;Socket&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;套接字（Socket）是为了使应用程序能够方便地使用协议栈软件进行通信的一种方法。&lt;/strong&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143033.png&#34; alt=&#34;&#34;&gt;
+套接字上联==应用进程==，下联==网络协议栈==，是&lt;a href=&#34;../OS/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B.md#%E8%BF%9B%E7%A8%8B&#34;&gt;进程&lt;/a&gt;通过网络协议栈进行通信的接口。
+结构：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;相关描述：{协议，本地&lt;a href=&#34;%E7%BD%91%E7%BB%9C%E5%B1%82.md#IP&#34;&gt;IP&lt;/a&gt;地址，本地端口&lt;a href=&#34;#Port&#34;&gt;Port&lt;/a&gt;}&lt;/li&gt;
+&lt;li&gt;相关描述：{协议，本地地址，本地端口，&lt;strong&gt;远程地址，远程端口&lt;/strong&gt;}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;分类&#34;&gt;分类&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Stream&lt;/strong&gt; Socket
+&lt;ul&gt;
+&lt;li&gt;面向连接、可靠&lt;/li&gt;
+&lt;li&gt;按顺序接收&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;字节流&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Datagram&lt;/strong&gt; Socket
+&lt;ul&gt;
+&lt;li&gt;无连接&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;数据报&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;接收顺序不固定&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Raw Socket
+&lt;ul&gt;
+&lt;li&gt;用于检验新的协议的实现&lt;/li&gt;
+&lt;li&gt;允许对较低层次的协议&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;udp&#34;&gt;UDP&lt;/h1&gt;
+&lt;p&gt;UDP(User Datagram Protocol)：用户数据报协议，一种以&lt;strong&gt;数据报&lt;/strong&gt;为数据单元&lt;strong&gt;的面向无连接&lt;/strong&gt;的传输层协议。
+UDP只提供了&lt;strong&gt;差错检测&lt;/strong&gt;的功能，因此相对&lt;a href=&#34;#TCP&#34;&gt;TCP&lt;/a&gt;速度更快。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;端对端&lt;/li&gt;
+&lt;li&gt;不可靠，不需要连接&lt;/li&gt;
+&lt;li&gt;面向数据报&lt;/li&gt;
+&lt;li&gt;无拥塞控制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;udp报头&#34;&gt;UDP报头&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143034.png&#34; alt=&#34;&#34;&gt;
+UDP为了能够计算校验和，必须加上伪头部。&lt;/p&gt;
+&lt;h2 id=&#34;connect和bind函数&#34;&gt;connect和bind函数&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;bind：发送端调用 bind 函数时，就会将这个套接字指定一个端口，避免内核执行该操作，提高性能&lt;/li&gt;
+&lt;li&gt;connect：记录IP及Port。和普通的 UDP 相比，调用 connect 的 UDP 会提升效率，并且在高并发服务中会增加系统稳定性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;tcp&#34;&gt;TCP&lt;/h1&gt;
+&lt;p&gt;TCP(Transmission Control Procotol): 提供以**报文段(Segment)**为数据单元的传输层通信服务。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;面向连接&lt;/li&gt;
+&lt;li&gt;端对端&lt;/li&gt;
+&lt;li&gt;可靠交付&lt;/li&gt;
+&lt;li&gt;全双工&lt;/li&gt;
+&lt;li&gt;基于字节流&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143035.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;连接过程&#34;&gt;连接过程&lt;/h2&gt;
+&lt;p&gt;TCP协议的运行可划分为三个阶段：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#%E8%BF%9E%E6%8E%A5%E5%88%9B%E5%BB%BA&#34;&gt;连接创建&lt;/a&gt;(connection establishment)&lt;/li&gt;
+&lt;li&gt;数据传送（data transfer）&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E8%BF%9E%E6%8E%A5%E9%87%8A%E6%94%BE&#34;&gt;连接释放&lt;/a&gt;（connection termination）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;连接创建&#34;&gt;连接创建&lt;/h3&gt;
+&lt;p&gt;TCP用==三次握手==（或称三路握手，three-way handshake）过程创建一个连接。
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143036.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;客户端（通过执行connect函数）向服务器端发送一个SYN包，请求一个主动打开。该包携带客户端为这个连接请求而设定的随机数x作为消息序列号。&lt;/li&gt;
+&lt;li&gt;服务器端收到一个合法的SYN包后，把该包放入SYN队列中；回送一个SYN/ACK。ACK的确认码应为x+1，SYN/ACK包本身携带一个随机产生的序号y。&lt;/li&gt;
+&lt;li&gt;客户端收到SYN/ACK包后，发送一个ACK包，该包的序号被设定为x+1，而ACK的确认码则为y+1。然后客户端的connect函数成功返回。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;连接释放&#34;&gt;连接释放&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143037.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;客户端发送FIN包给服务器端，结束 ESTABLISHED 阶段并进入 FIN-WAIT-1 阶段&lt;/li&gt;
+&lt;li&gt;服务器端收到客户端的FIN包后发送ACK包给客户端，结束 ESTABLISHED 阶段并进入CLOSE-WAIT 阶段&lt;/li&gt;
+&lt;li&gt;客户端收到ACK包后进入FIN-WAIT-2 阶段&lt;/li&gt;
+&lt;li&gt;服务器端将数据传送完毕后发送ACK/FIN包给客户端，结束CLOSE-WAIT阶段并进入 LAST-ACK 阶段&lt;/li&gt;
+&lt;li&gt;客户端收到ACK/SYN包后进入TIME-WAIT 阶段并发送ACK包给服务器端&lt;/li&gt;
+&lt;li&gt;客户端开始在 TIME-WAIT 阶段等待 &lt;strong&gt;2 MSL&lt;/strong&gt;。服务器端收到从客户端发出的 TCP 报文之后结束 LAST-ACK 阶段，进入 CLOSED 阶段。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;客户端等待 2 MSL的原因：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;保证没有数据包滞留&lt;/li&gt;
+&lt;li&gt;确保客户端发的ACK包被服务器端收到（如果服务器端没有收到将认为自己发送的ACK/SYN包没有收到而再次发送）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;计时器&#34;&gt;计时器&lt;/h2&gt;
+&lt;p&gt;TCP主要有以下4种计时器&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;重传计时器：当发送方发送的数据包后一段时间内没有收到对方发送的ACK包则重发该数据包。&lt;/li&gt;
+&lt;li&gt;保活计时器：当接收方没有收到对方的数据包一段时间后，将发送一个探测包以检测对方是否正常在线。&lt;/li&gt;
+&lt;li&gt;坚持计时器：当接收方收到对方的滑动窗口为0的数据包将停止发送数据包，等待一段时间后将发送一个探测包，避免死锁发生。&lt;/li&gt;
+&lt;li&gt;时间等待计时器：在四次挥手中客户端收到ACK/SYN包后开始计时。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;除上述四种计时器外，还有FIN_WAIT_2 计时器、延迟应答计时器等等。&lt;/p&gt;
+&lt;h2 id=&#34;可靠性&#34;&gt;可靠性&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;流量控制——滑动窗口&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;%E4%BC%A0%E8%BE%93%E5%B1%82.md#%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6&#34;&gt;拥塞控制&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;序列号及应答——确保数据能无重复地达到&lt;/li&gt;
+&lt;li&gt;校验和——确保数据在传输的过程中没有发生变化&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;拥塞控制&#34;&gt;拥塞控制&lt;/h3&gt;
+&lt;p&gt;拥塞窗口（congestion window）：发送方确定能发送出去的字节数的控制因素之一，是阻止发送方至接收方之间的链路变得拥塞的手段。
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143038.png&#34; alt=&#34;&#34;&gt;
+慢启动：设置拥塞窗口值（cwnd）为1个MSS，发送方每收到一个ACK包cwnd加1（因此每个RTTcwnd加倍），直到cwnd达到慢开始门限ssthresh值或出现丢包。
+拥塞避免：接收方每经过一个RTT，cwnd加1(&lt;strong&gt;加法增大&lt;/strong&gt;)，直到出现丢包。
+快恢复（Reno）：当出现丢包时，将ssthresh减半(&lt;strong&gt;乘法减小&lt;/strong&gt;)并cwnd设置为ssthresh减半后的值,然后进入拥塞避免阶段。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;考虑到如果网络出现拥塞的话就不会收到好几个重复的确认，所以发送方现在认为网络可能没有出现拥塞。所以此时&lt;strong&gt;不执行慢开始&lt;/strong&gt;算法。
+在这个过程中还涉及到&lt;a href=&#34;%E4%BC%A0%E8%BE%93%E5%B1%82.md#%E5%BF%AB%E9%80%9F%E9%87%8D%E4%BC%A0%E6%9C%BA%E5%88%B6&#34;&gt;快速重传机制&lt;/a&gt;：&lt;strong&gt;接收方&lt;/strong&gt;三次收到同一个失序的报文段后就立即发出重复确认。
+&lt;u&gt;注意：“拥塞避免”并非完全能够避免了阻塞，只能尽量避免网络拥塞出现。&lt;/u&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;快速重传机制&#34;&gt;快速重传机制&lt;/h2&gt;
+&lt;p&gt;虽然报文段丢失时，由于重传机制，发送端会重传分组，但会等待一定的周期，增加了&lt;strong&gt;端到端的时延&lt;/strong&gt;，而快速重传机制可以有效减少时延。
+TCP采用的是累计确认机制，即当接收端收到比期望序号大的报文段时，便会重复发送最近一次确认的报文段的确认信号（冗余ACK，duplicate ACK），告诉接收方发送丢包。
+如果在超时重传定时器溢出之前，接收到连续的三个重复冗余ACK，发送端便会重传该报文段，&lt;u&gt;不需要等待超时重传定时器溢出&lt;/u&gt;
+为什么是3次冗余ACK？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;接收端收到比期望序号大的报文段时，便会重复发送最近一次确认的报文段的确认信号&lt;/strong&gt;，但该报文段不一定已经丢失，也有可能在将来的某个时间到达。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;粘包问题&#34;&gt;粘包问题&lt;/h2&gt;
+&lt;p&gt;&lt;u&gt;严格来说，TCP是面向流的协议，不存在“粘包问题”。&lt;/u&gt;
+粘包有两种含义&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;由于发送方采用Nagle算法，将多个小报文放在一起发送出去。&lt;/li&gt;
+&lt;li&gt;接收方一次收到多个应用层报文，即接收方的&lt;a href=&#34;%E5%BA%94%E7%94%A8%E5%B1%82.md&#34;&gt;应用层&lt;/a&gt;来不及处理数据接收方又收到了新的报文。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;reference&#34;&gt;Reference&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://leetcode-cn.com/leetbook/read/networks-interview-highlights/es7qwj/&#34;&gt;UDP 为什么是不可靠的？bind 和 connect 对于 UDP 的作用是什么&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://leetcode-cn.com/leetbook/read/networks-interview-highlights/esegch/&#34;&gt;三次握手和四次挥手机制- Leetcode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/LF_2016/article/details/60468161&#34;&gt;TCP第四次挥手为什么要等待2MSL-CSDN博客&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://leetcode-cn.com/leetbook/read/networks-interview-highlights/esd47g/&#34;&gt;TCP 协议中的定时器- Leetcode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/LF_2016/article/details/60468100&#34;&gt;TCP使用的四种计时器_Sunnylunch-blog-CSDN博客&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://zh.wikipedia.org/wiki/TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6&#34;&gt;TCP拥塞控制- 维基百科，自由的百科全书&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/37379780&#34;&gt;TCP流量控制、拥塞控制- 知乎&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    </description>
+    </item>
+    
+    <item>
+    <title>应用层</title>
+    <link>https://example.com/posts/net/%E5%BA%94%E7%94%A8%E5%B1%82/</link>
+    <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
+    
+    <guid>https://example.com/posts/net/%E5%BA%94%E7%94%A8%E5%B1%82/</guid>
+    <description>
+        &lt;h1 id=&#34;heading&#34;&gt;&lt;/h1&gt;
+&lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+&lt;p&gt;应用层通过不同的应用层协议为不同的应用提供通信服务。
+常用协议：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#HTTP&#34;&gt;HTTP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#HTTPS&#34;&gt;HTTPS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#DNS&#34;&gt;DNS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用户输入网址到显示对应页面的全过程:
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143524.png&#34; alt=&#34;100&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;输入网址URL。&lt;/li&gt;
+&lt;li&gt;发送到DNS获得域对应的&lt;a href=&#34;%E7%BD%91%E7%BB%9C%E5%B1%82.md&#34;&gt;网络层&lt;/a&gt;地址。&lt;/li&gt;
+&lt;li&gt;客户端浏览器与WEB服务器建立&lt;a href=&#34;%E4%BC%A0%E8%BE%93%E5%B1%82.md&#34;&gt;传输层&lt;/a&gt;连接。&lt;/li&gt;
+&lt;li&gt;客户端浏览器向对应IP地址的WEB服务器发送相应的&lt;a href=&#34;#HTTP&#34;&gt;HTTP&lt;/a&gt;或&lt;a href=&#34;#HTTPS&#34;&gt;HTTPS&lt;/a&gt;请求。&lt;/li&gt;
+&lt;li&gt;WEB服务器响应请求，返回指定的URL数据或错误信息；如果设定重定向，则重定向到新的URL地址。&lt;/li&gt;
+&lt;li&gt;客户端浏览器下载数据，解析HTML源文件，在浏览器中显示基础的页面。&lt;/li&gt;
+&lt;li&gt;分析页面中的超链接，显示在当前页面。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;http&#34;&gt;HTTP&lt;/h1&gt;
+&lt;p&gt;Hyper Text Transfer Protocol(超文本传输协议）
+提供HTML(超文本标记语言)的发送和接收方法，一般基于&lt;a href=&#34;%E4%BC%A0%E8%BE%93%E5%B1%82.md&#34;&gt;传输层&lt;/a&gt;/&lt;a href=&#34;%E7%BD%91%E7%BB%9C%E5%B1%82.md&#34;&gt;网络层&lt;/a&gt;通信，使用B/S架构。&lt;/p&gt;
+&lt;h2 id=&#34;组成&#34;&gt;组成&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;请求报文
+&lt;ol&gt;
+&lt;li&gt;请求行&lt;/li&gt;
+&lt;li&gt;请求头&lt;/li&gt;
+&lt;li&gt;请求正文&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;响应报文
+&lt;ol&gt;
+&lt;li&gt;状态行&lt;/li&gt;
+&lt;li&gt;响应头&lt;/li&gt;
+&lt;li&gt;响应报文&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;常见请求方法&#34;&gt;常见请求方法&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;GET：请求指定的信息并返回具体具体内容。&lt;/li&gt;
+&lt;li&gt;HEAD：和GET类似，但不返回具体内容。&lt;/li&gt;
+&lt;li&gt;POST：在服务器新建资源，数据被包含在请求体中。&lt;/li&gt;
+&lt;li&gt;PUT：在服务器更新资源。&lt;/li&gt;
+&lt;li&gt;DELETE：请求服务器删除指定的内容。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;POST和GET的区别：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;POST用于提交；GET用于查询。&lt;/li&gt;
+&lt;li&gt;GET是直接添加到URL后面的，直接就可以在URL中看到内容；POST是放在报文内部的，用户无法直接看到。&lt;/li&gt;
+&lt;li&gt;GET的数据长度有限（因为放在URL后面，URL根据不同的浏览器有不同长度限制）；POST没有长度限制。&lt;/li&gt;
+&lt;li&gt;GET只支持URL编码，只支持ASCII字符格式的参数；支持多种编码且对字符格式没有限制。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;响应状态码&#34;&gt;响应状态码&lt;/h2&gt;
+&lt;p&gt;HTTP的响应状态码由3个10进制数组成，第一个数有分类的作用。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1xx：指示信息&amp;ndash;表示请求正在处理&lt;/li&gt;
+&lt;li&gt;2xx：成功&amp;ndash;表示请求已被成功处理完毕&lt;/li&gt;
+&lt;li&gt;3xx：需要重定向&amp;ndash;要完成的请求需要进行附加操作&lt;/li&gt;
+&lt;li&gt;4xx：客户端错误&lt;/li&gt;
+&lt;li&gt;5xx：服务器错误&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;常见状态码：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;200 OK - 客户端请求成功&lt;/li&gt;
+&lt;li&gt;301 - 资源（网页等）被永久转移到其它URL&lt;/li&gt;
+&lt;li&gt;302 - 临时跳转&lt;/li&gt;
+&lt;li&gt;400 - 客户端请求有语法错误，服务器无法识别&lt;/li&gt;
+&lt;li&gt;401 - 请求未经授权&lt;/li&gt;
+&lt;li&gt;404 - 服务器无法找到对应资源&lt;/li&gt;
+&lt;li&gt;500 - 服务器内部错误&lt;/li&gt;
+&lt;li&gt;503 - 服务器正忙&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;持久和非持久连接&#34;&gt;持久和非持久连接&lt;/h2&gt;
+&lt;p&gt;持久连接：客户端发起第一次请求建立TCP连接之后的一段时间之内，不需要再次建立[[传输层]]连接
+非持久连接：每次传输对象都需要建立一次TCP连接。
+在 HTTP/1.1 及之后的版本中默认使用持久连接。
+注意：持久连接需要配置正确的keep-alive timeout参数，否则可能导致资源被长时间无效占用。&lt;/p&gt;
+&lt;h2 id=&#34;如何保存用户状态&#34;&gt;如何保存用户状态&lt;/h2&gt;
+&lt;p&gt;HTTP 是一种不保存状态，即无状态（stateless）协议。HTTP 协议自身不对请求和响应之间的通信状态进行保存。常有以下两种解决方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基于Session实现的会话保持&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在客户端第一次向服务器发送HTTP请求时，服务器将会话状态保存起来，然后分配一个会话标识（SessionId）给客户端，以后每次浏览器发送HTTP请求都会带上Cookie中的SessionId到服务器，服务器拿到会话标识就可以把之前存储在服务器端的状态信息与会话联系起来，实现会话保持&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;基于Cookie实现的会话保持&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;基于Cookie实现会话保持与上述基于Session实现会话保持的最主要区别是前者完全将会话状态信息存储在浏览器Cookie中，这样一来每次浏览器发送HTTP请求的时候都会带上状态信息，因此也就可以实现状态保持。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;https&#34;&gt;HTTPS&lt;/h1&gt;
+&lt;p&gt;Hyper Text Transfer Protocol over Secure Socket Layer
+HTTPS和&lt;a href=&#34;%E5%BA%94%E7%94%A8%E5%B1%82.md&#34;&gt;应用层&lt;/a&gt;的最大区别是HTTPS多了一个&lt;a href=&#34;HTTPS.md#SSL%E8%BF%87%E7%A8%8B&#34;&gt;SSL过程&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;https的特点&#34;&gt;HTTPS的特点&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;HTTPS传输过程是加密的&lt;/li&gt;
+&lt;li&gt;服务器需要到CA申请证书&lt;/li&gt;
+&lt;li&gt;响应较慢，需要经过一个SSL/TLS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;ssl过程&#34;&gt;SSL过程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143525.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;客户端向服务器发出连接请求，内容包括 SSL 的版本、自身支持的加密算法列表等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;服务器根据客户端的算法类列表选择一种自身支持的算法，将其和其他密钥组件发送给客户端。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;服务器向客户端发送第三方数字证书。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;数字证书包含颁发机构、网址、公钥、证书有效期等信息。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;客户端验证数字证书的真实性，如果有问题则出现提示警告；否则根据证书内的公钥使用对称加密算法生成密钥并发给服务器。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;服务器用私钥解密收到的内容得到对称加密的密钥，并用密钥发送内容给客户端。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;dns&#34;&gt;DNS&lt;/h1&gt;
+&lt;p&gt;Domain Name System，域名系统
+作用：用于将域名转换成IP地址，能够使用户更方便的访问互联网，而不用去记住能够被机器直接读取的IP数串。&lt;/p&gt;
+&lt;h2 id=&#34;层次结构&#34;&gt;层次结构&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic1.zhimg.com/v2-d4ebb1c03acc11c40aa2d0624e98f9f8_r.jpg&#34; alt=&#34;preview&#34;&gt;
+树状结构，从上到下依次为根域名服务器、顶级域名服务器和权威域名服务器等。&lt;/p&gt;
+&lt;p&gt;注意：本地local DNS（也叫递归DNS）一般不包含在层次结构中，且不会配置任何数据，其数据均来自权威DNS的查询缓存。
+&lt;img src=&#34;https://pic2.zhimg.com/v2-eabb1795b1e3b84a82fc280ba2154639_r.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;解析过程&#34;&gt;解析过程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143526.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;客户端根据要查询的DN想local DNS发起一个解析请求&lt;/li&gt;
+&lt;li&gt;若local DNS缓存中有记录，则返回对应的IP，否则local DNS 向DNS层次结构从上到下依次查询并将查询结果发给local DNS，直到查到目标IP。
+上述解析过程包含了两种查询方式：递归查询和迭代查询&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;reference&#34;&gt;Reference&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/donggx/article/details/71402871&#34;&gt;输入网址到网页显示的过程是什么？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://leetcode-cn.com/leetbook/read/networks-interview-highlights/es94bd/&#34;&gt;网页解析全过程【用户输入网址到显示对应页面的全过程】&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/88260838&#34;&gt;DNS原理及解析过程详解&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.csoonline.com/article/3246212/what-is-ssl-tls-and-how-this-encryption-protocol-works.html&#34;&gt;What is SSL, TLS? And how this encryption protocol works&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/36981565&#34;&gt;浅谈SSL/TLS工作原理&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/72616216&#34;&gt;十分钟搞懂HTTP和HTTPS协议？&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://leetcode-cn.com/leetbook/read/networks-interview-highlights/ez30qs/&#34;&gt;GET 和 POST 的区别&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://leetcode-cn.com/leetbook/read/networks-interview-highlights/eg0dl5/&#34;&gt;Keep-Alive 和非 Keep-Alive 区别，对服务器性能有影响吗&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    </description>
+    </item>
+    
+    <item>
+    <title>数据链路层</title>
+    <link>https://example.com/posts/net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</link>
+    <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
+    
+    <guid>https://example.com/posts/net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</guid>
+    <description>
+        &lt;h1 id=&#34;heading&#34;&gt;&lt;/h1&gt;
+&lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+&lt;p&gt;数据链路层提供帧间的逻辑通信服务。
+类型：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;点对点信道：也就是字面意思，点对点得通信方式。&lt;/li&gt;
+&lt;li&gt;广播信道：这种信道是一对多的方式，所以整个过程也比较复杂。必须使用一些信道协议来协调网络中的主机数据发送。在半双工通信中有&lt;a href=&#34;#CSMA&#34;&gt;CSMA&lt;/a&gt;等协议。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;数据链路层主要有两个功能：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;差错检测：使用&lt;strong&gt;循环冗余检验&lt;/strong&gt;（CRC）来检查数据传输过程中是否产生比特差错&lt;/li&gt;
+&lt;li&gt;流量控制：采用&lt;strong&gt;滑动窗口机制&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;封装帧&#34;&gt;封装帧&lt;/h2&gt;
+&lt;p&gt;将&lt;a href=&#34;%E7%BD%91%E7%BB%9C%E5%B1%82.md&#34;&gt;网络层&lt;/a&gt;传下来的分组前后分别添加首部和尾部，这样就构成了帧。
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143311.png&#34; alt=&#34;&#34;&gt;
+透明传输：帧使用首部和尾部进行定界。如果帧的数据部分含有和首部和尾部相同的内容，需要插入转义字符。这个过程透明传输的内容是转义字符，用户察觉不到转义字符的存在。&lt;/p&gt;
+&lt;h1 id=&#34;mac&#34;&gt;MAC&lt;/h1&gt;
+&lt;p&gt;确认网络设备位置的位址。
+由48位二进制数组成。一般用12个16进制数代表：
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143312.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;csma&#34;&gt;CSMA&lt;/h1&gt;
+&lt;p&gt;CSMA(Carrier Sense Multiple Access): 载波侦听多路访问，&lt;strong&gt;用于半双工通信&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;分类&#34;&gt;分类&lt;/h2&gt;
+&lt;p&gt;LBT机制:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1-persistent CSMA：节点需要持续监听信道，一旦节点发现信道空闲后，则立刻发送数据。&lt;/li&gt;
+&lt;li&gt;0-persistent CSMA：节点不连续监听信道，若该时刻节点监听信道为busy，那么等待一段时间后，再次进行监听。若节点该时刻监听信道为空闲，则立刻发送数据。&lt;/li&gt;
+&lt;li&gt;p-persistentes CSMA：节点需要持续监听信道，一旦发现信道空闲后，节点以p的概率立刻发送数据，以1-p的概率不发送数据。若节点该时刻不发送数据，那么等待一段时间后，再次进行监听，并以p概率再次发送。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;csmacd&#34;&gt;CSMA/CD&lt;/h2&gt;
+&lt;p&gt;Carrier Sense Multiple Access with Collision Detection
+CSMA/CD采用的是1-persistent CSMA。
+CD: 在传输过程中，若检测到冲突，节点立刻停止当前的传输，并且发送特定的干扰序列用以保证其余所有节点都检测到该次冲突。若检查到冲突，则执行&lt;strong&gt;二进制指数避退算法&lt;/strong&gt;重传（当重传16次之后放弃重传）：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;从[0， 2^(k-1) ]从随机选择一个数R，（k=Min[重传次数，10]）&lt;/li&gt;
+&lt;li&gt;重传时间为 2T * R（T为单程端到端的传播时延）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;注意：以太网规定了一个最短帧的长度为64个字节。避免检测到冲突时，数据帧已经传送完毕，无法被撤回。&lt;/p&gt;
+&lt;h2 id=&#34;csmaca&#34;&gt;CSMA/CA&lt;/h2&gt;
+&lt;p&gt;无线局域网在半双工通信下会遇到以下问题：
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143313.png&#34; alt=&#34;&#34;&gt;
+为了缓解该问题，一般使用CSMA/CA协议。CSMA/CA协议主要使用两种方法来避免碰撞：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;帧听到通道空闲时，维持一段帧间隔时间IFS (InterFrame Space)后，再等待一段随机的时间依然空闲时，才提交。
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;SIFS，短帧间间隔，如ACK帧、CTS帧&lt;/li&gt;
+&lt;li&gt;DIFS，分布协调功能帧间间隔&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;RTS-CTS三向握手：设备欲发送帧前，先发送一个很小的RTS帧给最近的AP，等待目标端回应CTS帧后，才开始发送。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;过程：当信道为空的时候，首先等待一个帧间间隔，之后再监听信道，如果还为空，那么开始执行回退机制，回退机制之后，再次监听，如果还为空，那么就开始发送。&lt;/p&gt;
+&lt;h3 id=&#34;回退机制&#34;&gt;回退机制：&lt;/h3&gt;
+&lt;p&gt;竞争窗口（Contention Window）大小 = 2^(k -1)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;若传输成功，则k减1。&lt;/li&gt;
+&lt;li&gt;若发生冲突后，在1~6次中，k加1翻倍，第6次时，窗口大小不变，若第7次传输失败，则进行丢包处理。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;后退时间= randomT * 单位时间，randomT是从（0，Cw）中的一个随机数。&lt;/p&gt;
+&lt;h1 id=&#34;reference&#34;&gt;Reference&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/20731045&#34;&gt;802.11协议精读3：CSMA/CD与CSMA/CA - 知乎&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/loveCC_orange/article/details/79177129&#34;&gt;CSMA/CD协议详解！！！_loveCC_orange的博客-CSDN博客&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/qq894040717/article/details/82426965&#34;&gt;CSMA/CA协议详解【计算机网络】_周末参见-CSDN博客&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://zh.wikipedia.org/wiki/%E8%BD%BD%E6%B3%A2%E4%BE%A6%E5%90%AC%E5%A4%9A%E8%B7%AF%E8%AE%BF%E9%97%AE&#34;&gt;载波侦听多路访问- 维基百科，自由的百科全书&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/hanzhen7541/article/details/79024068&#34;&gt;802.11的CSMA/CA机制_hanzhen7541的博客-CSDN博客&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/69554474&#34;&gt;【计算机网络】你真的理解数据链路层吗？ - 知乎&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://leetcode-cn.com/leetbook/read/networks-interview-highlights/e4ppa6/&#34;&gt;数据链路层上的三个基本问题&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    </description>
+    </item>
+    
+    <item>
+    <title>网络层</title>
+    <link>https://example.com/posts/net/%E7%BD%91%E7%BB%9C%E5%B1%82/</link>
+    <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
+    
+    <guid>https://example.com/posts/net/%E7%BD%91%E7%BB%9C%E5%B1%82/</guid>
+    <description>
+        &lt;h1 id=&#34;heading&#34;&gt;&lt;/h1&gt;
+&lt;h1 id=&#34;网络层&#34;&gt;网络层&lt;/h1&gt;
+&lt;p&gt;在&lt;a href=&#34;%E4%BC%A0%E8%BE%93%E5%B1%82.md&#34;&gt;传输层&lt;/a&gt;的基础上，提供主机到主机之间的&lt;strong&gt;逻辑通信&lt;/strong&gt;服务。&lt;/p&gt;
+&lt;p&gt;网络层包含有&lt;a href=&#34;#IP&#34;&gt;IP&lt;/a&gt;，&lt;a href=&#34;#ICMP&#34;&gt;ICMP&lt;/a&gt;，&lt;a href=&#34;#ARP&#34;&gt;ARP&lt;/a&gt;等协议。&lt;/p&gt;
+&lt;h1 id=&#34;ip&#34;&gt;IP&lt;/h1&gt;
+&lt;p&gt;IP(Internet Protocol)：提供&lt;strong&gt;无连接&lt;/strong&gt;的**分组(packet)**通信服务，不能保证分组可靠的、按序到达。&lt;/p&gt;
+&lt;h2 id=&#34;ip分组结构&#34;&gt;IP分组结构&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143501.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;版本：4位，表示IP协议版本，通常为0100（v4），若为0110则表示为v6版&lt;/li&gt;
+&lt;li&gt;区分服务：8位，以前称为服务类型，从未使用过。1998年改称区分服务。用于指明要求网络提供的服务，目前主要包括D、T、R等三种，分别代表延迟、吞吐量和可靠性要求。&lt;/li&gt;
+&lt;li&gt;总长度：16位，包括了首部长度和数据长度。&lt;/li&gt;
+&lt;li&gt;标识：16位，数据报计数器，用于区分数据报的唯一标识符。&lt;/li&gt;
+&lt;li&gt;标志：3 位，最高位保留；中间位是不分片（Don‘t Fragment，DF）标志，DF=1则不允许分片。最低位是有更多分片（More Fragment，MF）标志，除最后一个分片MF=0以外外其余都是MF=1。&lt;/li&gt;
+&lt;li&gt;片偏移：13 位，表示分片后，该片在原分组中的相对位置。片偏移以 8 个字节为偏移单位。&lt;/li&gt;
+&lt;li&gt;生存时间：8 位，表示数据报在网络中可通过的路由器数的最大值。若超出最大值，则丢弃数据包，并返回“目标不可达”。&lt;/li&gt;
+&lt;li&gt;协议：8位，指出此数据报使用何种协议。如&lt;a href=&#34;ICMP.md&#34;&gt;ICMP&lt;/a&gt;协议&lt;/li&gt;
+&lt;li&gt;首部检验和：16位，只检验数据报首部。&lt;/li&gt;
+&lt;li&gt;源地址：32位，发送端主机IP地址。&lt;/li&gt;
+&lt;li&gt;目的地址：32位，接收端主机IP地址。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;分类ip地址&#34;&gt;分类IP地址&lt;/h2&gt;
+&lt;p&gt;IP地址被分为五类，分别称为A类、B类、C类、D类和E类：
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143502.png&#34; alt=&#34;&#34;&gt;
+A、B和C类地址分别有两个固定长度的字段组成，其中一个字段是网络号（net-id），表示联网主机（或网络设备）所在的网络，另一个字段是主机号（host-id），表示联网主机（或网络设备）本身。&lt;strong&gt;D类和E类地址不区分网络和主机。&lt;/strong&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143503.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;划分子网ip地址&#34;&gt;划分子网IP地址&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143504.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将一个IP类网划分成几个较小的子网（subnet）&lt;/li&gt;
+&lt;li&gt;多个物理网共享同一个IP类网前缀&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;==即，子网划分就是在32位中借了几位用来表示子网号。==
+用==子网掩码==分离网络号和主机号：
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143505.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;特殊地址&#34;&gt;特殊地址&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;host-id全为“1”的地址：本子网内的&lt;strong&gt;广播地址&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;host-id为零的IP地址表示该&lt;strong&gt;网络本身&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;保留地址&#34;&gt;保留地址&lt;/h2&gt;
+&lt;p&gt;保留地址：又称为私网地址，各独立网络可以重复使用的IP地址。网络边界路由器（通常就是网关）不会向目标地址为这些保留地址的主机转发IP分组。也就是说，保留地址不会穿越内部网络。==即只在局域网内使用==。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A类：10.0.0.0 （1个网络）
+B类：172.16.0.0—172.31.0.0（16个网络）
+C类：192.168.0.0—192.168.255.0（256个网络）
+注意：当采用静态或者动态转换时，一个保留地址对应一个公网地址；而采用端口复用的方式，在一个子网中的所有地址都采用一个公网地址。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;cidr&#34;&gt;CIDR&lt;/h2&gt;
+&lt;p&gt;Classless Inter-Domain Routing
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143506.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;特点&#34;&gt;特点&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;斜线记法&lt;/li&gt;
+&lt;li&gt;CIDR 地址块&lt;/li&gt;
+&lt;li&gt;聚合-&amp;gt;超网(supernetting)&lt;/li&gt;
+&lt;li&gt;最长前缀匹配原则&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;icmp&#34;&gt;ICMP&lt;/h1&gt;
+&lt;p&gt;ICMP(Internet Control Message Protocol)：当&lt;a href=&#34;#IP&#34;&gt;IP&lt;/a&gt;丢包时向传输层报告丢包以及丢包的原因。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基于&lt;a href=&#34;#IP&#34;&gt;IP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;需要经过&lt;strong&gt;两次封装&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;结构&#34;&gt;结构&lt;/h2&gt;
+&lt;p&gt;报头：
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143507.png&#34; alt=&#34;&#34;&gt;
+数据：
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143508.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;应用&#34;&gt;应用&lt;/h2&gt;
+&lt;h3 id=&#34;ping&#34;&gt;Ping&lt;/h3&gt;
+&lt;p&gt;Ping(Packet InterNet Groper)：用来测试两个主机之间的连通性。&lt;/p&gt;
+&lt;p&gt;过程：源主机向目的主机发送Echo Request，目的主机收到之后进行响应，回复Echo reply。
+Ping 会根据时间和成功响应的次数估算出数据包往返时间以及丢包率从而推断网络是否通常、运行是否正常等。&lt;/p&gt;
+&lt;p&gt;注意：PING 是应用层直接使用网络层 ICMP 的例子，它没有通过运输层的 TCP 或UDP。&lt;/p&gt;
+&lt;h3 id=&#34;tracert&#34;&gt;Tracert&lt;/h3&gt;
+&lt;p&gt;Tracert 命令用 IP 生存时间 (TTL) 字段和 ICMP 错误消息来确定从一个主机到网络上其他主机的路由，是实现路由追踪（trace router）的一种手段。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;首先tracert送出3个TTL是1的IP 数据包到目的地，当路径上的第一个路由器收到这个数据包时，它将TTL减1，此时TTL等于0.&lt;/li&gt;
+&lt;li&gt;所以该路由器会将此数据包丢掉，并送回一个**ICMP time exceeded ** 消息（TTL超时消息），里面包括发IP包的源地址，IP包的所有内容及路由器的IP地址&lt;/li&gt;
+&lt;li&gt;tracert 收到这个消息后，便知道这个路由器存在于这个路径上，接着tracert 再送出另一个TTL是2 的数据包，发现第2 个路由器&amp;hellip;..以此类推&lt;/li&gt;
+&lt;li&gt;当数据包到达目的地后，该主机则不会送回 &lt;strong&gt;ICMP time exceeded&lt;/strong&gt; 消息&lt;/li&gt;
+&lt;li&gt;一旦到达目的地，由于tracert通过UDP数据包向不常见端口(30000以上)发送数据包，因此会收到 ICMP port unreachable 消息，故可判断到达目的地。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;arp&#34;&gt;ARP&lt;/h1&gt;
+&lt;p&gt;ARP(Address Resolution Protocol)：将IP地址转换成&lt;a href=&#34;%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82.md#MAC&#34;&gt;MAC&lt;/a&gt;地址。&lt;/p&gt;
+&lt;h2 id=&#34;以太帧格式&#34;&gt;以太帧格式&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143509.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;硬件类型：如以太网（0x0001）、分组无线网。
+协议类型：如网际协议(IP)（0x0800）、IPv6（0x86DD）。
+硬件地址长度：每种硬件地址的字节长度，一般为6（以太网）。
+协议地址长度：每种协议地址的字节长度，一般为4（IPv4）。
+操作码：1为ARP请求，2为ARP应答，3为RARP请求，4为RARP应答。
+源硬件地址：n个字节，n由硬件地址长度得到，一般为发送方MAC地址。
+源协议地址：m个字节，m由协议地址长度得到，一般为发送方IP地址。
+目标硬件地址：n个字节，n由硬件地址长度得到，一般为目标MAC地址。
+目标协议地址：m个字节，m由协议地址长度得到，一般为目标IP地址。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;arp原理&#34;&gt;ARP原理&lt;/h2&gt;
+&lt;p&gt;主机里有一个ARP缓存表，表里的IP地址与MAC地址一一对应：
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424143510.png&#34; alt=&#34;&#34;&gt;
+以主机A向主机B发送数据为例：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;如果B主机的IP地址存在于缓存表中，则A主机将对应的MAC地址写入帧发送给B主机。&lt;/li&gt;
+&lt;li&gt;如果在ARP缓存表中没有找到相对应的IP地址，主机A就会在网络上发送一个广播（ARP request），以询问对方的MAC地址；&lt;strong&gt;只有&lt;/strong&gt;主机B接收到这个帧时，才向主机A发出以单播方式的回应（ARP response），并将A的IP和MAC地址保存到B的缓存表里面。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;ARP缓存表采用老化机制，在一段时间内如果表中的某一行没有使用，就会被删除，这样可减少缓存表的长度，加快查询速度。并且，如果电脑或者通信设备重启的话，这张表也会清空。&lt;/p&gt;
+&lt;h2 id=&#34;gratuitous-arp&#34;&gt;gratuitous ARP&lt;/h2&gt;
+&lt;p&gt;主机发送ARP查询（广播）自己的IP地址，当ARP功能被开启或者是端口初始配置完成，主机向网络发送免费ARP来查询自己的IP地址确认地址唯一可用。
+作用：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;确定网络中是否有其他主机使用了IP地址，如果有应答则产生错误消息。&lt;/li&gt;
+&lt;li&gt;免费ARP可以&lt;strong&gt;更新ARP的缓存&lt;/strong&gt;，网络中的其他主机收到该广播则在缓存中更新条目，收到该广播的主机无论是否存在与IP地址相关的条目都会强制更新，如果存在旧条目则会将MAC更新为广播包中的MAC。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;arp攻击&#34;&gt;ARP攻击&lt;/h2&gt;
+&lt;p&gt;利用攻击主机收到被攻击主机的广播时，虽然攻击主机不是目标主机，但却欺骗发送主机，将自己的IP改为目标主机的IP，并向被攻击主机发出回应，当回应的频率达到一定要求（能够覆盖真正目标主机发出的回应），便可以完成ARP攻击。&lt;/p&gt;
 
     </description>
     </item>
