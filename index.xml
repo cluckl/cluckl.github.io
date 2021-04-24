@@ -845,8 +845,7 @@ TCP采用的是累计确认机制，即当接收端收到比期望序号大的�
     
     <guid>https://example.com/posts/net/%E5%BA%94%E7%94%A8%E5%B1%82/</guid>
     <description>
-        &lt;h1 id=&#34;heading&#34;&gt;&lt;/h1&gt;
-&lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+        &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
 &lt;p&gt;应用层通过不同的应用层协议为不同的应用提供通信服务。
 常用协议：&lt;/p&gt;
 &lt;ul&gt;
@@ -1010,8 +1009,7 @@ HTTPS和&lt;a href=&#34;%E5%BA%94%E7%94%A8%E5%B1%82.md&#34;&gt;应用层&lt;/a&g
     
     <guid>https://example.com/posts/net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</guid>
     <description>
-        &lt;h1 id=&#34;heading&#34;&gt;&lt;/h1&gt;
-&lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+        &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
 &lt;p&gt;数据链路层提供帧间的逻辑通信服务。
 类型：&lt;/p&gt;
 &lt;ul&gt;
@@ -1095,8 +1093,7 @@ CD: 在传输过程中，若检测到冲突，节点立刻停止当前的传输�
     
     <guid>https://example.com/posts/net/%E7%BD%91%E7%BB%9C%E5%B1%82/</guid>
     <description>
-        &lt;h1 id=&#34;heading&#34;&gt;&lt;/h1&gt;
-&lt;h1 id=&#34;网络层&#34;&gt;网络层&lt;/h1&gt;
+        &lt;h1 id=&#34;网络层&#34;&gt;网络层&lt;/h1&gt;
 &lt;p&gt;在&lt;a href=&#34;%E4%BC%A0%E8%BE%93%E5%B1%82.md&#34;&gt;传输层&lt;/a&gt;的基础上，提供主机到主机之间的&lt;strong&gt;逻辑通信&lt;/strong&gt;服务。&lt;/p&gt;
 &lt;p&gt;网络层包含有&lt;a href=&#34;#IP&#34;&gt;IP&lt;/a&gt;，&lt;a href=&#34;#ICMP&#34;&gt;ICMP&lt;/a&gt;，&lt;a href=&#34;#ARP&#34;&gt;ARP&lt;/a&gt;等协议。&lt;/p&gt;
 &lt;h1 id=&#34;ip&#34;&gt;IP&lt;/h1&gt;
@@ -1212,6 +1209,200 @@ Ping 会根据时间和成功响应的次数估算出数据包往返时间以及
 &lt;/ol&gt;
 &lt;h2 id=&#34;arp攻击&#34;&gt;ARP攻击&lt;/h2&gt;
 &lt;p&gt;利用攻击主机收到被攻击主机的广播时，虽然攻击主机不是目标主机，但却欺骗发送主机，将自己的IP改为目标主机的IP，并向被攻击主机发出回应，当回应的频率达到一定要求（能够覆盖真正目标主机发出的回应），便可以完成ARP攻击。&lt;/p&gt;
+
+    </description>
+    </item>
+    
+    <item>
+    <title>Dynamic Scheduling</title>
+    <link>https://example.com/posts/cpu/dynamic-scheduling/</link>
+    <pubDate>Mon, 19 Apr 2021 00:13:24 +0800</pubDate>
+    
+    <guid>https://example.com/posts/cpu/dynamic-scheduling/</guid>
+    <description>
+        &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+&lt;p&gt;Dynamic Scheduling（动态调度）：在&lt;strong&gt;程序的执行过程&lt;/strong&gt;中，依靠专门&lt;strong&gt;硬件&lt;/strong&gt;对代码进行调度，减少&lt;a href=&#34;Dependence.md#Data%20Dependence&#34;&gt;Data Dependence&lt;/a&gt;导致的停顿。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;静态调度: 依靠编译器在&lt;strong&gt;编译期间&lt;/strong&gt;把相关的指令&lt;strong&gt;拉开距离&lt;/strong&gt;来减少可能产生的停顿&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;limitation: In-order Issue（按序流出）、 In-order Execution（按序执行）
+solution: Out-of-order Execution（乱序执行）
+为了能够乱序执行 ，将 5 段流水线的译码(ID)阶段再分为两个阶段：
+&lt;img src=&#34;../pic/Pasted%20image%2020210418114934.png&#34; alt=&#34;525&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;流出（Issue, IS）&lt;/strong&gt;：指令译码，检查是否存在结构冲突。（in-order	issue)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;读操作数（Read Operands, RO）&lt;/strong&gt;：等待数据冲突消失，然后读操作数。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;动态调度让指令&lt;strong&gt;乱序完成(Out-of-order Completion)&lt;/strong&gt;，会大大增加异常处理的难度。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;动态调度需要保持正确的异常行为，但动态调度处理机仍可能发生不精确异常，使得在异常处理后难以接着继续执行程序。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;不精确异常：指令发送异常时，流水线可能已经执行完该指令之后的指令或没有执行完该指令之前的指令。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;scoreboard&#34;&gt;Scoreboard&lt;/h1&gt;
+&lt;p&gt;记分板（scoreboard）负责管理指令的流出和执行，包括检查&lt;a href=&#34;Dependence.md&#34;&gt;Dependence&lt;/a&gt;。
+&lt;img src=&#34;../pic/Pasted%20image%2020210418120446.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;steps&#34;&gt;Steps&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Issue
+The scoreboard issues the instruction &lt;strong&gt;only when&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;a functional unit for the instruction is &lt;strong&gt;free&lt;/strong&gt;(structural hazards)&lt;/li&gt;
+&lt;li&gt;no other active instruction  has the same destination register(avoid &lt;a href=&#34;Dependence.md#WAW&#34;&gt;WAW&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;==Otherwise,  the scoreboard stalls the instruction.==and no further instructions will issue &lt;u&gt;until these hazards are cleared (in-order issue).&lt;/u&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Read operands
+The scoreboard issues the instruction &lt;strong&gt;only when&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;All sources operand&lt;/strong&gt; is available, which mean no &lt;strong&gt;earlier issued active instruction&lt;/strong&gt; is going  to write them(avoid &lt;a href=&#34;Dependence.md#RAW&#34;&gt;RAW&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;==Otherwise,  the scoreboard stalls the instruction.==
+After issuing, the  scoreboard tells the functional unit to proceed to read the operands from the  registers and begin execution.&lt;/p&gt;
+&lt;p&gt;&lt;u&gt;	Instructions may be sent into execution &lt;strong&gt;out of order&lt;/strong&gt;.&lt;/u&gt;(只是stall该条指令，不会因此stall别的指令)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Execution
+The functional unit begins execution upon receiving operands. When the result is ready, it **notifies the scoreboard **that it has completed execution.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Write result
+Once the scoreboard is aware that the functional unit has completed execution, it writes results to destinaton oprands &lt;strong&gt;only when&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;earlier issued active instruction&lt;/strong&gt; don&amp;rsquo;t need to read **one of the destinaton oprands ** (avoid &lt;a href=&#34;Dependence.md#WAR&#34;&gt;WAR&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;==Otherwise,  the scoreboard stalls the instruction.==&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;implement&#34;&gt;Implement&lt;/h2&gt;
+&lt;p&gt;To implement the &lt;a href=&#34;#Steps&#34;&gt;Steps&lt;/a&gt;, scoreboard have 3 tables to record status:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Instruction status: which of 4 &lt;a href=&#34;#Steps&#34;&gt;steps&lt;/a&gt; the instruction is in
+&lt;img src=&#34;../pic/Pasted%20image%2020210418145608.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Functional unit status
+&lt;img src=&#34;../pic/Pasted%20image%2020210418145619.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Busy: Indicates whether the unit is busy or not&lt;/li&gt;
+&lt;li&gt;Op: Operation to perform in the unit (e.g., + or –)&lt;/li&gt;
+&lt;li&gt;Fi: Destination register&lt;/li&gt;
+&lt;li&gt;Fj, Fk: Source-register numbers&lt;/li&gt;
+&lt;li&gt;Qj, Qk: Functional units producing source registers Fj, Fk&lt;/li&gt;
+&lt;li&gt;Rj, Rk: Flags indicating when Fj, Fk are ready&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Register result status
+&lt;img src=&#34;../pic/Pasted%20image%2020210418145655.png&#34; alt=&#34;&#34;&gt;
+Indicates which functional unit will write each register, if one exists.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;limitations&#34;&gt;Limitations&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Number, types, and speed of the functional units
+&lt;ul&gt;
+&lt;li&gt;This determines how often a structural hazard results in stall.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;没有实现 &lt;a href=&#34;Dependence.md#Data%20Forwarding&#34;&gt;Data Forwarding&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;没有完全解决&lt;a href=&#34;Dependence.md#Data%20Dependence&#34;&gt;Data Dependence&lt;/a&gt;，只是通过简单的stall。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;reference&#34;&gt;Reference&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ece-research.unm.edu/jimp/611/slides/chap4_3.html&#34;&gt;Dynamic Scheduling&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Jianhua Li-College of Computer and Information-Hefei University of Technology-08-Exploiting ILP&lt;/li&gt;
+&lt;/ul&gt;
+
+    </description>
+    </item>
+    
+    <item>
+    <title>Dependence</title>
+    <link>https://example.com/posts/cpu/dependence/</link>
+    <pubDate>Sun, 18 Apr 2021 00:13:24 +0800</pubDate>
+    
+    <guid>https://example.com/posts/cpu/dependence/</guid>
+    <description>
+        &lt;p&gt;&lt;strong&gt;Dependences&lt;/strong&gt; dictate ordering requirements between instructions.Also called &lt;strong&gt;Hazards&lt;/strong&gt;
+Two types:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;Dependence.md#Data%20Denpendence&#34;&gt;Data Dependence&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;Dependence.md#Control%20Dependence&#34;&gt;Control Dependence&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;data-dependence&#34;&gt;Data Dependence&lt;/h1&gt;
+&lt;p&gt;Types of data dependences&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;Dependence.md#RAW&#34;&gt;RAW&lt;/a&gt;(Flow dependence)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;Dependence.md#WAW&#34;&gt;WAW&lt;/a&gt;(Output dependence)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;Dependence.md#WAR&#34;&gt;WAR&lt;/a&gt;(Anti dependence)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Flow dependence also called true dependence, and output dependence and anti dependence are called Name Dependence.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;raw&#34;&gt;RAW&lt;/h2&gt;
+&lt;p&gt;read after write, also called Flow dependence
+B tries to read a register before A has written it and gets the old value.
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424155155.png&#34; alt=&#34;600&#34;&gt;
+This is common, and &lt;a href=&#34;Dependence.md#Data%20Forwarding&#34;&gt;Data Forwarding&lt;/a&gt; helps to solve it.&lt;/p&gt;
+&lt;h2 id=&#34;waw&#34;&gt;WAW&lt;/h2&gt;
+&lt;p&gt;write after write, also called Output dependence.
+B tries to write an operand before A has written it.
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424155156.png&#34; alt=&#34;600&#34;&gt;
+After instruction B has executed, the value of the register should be B&amp;rsquo;s result, but A&amp;rsquo;s result is stored instead.&lt;/p&gt;
+&lt;p&gt;This can only happen with pipelines that write values in more than one stage, or in variable-length pipelines (i.e. FP pipelines).&lt;/p&gt;
+&lt;h2 id=&#34;war&#34;&gt;WAR&lt;/h2&gt;
+&lt;p&gt;write after read, also called Anti dependence
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424155157.png&#34; alt=&#34;600&#34;&gt;
+In this case, A uses the new (incorrect) value.&lt;/p&gt;
+&lt;p&gt;This type of hazard is rare because most pipelines read values early and write results late.&lt;/p&gt;
+&lt;h2 id=&#34;simple-soultion&#34;&gt;Simple soultion&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424155158.png&#34; alt=&#34;600&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;write-in-frist&#34;&gt;Write in frist&lt;/h3&gt;
+&lt;p&gt;Write the register file in the first half of the cycle and read it in the second half.
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424155159.png&#34; alt=&#34;600&#34;&gt;
+Fixes the hazard shown in green.&lt;/p&gt;
+&lt;h3 id=&#34;data-forwarding&#34;&gt;Data Forwarding&lt;/h3&gt;
+&lt;p&gt;Also called &lt;strong&gt;Data Bypassing&lt;/strong&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Allow the CPU to move a value directly from one instruction to another without going through the register file.&lt;/li&gt;
+&lt;li&gt;Feeding back the data values from the pipeline registers to the inputs of functional units(future instructions) behind them in the datapath.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424155200.png&#34; alt=&#34;600&#34;&gt;
+Fixes the hazard shown in green.&lt;/p&gt;
+&lt;h3 id=&#34;stall&#34;&gt;Stall&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;Dependence.md#Data%20Forwarding&#34;&gt;Data Forwarding&lt;/a&gt; helps Loads, but it does NOT solve all the problems: Forwarding helps Loads, but it does NOT solve all the problems.!
+&lt;a href=&#34;../pic/Pasted%20image%2020210417231439.png&#34;&gt;&lt;/a&gt;
+talling is necessary in this case for proper execution until the hazard is cleared.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Insert a bubble into the pipeline also be right.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;control-dependence&#34;&gt;Control Dependence&lt;/h1&gt;
+&lt;p&gt;All instructions are control dependent on previous ones.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The fetched instruction is a non-control-flow instruction, which the next Fetch PC is the address of the &lt;strong&gt;next-sequential&lt;/strong&gt; instruction.&lt;/li&gt;
+&lt;li&gt;The instruction that is fetched is &lt;strong&gt;a control-flow instruction&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Stall&lt;/strong&gt; the pipeline until we know the next fetch address&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Branch prediction&lt;/strong&gt;: Guess the next fetch address&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Branch delay slot&lt;/strong&gt;: Instruction Scheduling&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;reference&#34;&gt;Reference&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://ece-research.unm.edu/jimp/611/slides/chap3_3.html&#34;&gt;Pipelines Hazards&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Jianhua Li-College of Computer and Information-Hefei University of Technology-06-Pipeling &amp;amp; Hazards&lt;/li&gt;
+&lt;li&gt;Jianhua Li-College of Computer and Information-Hefei University of Technology-07-Dependence Handling&lt;/li&gt;
+&lt;/ul&gt;
 
     </description>
     </item>

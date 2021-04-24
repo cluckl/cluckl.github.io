@@ -25,5 +25,14 @@
       <description></description>
     </item>
     
+    <item>
+      <title>CPU</title>
+      <link>https://example.com/tags/cpu/</link>
+      <pubDate>Mon, 19 Apr 2021 00:13:24 +0800</pubDate>
+      
+      <guid>https://example.com/tags/cpu/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

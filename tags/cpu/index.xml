@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CPU on Julan&#39;s Blog</title>
+    <link>https://example.com/tags/cpu/</link>
+    <description>Recent content in CPU on Julan&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 19 Apr 2021 00:13:24 +0800</lastBuildDate><atom:link href="https://example.com/tags/cpu/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Dynamic Scheduling</title>
+      <link>https://example.com/posts/cpu/dynamic-scheduling/</link>
+      <pubDate>Mon, 19 Apr 2021 00:13:24 +0800</pubDate>
+      
+      <guid>https://example.com/posts/cpu/dynamic-scheduling/</guid>
+      <description>Overview Dynamic Scheduling（动态调度）：在程序的执行过程中，依靠专门硬件对代码进行调度，减少Data Dependence导致的停顿。
+ 静态调度: 依靠编译器在编译期间把相关的指令拉开距离来减少可能产生的停顿
+ limitation: In-order Issue（按序流出）、 In-order Execution（按序执行） solution: Out-of-order Execution（乱序执行） 为了能够乱序执行 ，将 5 段流水线的译码(ID)阶段再分为两个阶段：  流出（Issue, IS）：指令译码，检查是否存在结构冲突。（in-order	issue) 读操作数（Read Operands, RO）：等待数据冲突消失，然后读操作数。    动态调度让指令乱序完成(Out-of-order Completion)，会大大增加异常处理的难度。
+  动态调度需要保持正确的异常行为，但动态调度处理机仍可能发生不精确异常，使得在异常处理后难以接着继续执行程序。
+ 不精确异常：指令发送异常时，流水线可能已经执行完该指令之后的指令或没有执行完该指令之前的指令。
+   Scoreboard 记分板（scoreboard）负责管理指令的流出和执行，包括检查Dependence。 Steps   Issue The scoreboard issues the instruction only when:
+ a functional unit for the instruction is free(structural hazards) no other active instruction has the same destination register(avoid WAW)  ==Otherwise, the scoreboard stalls the instruction.</description>
+    </item>
+    
+    <item>
+      <title>Dependence</title>
+      <link>https://example.com/posts/cpu/dependence/</link>
+      <pubDate>Sun, 18 Apr 2021 00:13:24 +0800</pubDate>
+      
+      <guid>https://example.com/posts/cpu/dependence/</guid>
+      <description>Dependences dictate ordering requirements between instructions.Also called Hazards Two types:
+ Data Dependence Control Dependence  Data Dependence Types of data dependences
+ RAW(Flow dependence) WAW(Output dependence) WAR(Anti dependence)   Flow dependence also called true dependence, and output dependence and anti dependence are called Name Dependence.
+ RAW read after write, also called Flow dependence B tries to read a register before A has written it and gets the old value.</description>
+    </item>
+    
+  </channel>
+</rss>

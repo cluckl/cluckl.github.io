@@ -131,7 +131,8 @@ TSAP TSAP(Transport Service Access Point) : 传输服务访问点,也称为传�
  HTTP HTTPS DNS  用户输入网址到显示对应页面的全过程:  输入网址URL。 发送到DNS获得域对应的网络层地址。 客户端浏览器与WEB服务器建立传输层连接。 客户端浏览器向对应IP地址的WEB服务器发送相应的HTTP或HTTPS请求。 WEB服务器响应请求，返回指定的URL数据或错误信息；如果设定重定向，则重定向到新的URL地址。 客户端浏览器下载数据，解析HTML源文件，在浏览器中显示基础的页面。 分析页面中的超链接，显示在当前页面。  HTTP Hyper Text Transfer Protocol(超文本传输协议） 提供HTML(超文本标记语言)的发送和接收方法，一般基于传输层/网络层通信，使用B/S架构。
 组成  请求报文  请求行 请求头 请求正文   响应报文  状态行 响应头 响应报文    常见请求方法  GET：请求指定的信息并返回具体具体内容。 HEAD：和GET类似，但不返回具体内容。 POST：在服务器新建资源，数据被包含在请求体中。 PUT：在服务器更新资源。 DELETE：请求服务器删除指定的内容。   POST和GET的区别：
  POST用于提交；GET用于查询。 GET是直接添加到URL后面的，直接就可以在URL中看到内容；POST是放在报文内部的，用户无法直接看到。 GET的数据长度有限（因为放在URL后面，URL根据不同的浏览器有不同长度限制）；POST没有长度限制。 GET只支持URL编码，只支持ASCII字符格式的参数；支持多种编码且对字符格式没有限制。   响应状态码 HTTP的响应状态码由3个10进制数组成，第一个数有分类的作用。
- 1xx：指示信息&amp;ndash;表示请求正在处理 2xx：成功&amp;ndash;表示请求已被成功处理完毕 3xx：需要重定向&amp;ndash;要完成的请求需要进行附加操作 4xx：客户端错误 5xx：服务器错误   常见状态码：</description>
+ 1xx：指示信息&amp;ndash;表示请求正在处理 2xx：成功&amp;ndash;表示请求已被成功处理完毕 3xx：需要重定向&amp;ndash;要完成的请求需要进行附加操作 4xx：客户端错误 5xx：服务器错误   常见状态码：
+ 200 OK - 客户端请求成功 301 - 资源（网页等）被永久转移到其它URL 302 - 临时跳转 400 - 客户端请求有语法错误，服务器无法识别 401 - 请求未经授权 404 - 服务器无法找到对应资源 500 - 服务器内部错误 503 - 服务器正忙  持久和非持久连接 持久连接：客户端发起第一次请求建立TCP连接之后的一段时间之内，不需要再次建立[[传输层]]连接 非持久连接：每次传输对象都需要建立一次TCP连接。 在 HTTP/1.</description>
     </item>
     
     <item>
@@ -164,6 +165,33 @@ IP分组结构  版本：4位，表示IP协议版本，通常为0100（v4），�
  A类：10.0.0.0 （1个网络） B类：172.16.0.0—172.31.0.0（16个网络） C类：192.168.0.0—192.168.255.0（256个网络） 注意：当采用静态或者动态转换时，一个保留地址对应一个公网地址；而采用端口复用的方式，在一个子网中的所有地址都采用一个公网地址。
  CIDR Classless Inter-Domain Routing 特点  斜线记法 CIDR 地址块 聚合-&amp;gt;超网(supernetting) 最长前缀匹配原则  ICMP ICMP(Internet Control Message Protocol)：当IP丢包时向传输层报告丢包以及丢包的原因。
  基于IP 需要经过两次封装  结构 报头： 数据： 应用 Ping Ping(Packet InterNet Groper)：用来测试两个主机之间的连通性。</description>
+    </item>
+    
+    <item>
+      <title>Dynamic Scheduling</title>
+      <link>https://example.com/posts/cpu/dynamic-scheduling/</link>
+      <pubDate>Mon, 19 Apr 2021 00:13:24 +0800</pubDate>
+      
+      <guid>https://example.com/posts/cpu/dynamic-scheduling/</guid>
+      <description>Overview Dynamic Scheduling（动态调度）：在程序的执行过程中，依靠专门硬件对代码进行调度，减少Data Dependence导致的停顿。
+ 静态调度: 依靠编译器在编译期间把相关的指令拉开距离来减少可能产生的停顿
+ limitation: In-order Issue（按序流出）、 In-order Execution（按序执行） solution: Out-of-order Execution（乱序执行） 为了能够乱序执行 ，将 5 段流水线的译码(ID)阶段再分为两个阶段：  流出（Issue, IS）：指令译码，检查是否存在结构冲突。（in-order	issue) 读操作数（Read Operands, RO）：等待数据冲突消失，然后读操作数。    动态调度让指令乱序完成(Out-of-order Completion)，会大大增加异常处理的难度。
+  动态调度需要保持正确的异常行为，但动态调度处理机仍可能发生不精确异常，使得在异常处理后难以接着继续执行程序。
+ 不精确异常：指令发送异常时，流水线可能已经执行完该指令之后的指令或没有执行完该指令之前的指令。
+   Scoreboard 记分板（scoreboard）负责管理指令的流出和执行，包括检查Dependence。 Steps   Issue The scoreboard issues the instruction only when:
+ a functional unit for the instruction is free(structural hazards) no other active instruction has the same destination register(avoid WAW)  ==Otherwise, the scoreboard stalls the instruction.</description>
+    </item>
+    
+    <item>
+      <title>Dependence</title>
+      <link>https://example.com/posts/cpu/dependence/</link>
+      <pubDate>Sun, 18 Apr 2021 00:13:24 +0800</pubDate>
+      
+      <guid>https://example.com/posts/cpu/dependence/</guid>
+      <description>Dependences dictate ordering requirements between instructions.Also called Hazards Two types:
+ Data Dependence Control Dependence  Data Dependence Types of data dependences
+ RAW(Flow dependence) WAW(Output dependence) WAR(Anti dependence)   Flow dependence also called true dependence, and output dependence and anti dependence are called Name Dependence.
+ RAW read after write, also called Flow dependence B tries to read a register before A has written it and gets the old value.</description>
     </item>
     
   </channel>
