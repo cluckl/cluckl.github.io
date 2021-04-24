@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="dark">
+    <title> Dependence | Julan&#39;s Blog</title>
+    
+    
+    
+    <link rel="stylesheet" href="/sass/main.min.4e90cee935c47394b47f9cb7ffe8e3ffab18b88d82fea203918cc3f92eec5eb2.css">
+</head>
+
+    <body class="dark">
+        <nav class="navbar">
+    <div class="container">
+        <div class="flex">
+            <div>
+                <a class="brand" href="/">
+                    
+                    <span class="emoji">
+                        🥝
+                    </span>
+                    
+                    Julan&#39;s Blog
+                    </a>
+            </div>
+            <div class="flex">
+                
+                <a href="/articles/">Articles</a>
+                
+                <button id="dark-mode-button"></button>
+            </div>
+            </div>
+    </div>
+</nav>
+        <main>
+            
+
+<div class="container">
+    <article>
+        <header class="article-header">
+            <div class="thumb">
+                <div>
+                    <h1>Dependence</h1>
+                    <div class="post-meta">
+                        <div>
+                            By  on <time>April 18, 2021</time>
+                        </div>
+                        <div class="tags">
+                            
+                            <a href="/tags/cpu/">CPU</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </article>
+
+    <div class="article-post">
+    <p><strong>Dependences</strong> dictate ordering requirements between instructions.Also called <strong>Hazards</strong>
+Two types:</p>
+<ul>
+<li><a href="Dependence.md#Data%20Denpendence">Data Dependence</a></li>
+<li><a href="Dependence.md#Control%20Dependence">Control Dependence</a></li>
+</ul>
+<h1 id="data-dependence">Data Dependence</h1>
+<p>Types of data dependences</p>
+<ul>
+<li><a href="Dependence.md#RAW">RAW</a>(Flow dependence)</li>
+<li><a href="Dependence.md#WAW">WAW</a>(Output dependence)</li>
+<li><a href="Dependence.md#WAR">WAR</a>(Anti dependence)</li>
+</ul>
+<blockquote>
+<p>Flow dependence also called true dependence, and output dependence and anti dependence are called Name Dependence.</p>
+</blockquote>
+<h2 id="raw">RAW</h2>
+<p>read after write, also called Flow dependence
+B tries to read a register before A has written it and gets the old value.
+<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424155155.png" alt="600">
+This is common, and <a href="Dependence.md#Data%20Forwarding">Data Forwarding</a> helps to solve it.</p>
+<h2 id="waw">WAW</h2>
+<p>write after write, also called Output dependence.
+B tries to write an operand before A has written it.
+<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424155156.png" alt="600">
+After instruction B has executed, the value of the register should be B&rsquo;s result, but A&rsquo;s result is stored instead.</p>
+<p>This can only happen with pipelines that write values in more than one stage, or in variable-length pipelines (i.e. FP pipelines).</p>
+<h2 id="war">WAR</h2>
+<p>write after read, also called Anti dependence
+<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424155157.png" alt="600">
+In this case, A uses the new (incorrect) value.</p>
+<p>This type of hazard is rare because most pipelines read values early and write results late.</p>
+<h2 id="simple-soultion">Simple soultion</h2>
+<p><img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424155158.png" alt="600"></p>
+<h3 id="write-in-frist">Write in frist</h3>
+<p>Write the register file in the first half of the cycle and read it in the second half.
+<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424155159.png" alt="600">
+Fixes the hazard shown in green.</p>
+<h3 id="data-forwarding">Data Forwarding</h3>
+<p>Also called <strong>Data Bypassing</strong>.</p>
+<ul>
+<li>Allow the CPU to move a value directly from one instruction to another without going through the register file.</li>
+<li>Feeding back the data values from the pipeline registers to the inputs of functional units(future instructions) behind them in the datapath.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424155200.png" alt="600">
+Fixes the hazard shown in green.</p>
+<h3 id="stall">Stall</h3>
+<p><a href="Dependence.md#Data%20Forwarding">Data Forwarding</a> helps Loads, but it does NOT solve all the problems: Forwarding helps Loads, but it does NOT solve all the problems.!
+<a href="../pic/Pasted%20image%2020210417231439.png"></a>
+talling is necessary in this case for proper execution until the hazard is cleared.</p>
+<blockquote>
+<p>Insert a bubble into the pipeline also be right.</p>
+</blockquote>
+<h1 id="control-dependence">Control Dependence</h1>
+<p>All instructions are control dependent on previous ones.</p>
+<ul>
+<li>The fetched instruction is a non-control-flow instruction, which the next Fetch PC is the address of the <strong>next-sequential</strong> instruction.</li>
+<li>The instruction that is fetched is <strong>a control-flow instruction</strong>.</li>
+</ul>
+<h2 id="solution">Solution</h2>
+<ul>
+<li><strong>Stall</strong> the pipeline until we know the next fetch address</li>
+<li><strong>Branch prediction</strong>: Guess the next fetch address</li>
+<li><strong>Branch delay slot</strong>: Instruction Scheduling</li>
+</ul>
+<h1 id="reference">Reference</h1>
+<ul>
+<li><a href="http://ece-research.unm.edu/jimp/611/slides/chap3_3.html">Pipelines Hazards</a></li>
+<li>Jianhua Li-College of Computer and Information-Hefei University of Technology-06-Pipeling &amp; Hazards</li>
+<li>Jianhua Li-College of Computer and Information-Hefei University of Technology-07-Dependence Handling</li>
+</ul>
+
+    </div>
+</div>
+
+<div class="container">
+    
+    <nav class="flex container suggested">
+        
+        <a rel="prev" href="/posts/net/%E4%BC%A0%E8%BE%93%E5%B1%82/" title="Previous post (older)">
+            <span>Previous</span>
+            
+            </a>
+        
+        
+        
+        <a rel="next" href="/posts/cpu/dynamic-scheduling/" title="Next post (newer)">
+            <span>Next</span>
+            Dynamic Scheduling
+            </a> 
+        
+    </nav>
+    
+</div>
+</main>
+
+
+        </main>
+        <footer class="footer flex">
+    <section class="container">
+        <nav class="footer-links">
+            
+            <a href="/index.xml">RSS</a>
+            
+        </nav>
+    </section>
+    
+    <script async src="/js/features.min.c5d8f3350f5a652f526b982306299353824299adb7a3bd261ecffacc47087f66.js"></script>
+</footer>
+    </body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="dark">
+    <title> Dynamic Scheduling | Julan&#39;s Blog</title>
+    
+    
+    
+    <link rel="stylesheet" href="/sass/main.min.4e90cee935c47394b47f9cb7ffe8e3ffab18b88d82fea203918cc3f92eec5eb2.css">
+</head>
+
+    <body class="dark">
+        <nav class="navbar">
+    <div class="container">
+        <div class="flex">
+            <div>
+                <a class="brand" href="/">
+                    
+                    <span class="emoji">
+                        🥝
+                    </span>
+                    
+                    Julan&#39;s Blog
+                    </a>
+            </div>
+            <div class="flex">
+                
+                <a href="/articles/">Articles</a>
+                
+                <button id="dark-mode-button"></button>
+            </div>
+            </div>
+    </div>
+</nav>
+        <main>
+            
+
+<div class="container">
+    <article>
+        <header class="article-header">
+            <div class="thumb">
+                <div>
+                    <h1>Dynamic Scheduling</h1>
+                    <div class="post-meta">
+                        <div>
+                            By  on <time>April 19, 2021</time>
+                        </div>
+                        <div class="tags">
+                            
+                            <a href="/tags/cpu/">CPU</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </article>
+
+    <div class="article-post">
+    <h1 id="overview">Overview</h1>
+<p>Dynamic Scheduling（动态调度）：在<strong>程序的执行过程</strong>中，依靠专门<strong>硬件</strong>对代码进行调度，减少<a href="Dependence.md#Data%20Dependence">Data Dependence</a>导致的停顿。</p>
+<blockquote>
+<p>静态调度: 依靠编译器在<strong>编译期间</strong>把相关的指令<strong>拉开距离</strong>来减少可能产生的停顿</p>
+</blockquote>
+<p>limitation: In-order Issue（按序流出）、 In-order Execution（按序执行）
+solution: Out-of-order Execution（乱序执行）
+为了能够乱序执行 ，将 5 段流水线的译码(ID)阶段再分为两个阶段：
+<img src="../pic/Pasted%20image%2020210418114934.png" alt="525"></p>
+<ol>
+<li><strong>流出（Issue, IS）</strong>：指令译码，检查是否存在结构冲突。（in-order	issue)</li>
+<li><strong>读操作数（Read Operands, RO）</strong>：等待数据冲突消失，然后读操作数。</li>
+</ol>
+<ul>
+<li>
+<p>动态调度让指令<strong>乱序完成(Out-of-order Completion)</strong>，会大大增加异常处理的难度。</p>
+</li>
+<li>
+<p>动态调度需要保持正确的异常行为，但动态调度处理机仍可能发生不精确异常，使得在异常处理后难以接着继续执行程序。</p>
+<blockquote>
+<p>不精确异常：指令发送异常时，流水线可能已经执行完该指令之后的指令或没有执行完该指令之前的指令。</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="scoreboard">Scoreboard</h1>
+<p>记分板（scoreboard）负责管理指令的流出和执行，包括检查<a href="Dependence.md">Dependence</a>。
+<img src="../pic/Pasted%20image%2020210418120446.png" alt=""></p>
+<h2 id="steps">Steps</h2>
+<ol>
+<li>
+<p>Issue
+The scoreboard issues the instruction <strong>only when</strong>:</p>
+<ul>
+<li>a functional unit for the instruction is <strong>free</strong>(structural hazards)</li>
+<li>no other active instruction  has the same destination register(avoid <a href="Dependence.md#WAW">WAW</a>)</li>
+</ul>
+<p>==Otherwise,  the scoreboard stalls the instruction.==and no further instructions will issue <u>until these hazards are cleared (in-order issue).</u></p>
+</li>
+<li>
+<p>Read operands
+The scoreboard issues the instruction <strong>only when</strong>:</p>
+<ul>
+<li><strong>All sources operand</strong> is available, which mean no <strong>earlier issued active instruction</strong> is going  to write them(avoid <a href="Dependence.md#RAW">RAW</a>)</li>
+</ul>
+<p>==Otherwise,  the scoreboard stalls the instruction.==
+After issuing, the  scoreboard tells the functional unit to proceed to read the operands from the  registers and begin execution.</p>
+<p><u>	Instructions may be sent into execution <strong>out of order</strong>.</u>(只是stall该条指令，不会因此stall别的指令)</p>
+</li>
+<li>
+<p>Execution
+The functional unit begins execution upon receiving operands. When the result is ready, it **notifies the scoreboard **that it has completed execution.</p>
+</li>
+<li>
+<p>Write result
+Once the scoreboard is aware that the functional unit has completed execution, it writes results to destinaton oprands <strong>only when</strong>:</p>
+<ul>
+<li><strong>earlier issued active instruction</strong> don&rsquo;t need to read **one of the destinaton oprands ** (avoid <a href="Dependence.md#WAR">WAR</a>)</li>
+</ul>
+<p>==Otherwise,  the scoreboard stalls the instruction.==</p>
+</li>
+</ol>
+<h2 id="implement">Implement</h2>
+<p>To implement the <a href="#Steps">Steps</a>, scoreboard have 3 tables to record status:</p>
+<ul>
+<li>
+<p>Instruction status: which of 4 <a href="#Steps">steps</a> the instruction is in
+<img src="../pic/Pasted%20image%2020210418145608.png" alt=""></p>
+</li>
+<li>
+<p>Functional unit status
+<img src="../pic/Pasted%20image%2020210418145619.png" alt=""></p>
+<ul>
+<li>Busy: Indicates whether the unit is busy or not</li>
+<li>Op: Operation to perform in the unit (e.g., + or –)</li>
+<li>Fi: Destination register</li>
+<li>Fj, Fk: Source-register numbers</li>
+<li>Qj, Qk: Functional units producing source registers Fj, Fk</li>
+<li>Rj, Rk: Flags indicating when Fj, Fk are ready</li>
+</ul>
+</li>
+<li>
+<p>Register result status
+<img src="../pic/Pasted%20image%2020210418145655.png" alt="">
+Indicates which functional unit will write each register, if one exists.</p>
+</li>
+</ul>
+<h2 id="limitations">Limitations</h2>
+<ul>
+<li>Number, types, and speed of the functional units
+<ul>
+<li>This determines how often a structural hazard results in stall.</li>
+</ul>
+</li>
+<li>没有实现 <a href="Dependence.md#Data%20Forwarding">Data Forwarding</a></li>
+<li>没有完全解决<a href="Dependence.md#Data%20Dependence">Data Dependence</a>，只是通过简单的stall。</li>
+</ul>
+<h1 id="reference">Reference</h1>
+<ul>
+<li><a href="http://ece-research.unm.edu/jimp/611/slides/chap4_3.html">Dynamic Scheduling</a></li>
+<li>Jianhua Li-College of Computer and Information-Hefei University of Technology-08-Exploiting ILP</li>
+</ul>
+
+    </div>
+</div>
+
+<div class="container">
+    
+    <nav class="flex container suggested">
+        
+        <a rel="prev" href="/posts/cpu/dependence/" title="Previous post (older)">
+            <span>Previous</span>
+            Dependence
+            </a>
+        
+        
+        
+        <a rel="next" href="/posts/net/%E7%BD%91%E7%BB%9C%E5%B1%82/" title="Next post (newer)">
+            <span>Next</span>
+            网络层
+            </a> 
+        
+    </nav>
+    
+</div>
+</main>
+
+
+        </main>
+        <footer class="footer flex">
+    <section class="container">
+        <nav class="footer-links">
+            
+            <a href="/index.xml">RSS</a>
+            
+        </nav>
+    </section>
+    
+    <script async src="/js/features.min.c5d8f3350f5a652f526b982306299353824299adb7a3bd261ecffacc47087f66.js"></script>
+</footer>
+    </body>
+</html>
