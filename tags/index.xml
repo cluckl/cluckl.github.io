@@ -5,32 +5,32 @@
     <link>https://example.com/tags/</link>
     <description>Recent content in Tags on Julan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>zh-CN</language>
     <lastBuildDate>Sat, 24 Apr 2021 00:13:24 +0800</lastBuildDate><atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>OS</title>
-      <link>https://example.com/tags/os/</link>
+      <link>https://example.com/tags/OS/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/tags/os/</guid>
+      <guid>https://example.com/tags/OS/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Net</title>
-      <link>https://example.com/tags/net/</link>
+      <link>https://example.com/tags/Net/</link>
       <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/tags/net/</guid>
+      <guid>https://example.com/tags/Net/</guid>
       <description></description>
     </item>
     
     <item>
       <title>CPU</title>
-      <link>https://example.com/tags/cpu/</link>
+      <link>https://example.com/tags/CPU/</link>
       <pubDate>Mon, 19 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/tags/cpu/</guid>
+      <guid>https://example.com/tags/CPU/</guid>
       <description></description>
     </item>
     

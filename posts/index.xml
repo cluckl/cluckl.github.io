@@ -5,14 +5,14 @@
     <link>https://example.com/posts/</link>
     <description>Recent content in Posts on Julan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>zh-CN</language>
     <lastBuildDate>Sat, 24 Apr 2021 00:13:24 +0800</lastBuildDate><atom:link href="https://example.com/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>IPC</title>
-      <link>https://example.com/posts/os/ipc/</link>
+      <link>https://example.com/posts/OS/IPC/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/os/ipc/</guid>
+      <guid>https://example.com/posts/OS/IPC/</guid>
       <description>Overview 进程间通信 (Inter-process Communication, IPC): 两个(或多个)不同的进程，通过内核或其他共享资源进行通信，来传递控制信息或数据。 直接通信和间接通信   直接通信：基于共享内存
  基于共享内存的消息传递核心抽象仍然是消息，而直接使用共享内存则不存在消息的抽象。
    间接通信：基于操作系统内核，每次发送消息经过一个信箱   消息传递的同步与异步 消息可以是阻塞的也可以是非阻塞的
@@ -24,10 +24,10 @@
     
     <item>
       <title>内存管理</title>
-      <link>https://example.com/posts/os/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+      <link>https://example.com/posts/OS/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/os/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+      <guid>https://example.com/posts/OS/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
       <description>Overview 虚拟内存： 为了让不同的应用程序高效安全地使用物理内存资源，加入一个在应用程序与物理内存之间的抽象。
  高效性：虚拟内存抽象下，程序使用虚拟地址访问主存，不会造成明显的性能开销。 安全性：每个应用程序拥有独立的虚拟地址空间，且只能访问属于自己的物理内存区域。  应用程序认为自己独占整个内存 应用程序不再看到物理地址     地址翻译： 在程序执行过程中，CPU中的内存管理单元（MMU, Memory Management Unit）会根据翻译规则把虚拟地址转换成物理地址，然后通过物理地址访问物理内存。
  翻译规则取决于虚拟内存采用的组织机制，包括：分段机制和分页机制。
@@ -45,10 +45,10 @@
     
     <item>
       <title>同步原语</title>
-      <link>https://example.com/posts/os/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</link>
+      <link>https://example.com/posts/OS/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/os/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</guid>
+      <guid>https://example.com/posts/OS/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</guid>
       <description>在多道程序的环境下，存在着不同的制约关系，为了协调进程间互相制约的关系，实现资源共享和进程协作，引入了进程同步。
  临界资源：只能同时被一个进程使用的资源。 临界区 ：访问临界资源的代码段。  同步机制的原则 空闲让进 当无进程处于临界区时，请求进入临界区的进程立即进入
 忙则等待 当有进程进入临界区时，其他要求访问临界资源的进程必须等待
@@ -58,10 +58,10 @@
     
     <item>
       <title>死锁</title>
-      <link>https://example.com/posts/os/%E6%AD%BB%E9%94%81/</link>
+      <link>https://example.com/posts/OS/%E6%AD%BB%E9%94%81/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/os/%E6%AD%BB%E9%94%81/</guid>
+      <guid>https://example.com/posts/OS/%E6%AD%BB%E9%94%81/</guid>
       <description>死锁(deadlock)： 在同步原语的情况下，有一组线程因为组内所有线程都在等待组内其他线程释放资源而相互无限等待的现象。 死锁产生的原因  互斥访问：资源只能最多被一个线程持有。 资源非抢占：资源只能由持有的线程主动放弃，不能被其他线程抢占。 持有并等待：线程拥有一些资源并等待一些资源。 循环等待： 多个线程形成一个循环，在该循环中每个线程都在等待下一个线程释放资源。  死锁的检测与恢复 不试图阻止死锁，而是当检测到死锁发生时，由操作系统等第三者采取措施进行恢复。
   检测： 检测资源和线程形成的有向图是否形成环路，若有环路说明出现循环等待，即出现死锁。  对于一种资源可被多个线程占有的情况下，需要使用拓扑排序算法。
    恢复
@@ -78,10 +78,10 @@
     
     <item>
       <title>进程与线程</title>
-      <link>https://example.com/posts/os/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</link>
+      <link>https://example.com/posts/OS/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/os/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</guid>
+      <guid>https://example.com/posts/OS/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</guid>
       <description>进程 进程是计算机程序运行时的抽象。
 进程的状态  新生状态（ new ）：进程刚被创建 运行状态（ running ）：进程正在处理器上运行 准备状态（ ready ）：进程可以运行，但没有被调度 阻塞状态（ blocked ）：进程进入等待状态，短时间不再运行 终结状态（ terminated ）：进程完成了执行   地址空间 进程具有独立的虚拟地址空间
  每个进程都具有&amp;quot;独占全部内存&amp;quot;的假象 内核中同样包含内核栈和内核代码、数据   进程是计算机程序运行时的抽象
@@ -96,10 +96,10 @@
     
     <item>
       <title>进程调度</title>
-      <link>https://example.com/posts/os/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</link>
+      <link>https://example.com/posts/OS/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/os/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</guid>
+      <guid>https://example.com/posts/OS/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</guid>
       <description>Overview 为了在有限的资源下通过对多个程序执行过程的管理，满足系统和应用的指标，调度器需要对线程进行调度(Scheduling)。
  线程是调度器的调度对象，但在Linux等OS常用任务(job/task)描述线程。
  执行结束条件  时间片结束 出现I/O请求 主动停止或进入睡眠 被系统打断（抢占式调度）  调度决策  下一个执行的任务 执行该任务的CPU核心 执行的时长，即时间片  调度指标 Scheduling Criteria（调度指标）
@@ -110,10 +110,10 @@ Short-Term Scheduler 也称为 CPU scheduler.</description>
     
     <item>
       <title>传输层</title>
-      <link>https://example.com/posts/net/%E4%BC%A0%E8%BE%93%E5%B1%82/</link>
+      <link>https://example.com/posts/Net/%E4%BC%A0%E8%BE%93%E5%B1%82/</link>
       <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/net/%E4%BC%A0%E8%BE%93%E5%B1%82/</guid>
+      <guid>https://example.com/posts/Net/%E4%BC%A0%E8%BE%93%E5%B1%82/</guid>
       <description>Overview 传输层提供进程之间的逻辑通信服务。 Port Port(端口)：区分每个进程的标识符，1个端口号使用16位无符号整数（unsigned integer）来表示。TCP和UDP是互相独立的，因此TCP和UDP都各拥有65535个端口。
  1&amp;ndash;1023 系统保留，只能由root用户使用。 1024&amp;mdash;4999 由客户端进程占有 5000&amp;mdash;65535 由服务器端进程自由分配  在UDP中，源端口号可以选择要不要填上，如果设为0，则代表没有源端口号。
 TSAP TSAP(Transport Service Access Point) : 传输服务访问点,也称为传输层地址。 TSAP = IP + Port Socket 套接字（Socket）是为了使应用程序能够方便地使用协议栈软件进行通信的一种方法。 套接字上联==应用进程==，下联==网络协议栈==，是进程通过网络协议栈进行通信的接口。 结构：
@@ -123,10 +123,10 @@ TSAP TSAP(Transport Service Access Point) : 传输服务访问点,也称为传�
     
     <item>
       <title>应用层</title>
-      <link>https://example.com/posts/net/%E5%BA%94%E7%94%A8%E5%B1%82/</link>
+      <link>https://example.com/posts/Net/%E5%BA%94%E7%94%A8%E5%B1%82/</link>
       <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/net/%E5%BA%94%E7%94%A8%E5%B1%82/</guid>
+      <guid>https://example.com/posts/Net/%E5%BA%94%E7%94%A8%E5%B1%82/</guid>
       <description>Overview 应用层通过不同的应用层协议为不同的应用提供通信服务。 常用协议：
  HTTP HTTPS DNS  用户输入网址到显示对应页面的全过程:  输入网址URL。 发送到DNS获得域对应的网络层地址。 客户端浏览器与WEB服务器建立传输层连接。 客户端浏览器向对应IP地址的WEB服务器发送相应的HTTP或HTTPS请求。 WEB服务器响应请求，返回指定的URL数据或错误信息；如果设定重定向，则重定向到新的URL地址。 客户端浏览器下载数据，解析HTML源文件，在浏览器中显示基础的页面。 分析页面中的超链接，显示在当前页面。  HTTP Hyper Text Transfer Protocol(超文本传输协议） 提供HTML(超文本标记语言)的发送和接收方法，一般基于传输层/网络层通信，使用B/S架构。
 组成  请求报文  请求行 请求头 请求正文   响应报文  状态行 响应头 响应报文    常见请求方法  GET：请求指定的信息并返回具体具体内容。 HEAD：和GET类似，但不返回具体内容。 POST：在服务器新建资源，数据被包含在请求体中。 PUT：在服务器更新资源。 DELETE：请求服务器删除指定的内容。   POST和GET的区别：
@@ -137,10 +137,10 @@ TSAP TSAP(Transport Service Access Point) : 传输服务访问点,也称为传�
     
     <item>
       <title>数据链路层</title>
-      <link>https://example.com/posts/net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</link>
+      <link>https://example.com/posts/Net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</link>
       <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</guid>
+      <guid>https://example.com/posts/Net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</guid>
       <description>Overview 数据链路层提供帧间的逻辑通信服务。 类型：
  点对点信道：也就是字面意思，点对点得通信方式。 广播信道：这种信道是一对多的方式，所以整个过程也比较复杂。必须使用一些信道协议来协调网络中的主机数据发送。在半双工通信中有CSMA等协议。  数据链路层主要有两个功能：
  差错检测：使用循环冗余检验（CRC）来检查数据传输过程中是否产生比特差错 流量控制：采用滑动窗口机制  封装帧 将网络层传下来的分组前后分别添加首部和尾部，这样就构成了帧。 透明传输：帧使用首部和尾部进行定界。如果帧的数据部分含有和首部和尾部相同的内容，需要插入转义字符。这个过程透明传输的内容是转义字符，用户察觉不到转义字符的存在。
@@ -154,10 +154,10 @@ CSMA/CA 无线局域网在半双工通信下会遇到以下问题： 为了缓�
     
     <item>
       <title>网络层</title>
-      <link>https://example.com/posts/net/%E7%BD%91%E7%BB%9C%E5%B1%82/</link>
+      <link>https://example.com/posts/Net/%E7%BD%91%E7%BB%9C%E5%B1%82/</link>
       <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/net/%E7%BD%91%E7%BB%9C%E5%B1%82/</guid>
+      <guid>https://example.com/posts/Net/%E7%BD%91%E7%BB%9C%E5%B1%82/</guid>
       <description>网络层 在传输层的基础上，提供主机到主机之间的逻辑通信服务。
 网络层包含有IP，ICMP，ARP等协议。
 IP IP(Internet Protocol)：提供无连接的**分组(packet)**通信服务，不能保证分组可靠的、按序到达。
@@ -169,10 +169,10 @@ IP分组结构  版本：4位，表示IP协议版本，通常为0100（v4），�
     
     <item>
       <title>Dynamic Scheduling</title>
-      <link>https://example.com/posts/cpu/dynamic-scheduling/</link>
+      <link>https://example.com/posts/CPU/Dynamic-Scheduling/</link>
       <pubDate>Mon, 19 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/cpu/dynamic-scheduling/</guid>
+      <guid>https://example.com/posts/CPU/Dynamic-Scheduling/</guid>
       <description>Overview Dynamic Scheduling（动态调度）：在程序的执行过程中，依靠专门硬件对代码进行调度，减少Data Dependence导致的停顿。
  静态调度: 依靠编译器在编译期间把相关的指令拉开距离来减少可能产生的停顿
  limitation: In-order Issue（按序流出）、 In-order Execution（按序执行） solution: Out-of-order Execution（乱序执行） 为了能够乱序执行 ，将 5 段流水线的译码(ID)阶段再分为两个阶段：  流出（Issue, IS）：指令译码，检查是否存在结构冲突。（in-order	issue) 读操作数（Read Operands, RO）：等待数据冲突消失，然后读操作数。    动态调度让指令乱序完成(Out-of-order Completion)，会大大增加异常处理的难度。
@@ -184,10 +184,10 @@ IP分组结构  版本：4位，表示IP协议版本，通常为0100（v4），�
     
     <item>
       <title>Dependence</title>
-      <link>https://example.com/posts/cpu/dependence/</link>
+      <link>https://example.com/posts/CPU/Dependence/</link>
       <pubDate>Sun, 18 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/cpu/dependence/</guid>
+      <guid>https://example.com/posts/CPU/Dependence/</guid>
       <description>Dependences dictate ordering requirements between instructions.Also called Hazards Two types:
  Data Dependence Control Dependence  Data Dependence Types of data dependences
  RAW(Flow dependence) WAW(Output dependence) WAR(Anti dependence)   Flow dependence also called true dependence, and output dependence and anti dependence are called Name Dependence.
