@@ -9,109 +9,109 @@
     <lastBuildDate>Sat, 24 Apr 2021 00:13:24 +0800</lastBuildDate><atom:link href="https://cluckl.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>IPC</title>
-      <link>https://cluckl.github.io/posts/OS/IPC/</link>
+      <link>https://cluckl.github.io/posts/os/ipc/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://cluckl.github.io/posts/OS/IPC/</guid>
+      <guid>https://cluckl.github.io/posts/os/ipc/</guid>
       <description>Overview 进程间通信 (Inter-process Communication, IPC): 两个(或多个)不同的进程，通过内核或其他共享资源进行通信，来传递控制信息或数据。 直接通信和间接通信 直接通信：基于共享内存 基</description>
     </item>
     
     <item>
       <title>内存管理</title>
-      <link>https://cluckl.github.io/posts/OS/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+      <link>https://cluckl.github.io/posts/os/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://cluckl.github.io/posts/OS/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+      <guid>https://cluckl.github.io/posts/os/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
       <description>Overview 虚拟内存： 为了让不同的应用程序高效安全地使用物理内存资源，加入一个在应用程序与物理内存之间的抽象。 高效性：虚拟内存抽象下，程序使用虚拟地址</description>
     </item>
     
     <item>
       <title>同步原语</title>
-      <link>https://cluckl.github.io/posts/OS/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</link>
+      <link>https://cluckl.github.io/posts/os/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://cluckl.github.io/posts/OS/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</guid>
+      <guid>https://cluckl.github.io/posts/os/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</guid>
       <description>在多道程序的环境下，存在着不同的制约关系，为了协调进程间互相制约的关系，实现资源共享和进程协作，引入了进程同步。 临界资源：只能同时被一个进程</description>
     </item>
     
     <item>
       <title>死锁</title>
-      <link>https://cluckl.github.io/posts/OS/%E6%AD%BB%E9%94%81/</link>
+      <link>https://cluckl.github.io/posts/os/%E6%AD%BB%E9%94%81/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://cluckl.github.io/posts/OS/%E6%AD%BB%E9%94%81/</guid>
+      <guid>https://cluckl.github.io/posts/os/%E6%AD%BB%E9%94%81/</guid>
       <description>死锁(deadlock)： 在同步原语的情况下，有一组线程因为组内所有线程都在等待组内其他线程释放资源而相互无限等待的现象。 死锁产生的原因 互斥</description>
     </item>
     
     <item>
       <title>进程与线程</title>
-      <link>https://cluckl.github.io/posts/OS/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</link>
+      <link>https://cluckl.github.io/posts/os/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://cluckl.github.io/posts/OS/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</guid>
+      <guid>https://cluckl.github.io/posts/os/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</guid>
       <description>进程 进程是计算机程序运行时的抽象。 进程的状态 新生状态（ new ）：进程刚被创建 运行状态（ running ）：进程正在处理器上运行 准备状态（ ready ）：进程可以运行，但</description>
     </item>
     
     <item>
       <title>进程调度</title>
-      <link>https://cluckl.github.io/posts/OS/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</link>
+      <link>https://cluckl.github.io/posts/os/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://cluckl.github.io/posts/OS/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</guid>
+      <guid>https://cluckl.github.io/posts/os/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</guid>
       <description>Overview 为了在有限的资源下通过对多个程序执行过程的管理，满足系统和应用的指标，调度器需要对线程进行调度(Scheduling)。 线程是调度器的调度</description>
     </item>
     
     <item>
       <title>传输层</title>
-      <link>https://cluckl.github.io/posts/Net/%E4%BC%A0%E8%BE%93%E5%B1%82/</link>
+      <link>https://cluckl.github.io/posts/net/%E4%BC%A0%E8%BE%93%E5%B1%82/</link>
       <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://cluckl.github.io/posts/Net/%E4%BC%A0%E8%BE%93%E5%B1%82/</guid>
+      <guid>https://cluckl.github.io/posts/net/%E4%BC%A0%E8%BE%93%E5%B1%82/</guid>
       <description>Overview 传输层提供进程之间的逻辑通信服务。 Port Port(端口)：区分每个进程的标识符，1个端口号使用16位无符号整数（unsigned integer</description>
     </item>
     
     <item>
       <title>应用层</title>
-      <link>https://cluckl.github.io/posts/Net/%E5%BA%94%E7%94%A8%E5%B1%82/</link>
+      <link>https://cluckl.github.io/posts/net/%E5%BA%94%E7%94%A8%E5%B1%82/</link>
       <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://cluckl.github.io/posts/Net/%E5%BA%94%E7%94%A8%E5%B1%82/</guid>
+      <guid>https://cluckl.github.io/posts/net/%E5%BA%94%E7%94%A8%E5%B1%82/</guid>
       <description>Overview 应用层通过不同的应用层协议为不同的应用提供通信服务。 常用协议： HTTP HTTPS DNS 用户输入网址到显示对应页面的全过程: 输入网址URL。 发送到DNS获得域</description>
     </item>
     
     <item>
       <title>数据链路层</title>
-      <link>https://cluckl.github.io/posts/Net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</link>
+      <link>https://cluckl.github.io/posts/net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</link>
       <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://cluckl.github.io/posts/Net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</guid>
+      <guid>https://cluckl.github.io/posts/net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</guid>
       <description>Overview 数据链路层提供帧间的逻辑通信服务。 类型： 点对点信道：也就是字面意思，点对点得通信方式。 广播信道：这种信道是一对多的方式，所以整个过程也比较</description>
     </item>
     
     <item>
       <title>网络层</title>
-      <link>https://cluckl.github.io/posts/Net/%E7%BD%91%E7%BB%9C%E5%B1%82/</link>
+      <link>https://cluckl.github.io/posts/net/%E7%BD%91%E7%BB%9C%E5%B1%82/</link>
       <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://cluckl.github.io/posts/Net/%E7%BD%91%E7%BB%9C%E5%B1%82/</guid>
+      <guid>https://cluckl.github.io/posts/net/%E7%BD%91%E7%BB%9C%E5%B1%82/</guid>
       <description>网络层 在传输层的基础上，提供主机到主机之间的逻辑通信服务。 网络层包含有IP，ICMP，ARP等协议。 IP IP(Internet Protocol)：提供无连接的**</description>
     </item>
     
     <item>
       <title>Dynamic Scheduling</title>
-      <link>https://cluckl.github.io/posts/CPU/Dynamic-Scheduling/</link>
+      <link>https://cluckl.github.io/posts/cpu/dynamic-scheduling/</link>
       <pubDate>Mon, 19 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://cluckl.github.io/posts/CPU/Dynamic-Scheduling/</guid>
+      <guid>https://cluckl.github.io/posts/cpu/dynamic-scheduling/</guid>
       <description>Overview Dynamic Scheduling（动态调度）：在程序的执行过程中，依靠专门硬件对代码进行调度，减少Data Dependence导致的停顿。 静态调度:</description>
     </item>
     
     <item>
       <title>Dependence</title>
-      <link>https://cluckl.github.io/posts/CPU/Dependence/</link>
+      <link>https://cluckl.github.io/posts/cpu/dependence/</link>
       <pubDate>Sun, 18 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://cluckl.github.io/posts/CPU/Dependence/</guid>
+      <guid>https://cluckl.github.io/posts/cpu/dependence/</guid>
       <description>Dependences dictate ordering requirements between instructions.Also called Hazards Two types:
  Data Dependence Control Dependence  Data Dependence Types of data dependences
  RAW(Flow dependence) WAW(Output dependence) WAR(Anti dependence)   Flow dependence also called true dependence, and output dependence and anti dependence are called Name Dependence.

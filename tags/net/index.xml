@@ -2,44 +2,44 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Net on Julan&#39;s Blog</title>
-    <link>https://cluckl.github.io/tags/Net/</link>
+    <link>https://cluckl.github.io/tags/net/</link>
     <description>Recent content in Net on Julan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 22 Apr 2021 00:13:24 +0800</lastBuildDate><atom:link href="https://cluckl.github.io/tags/Net/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 22 Apr 2021 00:13:24 +0800</lastBuildDate><atom:link href="https://cluckl.github.io/tags/net/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>传输层</title>
-      <link>https://cluckl.github.io/posts/Net/%E4%BC%A0%E8%BE%93%E5%B1%82/</link>
+      <link>https://cluckl.github.io/posts/net/%E4%BC%A0%E8%BE%93%E5%B1%82/</link>
       <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://cluckl.github.io/posts/Net/%E4%BC%A0%E8%BE%93%E5%B1%82/</guid>
+      <guid>https://cluckl.github.io/posts/net/%E4%BC%A0%E8%BE%93%E5%B1%82/</guid>
       <description>Overview 传输层提供进程之间的逻辑通信服务。 Port Port(端口)：区分每个进程的标识符，1个端口号使用16位无符号整数（unsigned integer</description>
     </item>
     
     <item>
       <title>应用层</title>
-      <link>https://cluckl.github.io/posts/Net/%E5%BA%94%E7%94%A8%E5%B1%82/</link>
+      <link>https://cluckl.github.io/posts/net/%E5%BA%94%E7%94%A8%E5%B1%82/</link>
       <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://cluckl.github.io/posts/Net/%E5%BA%94%E7%94%A8%E5%B1%82/</guid>
+      <guid>https://cluckl.github.io/posts/net/%E5%BA%94%E7%94%A8%E5%B1%82/</guid>
       <description>Overview 应用层通过不同的应用层协议为不同的应用提供通信服务。 常用协议： HTTP HTTPS DNS 用户输入网址到显示对应页面的全过程: 输入网址URL。 发送到DNS获得域</description>
     </item>
     
     <item>
       <title>数据链路层</title>
-      <link>https://cluckl.github.io/posts/Net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</link>
+      <link>https://cluckl.github.io/posts/net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</link>
       <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://cluckl.github.io/posts/Net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</guid>
+      <guid>https://cluckl.github.io/posts/net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</guid>
       <description>Overview 数据链路层提供帧间的逻辑通信服务。 类型： 点对点信道：也就是字面意思，点对点得通信方式。 广播信道：这种信道是一对多的方式，所以整个过程也比较</description>
     </item>
     
     <item>
       <title>网络层</title>
-      <link>https://cluckl.github.io/posts/Net/%E7%BD%91%E7%BB%9C%E5%B1%82/</link>
+      <link>https://cluckl.github.io/posts/net/%E7%BD%91%E7%BB%9C%E5%B1%82/</link>
       <pubDate>Thu, 22 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://cluckl.github.io/posts/Net/%E7%BD%91%E7%BB%9C%E5%B1%82/</guid>
+      <guid>https://cluckl.github.io/posts/net/%E7%BD%91%E7%BB%9C%E5%B1%82/</guid>
       <description>网络层 在传输层的基础上，提供主机到主机之间的逻辑通信服务。 网络层包含有IP，ICMP，ARP等协议。 IP IP(Internet Protocol)：提供无连接的**</description>
     </item>
     

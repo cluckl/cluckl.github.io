@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CPU on Julan&#39;s Blog</title>
-    <link>https://cluckl.github.io/tags/CPU/</link>
+    <link>https://cluckl.github.io/tags/cpu/</link>
     <description>Recent content in CPU on Julan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 19 Apr 2021 00:13:24 +0800</lastBuildDate><atom:link href="https://cluckl.github.io/tags/CPU/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 19 Apr 2021 00:13:24 +0800</lastBuildDate><atom:link href="https://cluckl.github.io/tags/cpu/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Dynamic Scheduling</title>
-      <link>https://cluckl.github.io/posts/CPU/Dynamic-Scheduling/</link>
+      <link>https://cluckl.github.io/posts/cpu/dynamic-scheduling/</link>
       <pubDate>Mon, 19 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://cluckl.github.io/posts/CPU/Dynamic-Scheduling/</guid>
+      <guid>https://cluckl.github.io/posts/cpu/dynamic-scheduling/</guid>
       <description>Overview Dynamic Scheduling（动态调度）：在程序的执行过程中，依靠专门硬件对代码进行调度，减少Data Dependence导致的停顿。 静态调度:</description>
     </item>
     
     <item>
       <title>Dependence</title>
-      <link>https://cluckl.github.io/posts/CPU/Dependence/</link>
+      <link>https://cluckl.github.io/posts/cpu/dependence/</link>
       <pubDate>Sun, 18 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://cluckl.github.io/posts/CPU/Dependence/</guid>
+      <guid>https://cluckl.github.io/posts/cpu/dependence/</guid>
       <description>Dependences dictate ordering requirements between instructions.Also called Hazards Two types:
  Data Dependence Control Dependence  Data Dependence Types of data dependences
  RAW(Flow dependence) WAW(Output dependence) WAR(Anti dependence)   Flow dependence also called true dependence, and output dependence and anti dependence are called Name Dependence.
