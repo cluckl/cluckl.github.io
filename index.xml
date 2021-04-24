@@ -348,16 +348,16 @@
 &lt;li&gt;运行状态（ running ）：进程正在处理器上运行&lt;/li&gt;
 &lt;li&gt;准备状态（ ready ）：进程可以运行，但没有被调度&lt;/li&gt;
 &lt;li&gt;阻塞状态（ blocked ）：进程进入等待状态，短时间不再运行&lt;/li&gt;
-&lt;li&gt;终结状态（ terminated ）：进程完成了执行
-&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124846.png&#34; alt=&#34;&#34;&gt;&lt;/li&gt;
+&lt;li&gt;终结状态（ terminated ）：进程完成了执行&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124847.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;地址空间&#34;&gt;地址空间&lt;/h2&gt;
 &lt;p&gt;进程具有&lt;strong&gt;独立的虚拟地址空间&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;每个进程都具有&amp;quot;独占全部内存&amp;quot;的假象&lt;/li&gt;
 &lt;li&gt;内核中同样包含内核栈和内核代码、数据&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124847.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124846.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;进程是计算机程序运行时的抽象&lt;/p&gt;
 &lt;ul&gt;
