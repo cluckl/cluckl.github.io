@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Julan&#39;s Blog</title>
+    <link>https://example.com/posts/</link>
+    <description>Recent content in Posts on Julan&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 24 Apr 2021 00:13:24 +0800</lastBuildDate><atom:link href="https://example.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IPC</title>
+      <link>https://example.com/posts/ipc/</link>
+      <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
+      
+      <guid>https://example.com/posts/ipc/</guid>
+      <description>Overview 进程间通信 (Inter-process Communication, IPC): 两个(或多个)不同的进程，通过内核或其他共享资源进行通信，来传递控制信息或数据。 直接通信和间接通信   直接通信：基于共享内存
+ 基于共享内存的消息传递核心抽象仍然是消息，而直接使用共享内存则不存在消息的抽象。
+   间接通信：基于操作系统内核，每次发送消息经过一个信箱   消息传递的同步与异步 消息可以是阻塞的也可以是非阻塞的
+ 阻塞通常被认为是同步通信，发送者/接收者一直处于阻塞状态，直到消息发出/到来。 非阻塞通常被认为是异步通信，发送者/接收者不等待操作结果，直接返回。   管道 管道(Pipe)：a communication medium between two or more related or interrelated processes.  间接消息传递方式 单向的IPC 数据类型：字节流 分为匿名管道和命名管道  例如常见的Shell命令：ls | grep 缺陷：
+ 固定的缓冲区间，分配过大资源容易造成浪费 两个端口，最多对应两个进程  匿名管道 通常用于建立父子进程或者兄弟进程的连接，在创建的同时进程会拿到两个文件描述符用来使用它。 管道是通过调用** pipe** 函数创建的，fd[0] 用于读，fd[1] 用于写:
+1 2  #include &amp;lt;unistd.h&amp;gt;int pipe(int fd[2]);   过程：
+ 父进程首先通过pipe创建对应的管道的两端，然后通过fork创建子进程，子进程继承包括管道端口的文件描述符。 在完成继承后，父子进程关闭多余的端口。   命名管道 命名管道可以实现任意两个进程的通信，也称为FIFO。 通过mkfifo命令创建，指定一个全局的文件名为管道名。</description>
+    </item>
+    
+    <item>
+      <title>Test</title>
+      <link>https://example.com/posts/test/</link>
+      <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
+      
+      <guid>https://example.com/posts/test/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>内存管理</title>
+      <link>https://example.com/posts/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
+      
+      <guid>https://example.com/posts/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+      <description>Overview 虚拟内存： 为了让不同的应用程序高效安全地使用物理内存资源，加入一个在应用程序与物理内存之间的抽象。
+ 高效性：虚拟内存抽象下，程序使用虚拟地址访问主存，不会造成明显的性能开销。 安全性：每个应用程序拥有独立的虚拟地址空间，且只能访问属于自己的物理内存区域。  应用程序认为自己独占整个内存 应用程序不再看到物理地址     地址翻译： 在程序执行过程中，CPU中的内存管理单元（MMU, Memory Management Unit）会根据翻译规则把虚拟地址转换成物理地址，然后通过物理地址访问物理内存。
+ 翻译规则取决于虚拟内存采用的组织机制，包括：分段机制和分页机制。
+ 分段机制 虚拟地址空间分成若干个不同大小的逻辑段，如代码段、数据段等。
+翻译过程：  MMU通过段表寄存器找到段表的位置，结合虚拟地址中的段号得到该段的起始地址（物理地址）。 起始地址加上虚拟地址中的段内偏移地址得到最终的物理地址。  存在问题：
+ 分配的粒度太粗，容易导致物理内存上段与段之间留下碎片空间，不足以映射虚拟地址空间的段，降低主存利用率。  因此Intel在x86-64架构之后，分页机制成为主流。
+分页机制 分页机制：
+ 虚拟内存划分成连续的、等长的虚拟页  物理内存也划分成连续的、等长的物理页 虚拟页和物理页页长固定且相等 虚拟地址 = 虚拟页号+页内偏移  页表：包含多个页表项，存储虚拟页到物理页的映射，分页机制的核心数据结构。
+翻译过程（和分段机制的翻译过程类似）：  MMU解析虚拟地址中的虚拟页号，通过虚拟页号找到该进程的页表，得到物理页号。 根据物理页号对应的物理页起始地址加上虚拟地址中的页内偏移地址得到最终的物理地址。  该机制实现了相比分段机制更细粒度的内存管理，大大缓解分段机制中常见的外部碎片。
+多级页表 使用多级页表可以减少空间占用：
+ 若某级页表中的某条目为空，那么对应的下一级页表无需存在 实际应用的虚拟地址空间大部分都未被使用，因此无需分配页表 减少空间的原因：允许页表中出现&amp;quot;空洞&amp;quot;  TLB TLB:Translation Lookaside Buffer，起到类似于cache的作用，缓存了虚拟页号到物理页号的映射关系。 在地址翻译过程中，MMU首先查询TLB：
+ TLB命中，则不再查询页表（fastpath） TLB未命中，再查询页表   切换页表时需要全部刷新TLB
+ 换页机制  换页的基本思想  将物理内存里面存不下的内容放到磁盘上 虚拟内存使用不受物理内存大小限制   如何实现Swap  磁盘上划分专门的Swap分区 在处理缺页异常时，触发物理内存页的换入换出    页面置换算法 OPT 最佳(OPT, Optimal replacement algorithm)：所选择的被换出的页面将是==理论上==最长时间内不再被访问，通常可以保证获得最低的缺页率。</description>
+    </item>
+    
+    <item>
+      <title>同步原语</title>
+      <link>https://example.com/posts/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</link>
+      <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
+      
+      <guid>https://example.com/posts/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</guid>
+      <description>在多道程序的环境下，存在着不同的制约关系，为了协调进程间互相制约的关系，实现资源共享和进程协作，引入了进程同步。
+ 临界资源：只能同时被一个进程使用的资源。 临界区 ：访问临界资源的代码段。  同步机制的原则 空闲让进 当无进程处于临界区时，请求进入临界区的进程立即进入
+忙则等待 当有进程进入临界区时，其他要求访问临界资源的进程必须等待
+有限等待 对要求访问临界资源的进程，保证能在有限时间内进入临界区
+让权等待 当进程不能进入临界区时，应释放处理机</description>
+    </item>
+    
+    <item>
+      <title>死锁</title>
+      <link>https://example.com/posts/%E6%AD%BB%E9%94%81/</link>
+      <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
+      
+      <guid>https://example.com/posts/%E6%AD%BB%E9%94%81/</guid>
+      <description>死锁(deadlock)： 在同步原语的情况下，有一组线程因为组内所有线程都在等待组内其他线程释放资源而相互无限等待的现象。 死锁产生的原因  互斥访问：资源只能最多被一个线程持有。 资源非抢占：资源只能由持有的线程主动放弃，不能被其他线程抢占。 持有并等待：线程拥有一些资源并等待一些资源。 循环等待： 多个线程形成一个循环，在该循环中每个线程都在等待下一个线程释放资源。  死锁的检测与恢复 不试图阻止死锁，而是当检测到死锁发生时，由操作系统等第三者采取措施进行恢复。
+  检测： 检测资源和线程形成的有向图是否形成环路，若有环路说明出现循环等待，即出现死锁。  对于一种资源可被多个线程占有的情况下，需要使用拓扑排序算法。
+   恢复
+ 直接kill所有循环中的进程 每次Kill一个线程，直到没有环 线程全部回滚到之前的某一状态    死锁预防 在线程运行之前，破坏掉死锁产生的原因中的四个必要条件。
+避免互斥访问 设计一个代理线程专门管理对共享数据的访问与修改。 缺点：修改困难，且为系统带来多余负担。
+不允许持有并等待 一次性申请所有资源，一旦有需要获取的资源被其他线程持有，则主动放弃之前已经持有的资源。 缺点：在资源竞争程度较高时，有可能出现持有-放弃的循环，即出现活锁。
+ 活锁：锁的竞争线程长时间无法进入临界区。 解决方法：线程在获取锁失败后等待随机时间再开始尝试，如CSMA使用的二进制退避算法。
+ 允许资源被抢占 允许线程抢占已经被其他线程持有的资源。 缺点：需要保证被抢占的线程能够正确恢复，只适用于容易保存和恢复的场景。
+避免循环等待  所有资源进行编号 所有进程递增获取  任意时刻：获取最大资源号的进程可以继续执行，然后释放资源
+死锁避免 当有资源需要分配时，系统检查此次资源分配后是否处于安全状态，只有处于安全状态才给线程该资源，否则阻塞进程。
+ 安全状态：存在至少一个安全序列&amp;lt;P1,P2,…,Pn&amp;gt;，系统按照该序列调度线程执行即可避免死锁。
+ 银行家算法 </description>
+    </item>
+    
+    <item>
+      <title>进程与线程</title>
+      <link>https://example.com/posts/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</link>
+      <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
+      
+      <guid>https://example.com/posts/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</guid>
+      <description>进程 进程是计算机程序运行时的抽象。
+进程的状态  新生状态（ new ）：进程刚被创建 运行状态（ running ）：进程正在处理器上运行 准备状态（ ready ）：进程可以运行，但没有被调度 阻塞状态（ blocked ）：进程进入等待状态，短时间不再运行 终结状态（ terminated ）：进程完成了执行   地址空间 进程具有独立的虚拟地址空间
+ 每个进程都具有&amp;quot;独占全部内存&amp;quot;的假象 内核中同样包含内核栈和内核代码、数据   进程是计算机程序运行时的抽象
+ 静态部分：程序运行需要的代码和数据 动态部分：程序运行期间的状态   进程控制块 **Process Control Block（PCB）**是保存进程状态的数据结构，存放进程相关的各种信息，如进程的标识符（PID）、内存、打开的文件及进程在切换时的状态(上下文切换) 上下文切换 进程的上下文包括进程运行时的寄存器状态，用于保存和恢复一个进程在CPU上运行的状态。 当OS需要切换当前进程时，就会使用上下文切换（context switch）机制。
+进程的基本操作接口 以下操作以Linux的进程操作为例。
+进程创建：fork() fork()：为调用进程创建一个一模一样的新进程
+ 调用进程为父进程，新进程为子进程 接口简单，无需任何参数 fork后的两个进程均为独立进程，拥有不同的PID   fork为进程之间建立了父进程和子进程的关系 多个进程可以属于同一个进程组
+ 子进程默认与父进程属于同一个进程组 可以向同一进程组中的所有进程发送信号 主要用于shell程序中   进程的执行：exec 在fork完成之后，在多数情况下需要子进程执行与父进程不同的任务。为了实现该目标，Linux提供了exec接口。
+  线程 线程是OS资源分配和调度的基本单位。
+为什么需要线程  创建进程的开销较大-包括了数据、代码、堆、栈等 进程的隔离性过强：可以通过进程间通信（IPC），但开销较大 进程内部无法支持并行  多线程进程的地址空间 线程只包含运行时的状态，静态部分由进程提供。</description>
+    </item>
+    
+    <item>
+      <title>进程调度</title>
+      <link>https://example.com/posts/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</link>
+      <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
+      
+      <guid>https://example.com/posts/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</guid>
+      <description>Overview 为了在有限的资源下通过对多个程序执行过程的管理，满足系统和应用的指标，调度器需要对线程进行调度(Scheduling)。
+ 线程是调度器的调度对象，但在Linux等OS常用任务(job/task)描述线程。
+ 执行结束条件  时间片结束 出现I/O请求 主动停止或进入睡眠 被系统打断（抢占式调度）  调度决策  下一个执行的任务 执行该任务的CPU核心 执行的时长，即时间片  调度指标 Scheduling Criteria（调度指标）
+ 周转时间：任务第一次进入系统到执行结束的时间 响应时间：任务第一次进入系统到第一次给用户输出的时间 实时性：在任务的截止时间内完成任务 公平性：每个任务都应该有机会执行，不能饿死 吞吐率：单位时间内处理的任务数量 开销低：调度器是为了优化系统，而非制造性能BUG 可扩展：随着任务数量增加，仍能正常工作  调度的挑战  缺少信息 线程/任务间的复杂交互 调度目标多样性：不同的系统可能关注不一样的调度指标  三级调度 进程调度可以分为三类：
+ Long-Term Scheduler Short-Term Scheduler Medium-Term Scheduler  Long-Term Scheduler 也称为 job scheduler. goal: regulates the program and select process from the queue and loads them into memory for execution. 负责将处于新生状态的进程转为就绪状态，限制系统被短期调度管理的进程数量。
+Short-Term Scheduler 也称为 CPU scheduler.</description>
+    </item>
+    
+  </channel>
+</rss>

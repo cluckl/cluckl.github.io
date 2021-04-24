@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="dark">
+    <title> 同步原语 | Julan&#39;s Blog</title>
+    
+    
+    
+    <link rel="stylesheet" href="/sass/main.min.4e90cee935c47394b47f9cb7ffe8e3ffab18b88d82fea203918cc3f92eec5eb2.css">
+</head>
+
+    <body class="dark">
+        <nav class="navbar">
+    <div class="container">
+        <div class="flex">
+            <div>
+                <a class="brand" href="/">
+                    
+                    <span class="emoji">
+                        😎
+                    </span>
+                    
+                    Julan&#39;s Blog
+                    </a>
+            </div>
+            <div class="flex">
+                
+                <a href="/articles/">Articles</a>
+                
+                <button id="dark-mode-button"></button>
+            </div>
+            </div>
+    </div>
+</nav>
+        <main>
+            
+
+<div class="container">
+    <article>
+        <header class="article-header">
+            <div class="thumb">
+                <div>
+                    <h1>同步原语</h1>
+                    <div class="post-meta">
+                        <div>
+                            By  on <time>April 24, 2021</time>
+                        </div>
+                        <div class="tags">
+                            
+                            <a href="/tags/os/">OS</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </article>
+
+    <div class="article-post">
+    <p>在多道程序的环境下，存在着不同的制约关系，为了协调<a href="%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B#%E8%BF%9B%E7%A8%8B">进程</a>间互相制约的关系，实现资源共享和进程协作，引入了进程同步。</p>
+<ul>
+<li>临界资源：只能同时被一个进程使用的资源。</li>
+<li>临界区 ：访问临界资源的代码段。</li>
+</ul>
+<h1 id="同步机制的原则">同步机制的原则</h1>
+<h2 id="空闲让进">空闲让进</h2>
+<p>当无进程处于临界区时，请求进入临界区的进程<strong>立即进入</strong></p>
+<h2 id="忙则等待">忙则等待</h2>
+<p>当有进程进入临界区时，其他要求访问临界资源的进程<strong>必须等待</strong></p>
+<h2 id="有限等待">有限等待</h2>
+<p>对要求访问临界资源的进程，保证能在<strong>有限时间</strong>内进入临界区</p>
+<h2 id="让权等待">让权等待</h2>
+<p>当进程不能进入临界区时，应释放处理机</p>
+
+    </div>
+</div>
+
+<div class="container">
+    
+    <nav class="flex container suggested">
+        
+        <a rel="prev" href="/posts/%E6%AD%BB%E9%94%81/" title="Previous post (older)">
+            <span>Previous</span>
+            死锁
+            </a>
+        
+        
+        
+        <a rel="next" href="/posts/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="Next post (newer)">
+            <span>Next</span>
+            内存管理
+            </a> 
+        
+    </nav>
+    
+</div>
+</main>
+
+
+        </main>
+        <footer class="footer flex">
+    <section class="container">
+        <nav class="footer-links">
+            
+            <a href="/index.xml">RSS</a>
+            
+        </nav>
+    </section>
+    
+    <script async src="/js/features.min.c5d8f3350f5a652f526b982306299353824299adb7a3bd261ecffacc47087f66.js"></script>
+</footer>
+    </body>
+</html>

@@ -1,0 +1,684 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Julan&#39;s Blog</title>
+    <link>https://example.com/</link>
+    <description>Recent content on Julan&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 24 Apr 2021 00:13:24 +0800</lastBuildDate><atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+    <title>IPC</title>
+    <link>https://example.com/posts/ipc/</link>
+    <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
+    
+    <guid>https://example.com/posts/ipc/</guid>
+    <description>
+        &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;进程间通信 (Inter-process Communication, IPC)&lt;/strong&gt;: 两个(或多个)不同的进程，通过内核或其他共享资源进行通信，来传递控制信息或数据。
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124736.png&#34; alt=&#34;300&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;直接通信和间接通信&#34;&gt;直接通信和间接通信&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;直接通信：基于共享内存&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;基于共享内存的消息传递核心抽象仍然是消息，而直接使用共享内存则不存在消息的抽象。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;间接通信：基于操作系统内核，每次发送消息经过一个信箱
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124737.png&#34; alt=&#34;300&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;消息传递的同步与异步&#34;&gt;消息传递的同步与异步&lt;/h2&gt;
+&lt;p&gt;消息可以是阻塞的也可以是非阻塞的&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;阻塞通常被认为是同步通信，发送者/接收者一直处于阻塞状态，直到消息发出/到来。&lt;/li&gt;
+&lt;li&gt;非阻塞通常被认为是异步通信，发送者/接收者不等待操作结果，直接返回。
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124738.png&#34; alt=&#34;300&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;管道&#34;&gt;管道&lt;/h1&gt;
+&lt;p&gt;管道(Pipe)：a communication medium between two or more related or interrelated processes.
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124739.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;间接消息传递方式&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;单向的IPC&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;数据类型：字节流&lt;/li&gt;
+&lt;li&gt;分为&lt;a href=&#34;#%E5%8C%BF%E5%90%8D%E7%AE%A1%E9%81%93&#34;&gt;匿名管道&lt;/a&gt;和&lt;a href=&#34;#%E5%91%BD%E5%90%8D%E7%AE%A1%E9%81%93&#34;&gt;命名管道&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;例如常见的Shell命令：&lt;code&gt;ls | grep&lt;/code&gt;
+缺陷：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;固定的缓冲区间，分配过大资源容易造成浪费&lt;/li&gt;
+&lt;li&gt;两个端口，最多对应两个进程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;匿名管道&#34;&gt;匿名管道&lt;/h2&gt;
+&lt;p&gt;通常用于建立&lt;strong&gt;父子进程&lt;/strong&gt;或者&lt;strong&gt;兄弟进程&lt;/strong&gt;的连接，在创建的同时进程会拿到两个文件描述符用来使用它。
+管道是通过调用** pipe** 函数创建的，fd[0] 用于读，fd[1] 用于写:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;unistd.h&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;pipe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;过程：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;父进程首先通过pipe创建对应的管道的两端，然后通过fork创建子进程，子进程继承包括管道端口的&lt;strong&gt;文件描述符&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;在完成继承后，父子进程关闭多余的端口。
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124740.png&#34; alt=&#34;&#34;&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;命名管道&#34;&gt;命名管道&lt;/h2&gt;
+&lt;p&gt;命名管道可以实现任意两个进程的通信，也称为&lt;strong&gt;FIFO&lt;/strong&gt;。
+通过&lt;strong&gt;mkfifo&lt;/strong&gt;命令创建，指定一个&lt;strong&gt;全局的文件名&lt;/strong&gt;为管道名。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;sys/stat.h&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;mkfifo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;path&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mode_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;mkfifoat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;fd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;path&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mode_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;FIFO 常用于&lt;strong&gt;客户-服务器应用程序&lt;/strong&gt;中，FIFO 用作汇聚点，在客户进程和服务器进程之间传递数据。
+&lt;img src=&#34;Pasted%20image%2020210418202912.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;消息队列&#34;&gt;消息队列&lt;/h1&gt;
+&lt;p&gt;消息队列: 以链表的方式组织&lt;strong&gt;消息&lt;/strong&gt;(类型 + 数据)。
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124741.png&#34; alt=&#34;&#34;&gt;
+基本遵循FIFO (First-In-First-Out)先进先出原则&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;消息队列的组织&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基本遵循FIFO (First-In-First-Out)先进先出原则&lt;/li&gt;
+&lt;li&gt;消息队列的写入：增加在队列尾部&lt;/li&gt;
+&lt;li&gt;消息队列的读取：默认从队首获取消息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;允许按照类型查询: Recv(A, &lt;strong&gt;type&lt;/strong&gt;, message)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;类型为0时返回第一个消息 (FIFO)&lt;/li&gt;
+&lt;li&gt;类型有值时按照类型查询并返回第一个类型为type的消息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;消息队列可以独立于读写进程存在，并允许任意数量的进程连接到统一队列上。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;读进程可以根据消息类型有选择地接收消息，而不像 FIFO 那样只能默认地接收。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;信号量&#34;&gt;信号量&lt;/h1&gt;
+&lt;p&gt;信号量一般来说只有一个共享的整型&lt;strong&gt;计数器&lt;/strong&gt;，该计数器由内核维护和操作，通常用于&lt;a href=&#34;%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD.md&#34;&gt;同步原语&lt;/a&gt;。&lt;/p&gt;
+&lt;h1 id=&#34;共享内存&#34;&gt;共享内存&lt;/h1&gt;
+&lt;p&gt;系统内核为两个进程映射&lt;strong&gt;共同的内存区域&lt;/strong&gt;。
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124742.png&#34; alt=&#34;&#34;&gt;
+特点：数据不需要在进程之间复制，是&lt;strong&gt;速度最快&lt;/strong&gt;的 IPC。但需要使用&lt;a href=&#34;#%E4%BF%A1%E5%8F%B7%E9%87%8F&#34;&gt;信号量&lt;/a&gt;等同步机制。&lt;/p&gt;
+&lt;h1 id=&#34;套接字&#34;&gt;套接字&lt;/h1&gt;
+&lt;p&gt;套接字(Socket)用于不同机器间的进程通信。一般处于计算机网络中的&lt;a href=&#34;../Net/%E4%BC%A0%E8%BE%93%E5%B1%82.md&#34;&gt;传输层&lt;/a&gt;。&lt;/p&gt;
+
+    </description>
+    </item>
+    
+    <item>
+    <title>Test</title>
+    <link>https://example.com/posts/test/</link>
+    <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
+    
+    <guid>https://example.com/posts/test/</guid>
+    <description>
+        
+    </description>
+    </item>
+    
+    <item>
+    <title>内存管理</title>
+    <link>https://example.com/posts/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+    <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
+    
+    <guid>https://example.com/posts/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+    <description>
+        &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+&lt;p&gt;虚拟内存： 为了让不同的应用程序&lt;strong&gt;高效安全&lt;/strong&gt;地使用物理内存资源，加入一个在&lt;strong&gt;应用程序&lt;/strong&gt;与&lt;strong&gt;物理内存&lt;/strong&gt;之间的抽象。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;高效性：虚拟内存抽象下，&lt;strong&gt;程序&lt;/strong&gt;使用虚拟地址访问主存，不会造成明显的性能开销。&lt;/li&gt;
+&lt;li&gt;安全性：每个应用程序拥有&lt;strong&gt;独立&lt;/strong&gt;的虚拟地址空间，且只能访问属于自己的物理内存区域。
+&lt;ul&gt;
+&lt;li&gt;应用程序认为自己独占整个内存&lt;/li&gt;
+&lt;li&gt;应用程序不再看到物理地址&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;地址翻译： 在程序执行过程中，CPU中的&lt;strong&gt;内存管理单元&lt;/strong&gt;（MMU, Memory Management Unit）会根据&lt;strong&gt;翻译规则&lt;/strong&gt;把虚拟地址转换成物理地址，然后通过物理地址访问物理内存。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;翻译规则取决于虚拟内存采用的组织机制，包括：分段机制和分页机制。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124456.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;分段机制&#34;&gt;分段机制&lt;/h1&gt;
+&lt;p&gt;虚拟地址空间分成若干个&lt;strong&gt;不同大小&lt;/strong&gt;的&lt;strong&gt;逻辑段&lt;/strong&gt;，如代码段、数据段等。&lt;/p&gt;
+&lt;p&gt;翻译过程：
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124457.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;MMU通过段表寄存器找到段表的位置，结合虚拟地址中的段号得到该段的起始地址（&lt;strong&gt;物理地址&lt;/strong&gt;）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;起始地址&lt;/strong&gt;加上虚拟地址中的&lt;strong&gt;段内偏移地址&lt;/strong&gt;得到最终的物理地址。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;存在问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;分配的粒度太粗，容易导致物理内存上段与段之间留下&lt;strong&gt;碎片空间&lt;/strong&gt;，不足以映射虚拟地址空间的段，&lt;strong&gt;降低主存利用率&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因此Intel在x86-64架构之后，&lt;a href=&#34;#%E5%88%86%E9%A1%B5%E6%9C%BA%E5%88%B6&#34;&gt;分页机制&lt;/a&gt;成为主流。&lt;/p&gt;
+&lt;h1 id=&#34;分页机制&#34;&gt;分页机制&lt;/h1&gt;
+&lt;p&gt;分页机制：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;虚拟内存&lt;/strong&gt;划分成&lt;strong&gt;连续的、等长的虚拟页&lt;/strong&gt;
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124458.png&#34; alt=&#34;100&#34;&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;物理内存&lt;/strong&gt;也划分成&lt;strong&gt;连续的、等长的物理页&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;虚拟页和物理页&lt;strong&gt;页长固定&lt;/strong&gt;且&lt;strong&gt;相等&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;虚拟地址 = &lt;strong&gt;虚拟页号&lt;/strong&gt;+&lt;strong&gt;页内偏移&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;页表：包含多个页表项，&lt;strong&gt;存储虚拟页到物理页的映射&lt;/strong&gt;，分页机制的核心数据结构。&lt;/p&gt;
+&lt;p&gt;翻译过程（和分段机制的翻译过程类似）：
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124459.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;MMU解析虚拟地址中的&lt;strong&gt;虚拟页号&lt;/strong&gt;，通过虚拟页号找到该进程的&lt;strong&gt;页表&lt;/strong&gt;，得到物理页号。&lt;/li&gt;
+&lt;li&gt;根据物理页号对应的&lt;strong&gt;物理页起始地址&lt;/strong&gt;加上虚拟地址中的&lt;strong&gt;页内偏移地址&lt;/strong&gt;得到最终的物理地址。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;该机制实现了相比&lt;a href=&#34;#%E5%88%86%E6%AE%B5%E6%9C%BA%E5%88%B6&#34;&gt;分段机制&lt;/a&gt;更细粒度的内存管理，大大缓解分段机制中常见的外部碎片。&lt;/p&gt;
+&lt;h2 id=&#34;多级页表&#34;&gt;多级页表&lt;/h2&gt;
+&lt;p&gt;使用多级页表可以减少空间占用：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;若某级页表中的某条目为空，那么对应的下一级页表无需存在&lt;/li&gt;
+&lt;li&gt;实际应用的虚拟地址空间大部分都未被使用，因此无需分配页表&lt;/li&gt;
+&lt;li&gt;减少空间的原因：允许页表中出现&amp;quot;空洞&amp;quot;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124500.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;tlb&#34;&gt;TLB&lt;/h2&gt;
+&lt;p&gt;TLB:Translation Lookaside Buffer，起到类似于cache的作用，缓存了虚拟页号到物理页号的映射关系。
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124501.png&#34; alt=&#34;&#34;&gt;
+在地址翻译过程中，MMU首先查询TLB：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;TLB命中，则不再查询页表（fastpath）&lt;/li&gt;
+&lt;li&gt;TLB未命中，再查询页表&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;切换页表时需要全部刷新TLB&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;换页机制&#34;&gt;换页机制&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;换页的基本思想
+&lt;ul&gt;
+&lt;li&gt;将物理内存里面存不下的内容放到&lt;strong&gt;磁盘&lt;/strong&gt;上&lt;/li&gt;
+&lt;li&gt;虚拟内存使用不受物理内存大小限制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;如何实现Swap
+&lt;ul&gt;
+&lt;li&gt;磁盘上划分专门的&lt;strong&gt;Swap&lt;/strong&gt;分区&lt;/li&gt;
+&lt;li&gt;在处理&lt;strong&gt;缺页异常&lt;/strong&gt;时，触发物理内存页的换入换出&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;页面置换算法&#34;&gt;页面置换算法&lt;/h2&gt;
+&lt;h3 id=&#34;opt&#34;&gt;OPT&lt;/h3&gt;
+&lt;p&gt;最佳(OPT, Optimal replacement algorithm)：所选择的被换出的页面将是==理论上==&lt;strong&gt;最长时间内不再被访问&lt;/strong&gt;，通常可以保证获得最低的缺页率。&lt;/p&gt;
+&lt;h3 id=&#34;lru&#34;&gt;LRU&lt;/h3&gt;
+&lt;p&gt;最近最久未使用(LRU, Least Recently Used)：将&lt;strong&gt;最近一次访问的时间最久&lt;/strong&gt;的页面替换出去。&lt;/p&gt;
+&lt;h3 id=&#34;fifo&#34;&gt;FIFO&lt;/h3&gt;
+&lt;p&gt;先进先出(FIFO, First In First Out)：将&lt;strong&gt;最先进入内存&lt;/strong&gt;的页面换出去。&lt;/p&gt;
+&lt;h3 id=&#34;nru&#34;&gt;NRU&lt;/h3&gt;
+&lt;p&gt;最近未使用(NRU, Not Recently Used)：
+每个页面都有两个状态位：R 与 M，当页面被访问时设置页面的 R=1，当页面被修改时设置 M=1。其中 R 位会定时被清零。
+当发生缺页中断时，NRU 算法按如下&lt;strong&gt;顺序优先选择&lt;/strong&gt;如下状态的页面将其置换出去（相同状态下随机选择）：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;R=0，M=0&lt;/li&gt;
+&lt;li&gt;R=0，M=1&lt;/li&gt;
+&lt;li&gt;R=1，M=0&lt;/li&gt;
+&lt;li&gt;R=1，M=1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;可以看出，NRU 优先换出已经被修改的脏页面（R=0，M=1），而不是被频繁使用的干净页面（R=1，M=0）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;clock&#34;&gt;Clock&lt;/h3&gt;
+&lt;p&gt;时钟(Clock)：和&lt;a href=&#34;#NRU&#34;&gt;NRU&lt;/a&gt;类似，有一个状态位R，当页面被访问时设置页面的 R=1，同时定时清零R。
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124502.png&#34; alt=&#34;200&#34;&gt;
+指针指向的页面若R=1则将指针向前移动一位（类似于时钟），直到找出R=0的页面将其替换出去。&lt;/p&gt;
+
+    </description>
+    </item>
+    
+    <item>
+    <title>同步原语</title>
+    <link>https://example.com/posts/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</link>
+    <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
+    
+    <guid>https://example.com/posts/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</guid>
+    <description>
+        &lt;p&gt;在多道程序的环境下，存在着不同的制约关系，为了协调&lt;a href=&#34;%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B#%E8%BF%9B%E7%A8%8B&#34;&gt;进程&lt;/a&gt;间互相制约的关系，实现资源共享和进程协作，引入了进程同步。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;临界资源：只能同时被一个进程使用的资源。&lt;/li&gt;
+&lt;li&gt;临界区 ：访问临界资源的代码段。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;同步机制的原则&#34;&gt;同步机制的原则&lt;/h1&gt;
+&lt;h2 id=&#34;空闲让进&#34;&gt;空闲让进&lt;/h2&gt;
+&lt;p&gt;当无进程处于临界区时，请求进入临界区的进程&lt;strong&gt;立即进入&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;忙则等待&#34;&gt;忙则等待&lt;/h2&gt;
+&lt;p&gt;当有进程进入临界区时，其他要求访问临界资源的进程&lt;strong&gt;必须等待&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;有限等待&#34;&gt;有限等待&lt;/h2&gt;
+&lt;p&gt;对要求访问临界资源的进程，保证能在&lt;strong&gt;有限时间&lt;/strong&gt;内进入临界区&lt;/p&gt;
+&lt;h2 id=&#34;让权等待&#34;&gt;让权等待&lt;/h2&gt;
+&lt;p&gt;当进程不能进入临界区时，应释放处理机&lt;/p&gt;
+
+    </description>
+    </item>
+    
+    <item>
+    <title>死锁</title>
+    <link>https://example.com/posts/%E6%AD%BB%E9%94%81/</link>
+    <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
+    
+    <guid>https://example.com/posts/%E6%AD%BB%E9%94%81/</guid>
+    <description>
+        &lt;p&gt;&lt;strong&gt;死锁(deadlock)&lt;/strong&gt;： 在&lt;a href=&#34;%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD.md&#34;&gt;同步原语&lt;/a&gt;的情况下，有一组线程因为组内所有线程都在等待组内其他线程释放资源而&lt;strong&gt;相互无限等待&lt;/strong&gt;的现象。
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124823.png&#34; alt=&#34;200&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;死锁产生的原因&#34;&gt;死锁产生的原因&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;互斥访问：资源只能最多被一个&lt;a href=&#34;%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B#%E7%BA%BF%E7%A8%8B&#34;&gt;线程&lt;/a&gt;持有。&lt;/li&gt;
+&lt;li&gt;资源非抢占：资源只能由持有的&lt;a href=&#34;%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B#%E7%BA%BF%E7%A8%8B&#34;&gt;线程&lt;/a&gt;主动放弃，不能被其他线程抢占。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;持有并等待&lt;/strong&gt;：&lt;a href=&#34;%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B#%E7%BA%BF%E7%A8%8B&#34;&gt;线程&lt;/a&gt;拥有一些资源并等待一些资源。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;循环等待&lt;/strong&gt;： 多个&lt;a href=&#34;%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B#%E7%BA%BF%E7%A8%8B&#34;&gt;线程&lt;/a&gt;形成一个循环，在该循环中每个线程都在等待下一个线程释放资源。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;死锁的检测与恢复&#34;&gt;死锁的检测与恢复&lt;/h1&gt;
+&lt;p&gt;不试图阻止死锁，而是当检测到死锁发生时，由操作系统等第三者采取措施进行恢复。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;检测： 检测资源和线程形成的有向图是否形成环路，若有环路说明出现循环等待，即出现死锁。
+&lt;img src=&#34;../pic/Pasted%20image%2020210420163413.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;对于一种资源可被多个线程占有的情况下，需要使用&lt;strong&gt;拓扑排序&lt;/strong&gt;算法。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;恢复&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;直接kill所有循环中的进程&lt;/li&gt;
+&lt;li&gt;每次Kill一个线程，直到没有环&lt;/li&gt;
+&lt;li&gt;线程全部&lt;strong&gt;回滚&lt;/strong&gt;到之前的某一状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;死锁预防&#34;&gt;死锁预防&lt;/h1&gt;
+&lt;p&gt;在线程运行之前，破坏掉&lt;a href=&#34;#%E6%AD%BB%E9%94%81%E4%BA%A7%E7%94%9F%E7%9A%84%E5%8E%9F%E5%9B%A0&#34;&gt;死锁产生的原因&lt;/a&gt;中的四个必要条件。&lt;/p&gt;
+&lt;h2 id=&#34;避免互斥访问&#34;&gt;避免互斥访问&lt;/h2&gt;
+&lt;p&gt;设计一个&lt;strong&gt;代理线程&lt;/strong&gt;专门管理对共享数据的访问与修改。
+缺点：修改困难，且为系统带来多余负担。&lt;/p&gt;
+&lt;h2 id=&#34;不允许持有并等待&#34;&gt;不允许持有并等待&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;一次性申请所有资源&lt;/strong&gt;，一旦有需要获取的资源被其他线程持有，则主动放弃之前已经持有的资源。
+缺点：在资源竞争程度较高时，有可能出现持有-放弃的循环，即出现&lt;strong&gt;活锁&lt;/strong&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;活锁：锁的竞争线程长时间无法进入临界区。
+解决方法：线程在获取锁失败后等待随机时间再开始尝试，如&lt;a href=&#34;../Net/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82.md#CSMA&#34;&gt;CSMA&lt;/a&gt;使用的二进制退避算法。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;允许资源被抢占&#34;&gt;允许资源被抢占&lt;/h2&gt;
+&lt;p&gt;允许线程抢占已经被其他线程持有的资源。
+缺点：需要保证被抢占的线程能够正确恢复，只适用于容易保存和恢复的场景。&lt;/p&gt;
+&lt;h2 id=&#34;避免循环等待&#34;&gt;避免循环等待&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;所有资源进行编号&lt;/li&gt;
+&lt;li&gt;所有进程递增获取&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;u&gt;任意时刻：获取最大资源号的进程可以继续执行，然后释放资源&lt;/u&gt;&lt;/p&gt;
+&lt;h1 id=&#34;死锁避免&#34;&gt;死锁避免&lt;/h1&gt;
+&lt;p&gt;当有资源需要分配时，&lt;strong&gt;系统&lt;/strong&gt;检查此次资源分配后是否处于&lt;strong&gt;安全状态&lt;/strong&gt;，只有处于安全状态才给线程该资源，否则阻塞进程。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;安全状态：存在至少一个安全序列&amp;lt;P1,P2,…,Pn&amp;gt;，系统按照该序列调度线程执行即可避免死锁。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;银行家算法&#34;&gt;银行家算法&lt;/h2&gt;
+
+    </description>
+    </item>
+    
+    <item>
+    <title>进程与线程</title>
+    <link>https://example.com/posts/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</link>
+    <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
+    
+    <guid>https://example.com/posts/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</guid>
+    <description>
+        &lt;h1 id=&#34;进程&#34;&gt;进程&lt;/h1&gt;
+&lt;p&gt;进程是计算机程序运行时的抽象。&lt;/p&gt;
+&lt;h2 id=&#34;进程的状态&#34;&gt;进程的状态&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;新生状态（ new ）：进程刚被创建&lt;/li&gt;
+&lt;li&gt;运行状态（ running ）：进程正在处理器上运行&lt;/li&gt;
+&lt;li&gt;准备状态（ ready ）：进程可以运行，但没有被调度&lt;/li&gt;
+&lt;li&gt;阻塞状态（ blocked ）：进程进入等待状态，短时间不再运行&lt;/li&gt;
+&lt;li&gt;终结状态（ terminated ）：进程完成了执行
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124846.png&#34; alt=&#34;&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;地址空间&#34;&gt;地址空间&lt;/h2&gt;
+&lt;p&gt;进程具有&lt;strong&gt;独立的虚拟地址空间&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;每个进程都具有&amp;quot;独占全部内存&amp;quot;的假象&lt;/li&gt;
+&lt;li&gt;内核中同样包含内核栈和内核代码、数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124847.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;进程是计算机程序运行时的抽象&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;静态部分：程序运行需要的代码和数据&lt;/li&gt;
+&lt;li&gt;动态部分：程序运行期间的状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;进程控制块&#34;&gt;进程控制块&lt;/h2&gt;
+&lt;p&gt;**Process Control Block（PCB）**是保存进程状态的数据结构，存放进程相关的各种信息，如进程的标识符（PID）、内存、打开的文件及进程在切换时的状态(&lt;a href=&#34;#%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2&#34;&gt;上下文切换&lt;/a&gt;)
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124848.png&#34; alt=&#34;400&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;上下文切换&#34;&gt;上下文切换&lt;/h2&gt;
+&lt;p&gt;进程的上下文包括进程运行时的&lt;strong&gt;寄存器状态&lt;/strong&gt;，用于&lt;strong&gt;保存&lt;/strong&gt;和&lt;strong&gt;恢复&lt;/strong&gt;一个进程在CPU上运行的状态。
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124849.png&#34; alt=&#34;200&#34;&gt;
+当OS需要切换当前进程时，就会使用&lt;strong&gt;上下文切换（context switch）机制&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;进程的基本操作接口&#34;&gt;进程的基本操作接口&lt;/h2&gt;
+&lt;p&gt;以下操作以Linux的进程操作为例。&lt;/p&gt;
+&lt;h3 id=&#34;进程创建fork&#34;&gt;进程创建：fork()&lt;/h3&gt;
+&lt;p&gt;fork()：为调用进程创建一个一模一样的新进程&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;调用进程为父进程，新进程为子进程&lt;/li&gt;
+&lt;li&gt;接口简单，无需任何参数&lt;/li&gt;
+&lt;li&gt;fork后的两个进程均为独立进程，拥有不同的PID&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124850.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;fork为进程之间建立了父进程和子进程的关系
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124851.png&#34; alt=&#34;&#34;&gt;
+多个进程可以属于同一个进程组&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;子进程默认与父进程属于同一个进程组&lt;/li&gt;
+&lt;li&gt;可以向同一进程组中的所有进程发送信号&lt;/li&gt;
+&lt;li&gt;主要用于shell程序中&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;进程的执行exec&#34;&gt;进程的执行：exec&lt;/h3&gt;
+&lt;p&gt;在fork完成之后，在多数情况下需要子进程执行与父进程不同的任务。为了实现该目标，Linux提供了exec接口。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124852.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;线程&#34;&gt;线程&lt;/h1&gt;
+&lt;p&gt;线程是OS&lt;strong&gt;资源分配和调度&lt;/strong&gt;的基本单位。&lt;/p&gt;
+&lt;h2 id=&#34;为什么需要线程&#34;&gt;为什么需要线程&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;创建进程的开销较大-包括了数据、代码、堆、栈等&lt;/li&gt;
+&lt;li&gt;进程的隔离性过强：可以通过进程间通信（IPC），但开销较大&lt;/li&gt;
+&lt;li&gt;进程内部无法支持并行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;多线程进程的地址空间&#34;&gt;多线程进程的地址空间&lt;/h2&gt;
+&lt;p&gt;线程只包含&lt;strong&gt;运行时的状态&lt;/strong&gt;，静态部分由进程提供。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;每个线程包括了执行所需的最小状态（主要是寄存器和栈）&lt;/li&gt;
+&lt;li&gt;其它区域共享：	数据、代码、堆……
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124853.png&#34; alt=&#34;&#34;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;线程模型&#34;&gt;线程模型&lt;/h2&gt;
+&lt;p&gt;根据线程是否受内核管理，可以将线程分为两类&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;内核态线程：由内核创建及管理，线程相关信息存放在内核中&lt;/li&gt;
+&lt;li&gt;用户态线程（&lt;strong&gt;纤程&lt;/strong&gt;）：不受内核直接管理，在应用态创建，线程相关信息主要存放在应用数据中&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;线程模型&lt;/strong&gt;会建立用户态线程与内核态线程之间的联系。这种联系可分为&lt;a href=&#34;#%E5%A4%9A%E5%AF%B9%E4%B8%80%E6%A8%A1%E5%9E%8B&#34;&gt;多对一模型&lt;/a&gt;、&lt;a href=&#34;#%E4%B8%80%E5%AF%B9%E4%B8%80%E6%A8%A1%E5%9E%8B&#34;&gt;一对一模型&lt;/a&gt;和&lt;a href=&#34;#%E5%A4%9A%E5%AF%B9%E5%A4%9A%E6%A8%A1%E5%9E%8B&#34;&gt;多对多模型&lt;/a&gt;。
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124854.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;多对一模型&#34;&gt;多对一模型&lt;/h3&gt;
+&lt;p&gt;将多个用户态线程映射给单一的内核线程。内核管理简单但可扩展性差，无法适应多核机器的发展。&lt;/p&gt;
+&lt;p&gt;用途：在主流操作系统中被弃用，用于各种&lt;strong&gt;用户态线程库&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;一对一模型&#34;&gt;一对一模型&lt;/h3&gt;
+&lt;p&gt;每个用户线程映射单独的内核线程。解决了&lt;a href=&#34;#%E5%A4%9A%E5%AF%B9%E4%B8%80%E6%A8%A1%E5%9E%8B&#34;&gt;多对一模型&lt;/a&gt;中的可扩展性问题，但内核线程数量大，开销大。&lt;/p&gt;
+&lt;p&gt;用途：主流操作系统都采用一对一模型，如Windows、Linux。&lt;/p&gt;
+&lt;h3 id=&#34;多对多模型&#34;&gt;多对多模型&lt;/h3&gt;
+&lt;p&gt;多对多模型（又叫Scheduler Activation）：N个用户态线程映射到M个内核态线程（N &amp;gt; M）。解决了&lt;a href=&#34;#%E5%A4%9A%E5%AF%B9%E4%B8%80%E6%A8%A1%E5%9E%8B&#34;&gt;多对一模型&lt;/a&gt;中的可扩展性问题和&lt;a href=&#34;#%E4%B8%80%E5%AF%B9%E4%B8%80%E6%A8%A1%E5%9E%8B&#34;&gt;一对一模型&lt;/a&gt;的线程过多问题，但管理变得更为复杂。
+用途：在虚拟化中得到了广泛应用。&lt;/p&gt;
+&lt;h2 id=&#34;线程控制块&#34;&gt;线程控制块&lt;/h2&gt;
+&lt;p&gt;线程控制块TCB和&lt;a href=&#34;#%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%9D%97&#34;&gt;进程控制块&lt;/a&gt;类似，对于&lt;a href=&#34;#%E4%B8%80%E5%AF%B9%E4%B8%80%E6%A8%A1%E5%9E%8B&#34;&gt;一对一模型&lt;/a&gt;的TCB可以分成两部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;内核态：与PCB结构类似&lt;/li&gt;
+&lt;li&gt;应用态：主要由线程库定义，可以认为是内核TCB的扩展&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ChCore的TCB结构:
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124855.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;线程本地存储&#34;&gt;线程本地存储&lt;/h2&gt;
+&lt;p&gt;问题：对于全局变量，不同线程可能需要不同的拷贝
+解决方法：线程本地存储（Thread Local Storage， TLS）&lt;/p&gt;
+&lt;p&gt;线程本地存储用于保存线程自身相关的信息。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;例：__thread int id; 会为每个线程定义一个独有的id变量
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124856.png&#34; alt=&#34;&#34;&gt;
+TLS寻址模式：基地址＋偏移量&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;进程和线程的区别&#34;&gt;进程和线程的区别&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;拥有资源：进程是资源分配的基本单位；而线程基本不拥有资源，共享进程的地址空间，即访问隶属进程的资源&lt;/li&gt;
+&lt;li&gt;调度：线程是OS调度的基本单位，在同一进程中，线程的切换不会引起进程切换，从一个进程中的线程切换到另一个进程中的线程时，会引起进程切换。&lt;/li&gt;
+&lt;li&gt;系统开销：创建或撤销进程的&lt;a href=&#34;#%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%9D%97&#34;&gt;进程控制块&lt;/a&gt;所付出的开销远大于创建或撤销线程的&lt;a href=&#34;#%E7%BA%BF%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%9D%97&#34;&gt;线程控制块&lt;/a&gt;的开销。在进行上下文切换时，进程的上下文远比线程的上下文的内容多，付出的开销也更大。&lt;/li&gt;
+&lt;li&gt;通信：线程间可以通过直接读写同一进程中的数据进行通信，但是进程通信需要通过进程间通信。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;纤程&#34;&gt;纤程&lt;/h1&gt;
+&lt;p&gt;纤程（fiber）可以认为是&lt;strong&gt;用户态线程&lt;/strong&gt;。一个内核线程可以对应多个纤程，即&lt;a href=&#34;#%E5%A4%9A%E5%AF%B9%E4%B8%80%E6%A8%A1%E5%9E%8B&#34;&gt;多对一模型&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124857.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不需要创建内核线程，开销更小&lt;/li&gt;
+&lt;li&gt;上下文切换不需要进入内核，切换快&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;u&gt;核心：把OS的内核调度器的调度权让给应用程序，有助于做出更优的调度决策。&lt;/u&gt;&lt;/p&gt;
+&lt;h1 id=&#34;参考&#34;&gt;参考&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://ipads.se.sjtu.edu.cn/courses/os/2020/schedule.shtml&#34;&gt;上海交通大学SE-315 · 操作系统（2020春)&lt;/a&gt;&lt;/p&gt;
+
+    </description>
+    </item>
+    
+    <item>
+    <title>进程调度</title>
+    <link>https://example.com/posts/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</link>
+    <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
+    
+    <guid>https://example.com/posts/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</guid>
+    <description>
+        &lt;h1 id=&#34;overview&#34;&gt;Overview&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/Pasted%20image%2020210416211921.png&#34; alt=&#34;&#34;&gt;
+为了在有限的资源下通过对多个程序执行过程的管理，满足系统和应用的指标，调度器需要对&lt;a href=&#34;%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B#%E7%BA%BF%E7%A8%8B&#34;&gt;线程&lt;/a&gt;进行调度(Scheduling)。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;线程是调度器的调度对象，但在Linux等OS常用任务(job/task)描述线程。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;执行结束条件&#34;&gt;执行结束条件&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;时间片结束&lt;/li&gt;
+&lt;li&gt;出现I/O请求&lt;/li&gt;
+&lt;li&gt;主动停止或进入睡眠&lt;/li&gt;
+&lt;li&gt;被系统打断（抢占式调度）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;调度决策&#34;&gt;调度决策&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;下一个执行的任务&lt;/li&gt;
+&lt;li&gt;执行该任务的CPU核心&lt;/li&gt;
+&lt;li&gt;执行的时长，即时间片&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;调度指标&#34;&gt;调度指标&lt;/h2&gt;
+&lt;p&gt;Scheduling Criteria（调度指标）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;周转时间&lt;/strong&gt;：任务第一次进入系统到执行结束的时间&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;响应时间&lt;/strong&gt;：任务第一次进入系统到第一次给用户输出的时间&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;实时性&lt;/strong&gt;：在任务的截止时间内完成任务&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;公平性&lt;/strong&gt;：每个任务都应该有机会执行，不能饿死&lt;/li&gt;
+&lt;li&gt;吞吐率：单位时间内处理的任务数量&lt;/li&gt;
+&lt;li&gt;开销低：调度器是为了优化系统，而非制造性能BUG&lt;/li&gt;
+&lt;li&gt;可扩展：随着任务数量增加，仍能正常工作&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;调度的挑战&#34;&gt;调度的挑战&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;缺少信息&lt;/li&gt;
+&lt;li&gt;线程/任务间的复杂交互&lt;/li&gt;
+&lt;li&gt;调度目标多样性：不同的系统可能关注不一样的&lt;a href=&#34;%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6.md#%E8%B0%83%E5%BA%A6%E6%8C%87%E6%A0%87&#34;&gt;调度指标&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;三级调度&#34;&gt;三级调度&lt;/h1&gt;
+&lt;p&gt;进程调度可以分为三类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Long-Term Scheduler&lt;/li&gt;
+&lt;li&gt;Short-Term Scheduler&lt;/li&gt;
+&lt;li&gt;Medium-Term Scheduler&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/Pasted%20image%2020210417154022.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;long-term-scheduler&#34;&gt;Long-Term Scheduler&lt;/h2&gt;
+&lt;p&gt;也称为 job scheduler.
+goal: &lt;strong&gt;regulates the program and select process from the queue and loads them into memory for execution.&lt;/strong&gt;
+负责将处于新生状态的进程转为就绪状态，限制系统被短期调度管理的进程数量。&lt;/p&gt;
+&lt;h2 id=&#34;short-term-scheduler&#34;&gt;Short-Term Scheduler&lt;/h2&gt;
+&lt;p&gt;也称为 CPU scheduler.
+goal:This helps you to select from a group of processes that are ready to execute and allocates CPU to one of them.
+负责进程再就绪状态、运行状态和阻塞状态的转换。&lt;/p&gt;
+&lt;h2 id=&#34;medium-term-scheduler&#34;&gt;Medium-Term Scheduler&lt;/h2&gt;
+&lt;p&gt;中期调度是换页机制(swapping)的一部分，能够降低进程占用的内存。
+机制：将被短期调度器管理的处于就绪状态或阻塞状态的进程挂起，转为挂起就绪状态或挂起阻塞状态，并在适当时机重新激活被挂机的进程。&lt;/p&gt;
+&lt;h1 id=&#34;批处理任务调度&#34;&gt;批处理任务调度&lt;/h1&gt;
+&lt;p&gt;批处理任务调度算法的关注指标主要是&lt;strong&gt;周转时间&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;fcfs&#34;&gt;FCFS&lt;/h2&gt;
+&lt;p&gt;先到先得(First Come First Served, FCFS)，也称为先进先出(FIFO)策略。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;特点：简单、直观，有利于长任务。&lt;/li&gt;
+&lt;li&gt;问题： 平均周转周期长、响应时间长&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;sjf&#34;&gt;SJF&lt;/h2&gt;
+&lt;p&gt;最短任务优先(Shortest Job First, SJF)，该策略会选择&lt;strong&gt;运行时间最短&lt;/strong&gt;的任务执行。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;特点：**平均周转时间短 **&lt;/li&gt;
+&lt;li&gt;问题：
+&lt;ul&gt;
+&lt;li&gt;必须预知任务的运行时间&lt;/li&gt;
+&lt;li&gt;严重依赖于任务到达时间点：若短任务迟来则不会执行（非抢占式调度）&lt;/li&gt;
+&lt;li&gt;不公平，长任务容易饿死&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;stcf&#34;&gt;STCF&lt;/h2&gt;
+&lt;p&gt;最短完成时间任务优先(Shortest Time-to-Completion First, STCF)，也称为最短剩余时间优先 shortest remaining time next（SRTN）。该策略会选择&lt;strong&gt;剩余运行时间最短&lt;/strong&gt;的任务执行，且为&lt;strong&gt;抢占式调度&lt;/strong&gt; (Preemptive Scheduling)，可以看出&lt;a href=&#34;%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6.md#SJF&#34;&gt;SJF&lt;/a&gt;的抢占式版本，解决了迟来的短任务无法受益问题。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;抢占式调度: 在任务到达系统时也会进行调度，有可能中断当前执行的任务转而执行其他任务。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;特点：**平均周转时间短 **&lt;/li&gt;
+&lt;li&gt;问题：不公平，长任务容易饿死&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;交互式任务调度&#34;&gt;交互式任务调度&lt;/h1&gt;
+&lt;h2 id=&#34;rr&#34;&gt;RR&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;时间片轮转(Round Robin , RR)&lt;/strong&gt;：为了定时响应用户，为任务设置时间片，限定任务每次执行时间。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;特点：平均&lt;strong&gt;响应时间短&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;问题：
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;周转时间长&lt;/strong&gt;，尤其是任务运行时间相似的场景&lt;/li&gt;
+&lt;li&gt;需要选取时间片大小，且过小的时间片会引入大量调度器的&lt;strong&gt;调度开销&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;优先级调度&#34;&gt;优先级调度&lt;/h2&gt;
+&lt;p&gt;通过为每个任务指定一个&lt;strong&gt;优先级(Priority)&lt;/strong&gt;，调度器坑确定哪些任务应该优先执行。&lt;u&gt;实际上，&lt;a href=&#34;%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6.md#FCFS&#34;&gt;FCFS&lt;/a&gt;、&lt;a href=&#34;%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6.md#STCF&#34;&gt;STCF&lt;/a&gt;、&lt;a href=&#34;%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6.md#STCF&#34;&gt;STCF&lt;/a&gt;、&lt;a href=&#34;%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6.md#RR&#34;&gt;RR&lt;/a&gt;也有优先级&lt;/u&gt;。
+Multi-level Queue(多级队列)属于静态优先级调度策略，严重依赖于预设的优先级进行调度、&lt;/p&gt;
+&lt;p&gt;注意事项：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;提高I/O密集型任务的优先级，避免造成I/O利用率低下&lt;/li&gt;
+&lt;li&gt;低优先级任务饥饿问题：需要为等待时间过长的任务提高优先级&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#%E4%BC%98%E5%85%88%E7%BA%A7%E5%8F%8D%E8%BD%AC&#34;&gt;优先级反转&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;mlfq&#34;&gt;MLFQ&lt;/h2&gt;
+&lt;p&gt;多级反馈队列(Multi-Level Feedback Queue, MLFQ)，属于经典的基于多级队列的动态&lt;a href=&#34;%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6.md#%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6&#34;&gt;优先级调度&lt;/a&gt;。
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/Pasted%20image%2020210417155733.png&#34; alt=&#34;&#34;&gt;
+we arrive at the first two basic rules for MLFQ:
+• Rule 1: If Priority(A) &amp;gt; Priority(B), A runs (B doesn’t).
+• Rule 2: If Priority(A) = Priority(B), A &amp;amp; B run in &lt;a href=&#34;#RR&#34;&gt;RR&lt;/a&gt;.优先级越低，时间片越长。
+• Rule 3: When a job enters the system, it is placed at the highest priority (the topmost queue).
+动态调节机制：
+• &lt;strong&gt;Penaly&lt;/strong&gt;: If a job uses up an entire &lt;strong&gt;time slice while 					running&lt;/strong&gt;, its &lt;strong&gt;priority is reduced&lt;/strong&gt; (i.e., it moves down one queue).
+• &lt;strong&gt;Boost&lt;/strong&gt;：&lt;strong&gt;After some time period&lt;/strong&gt; S, move all the jobs in the system to the &lt;strong&gt;topmost queue&lt;/strong&gt;.
+Penaly可以提高短任务（同时包括I/O密集型任务）的优先级，从而提高平均周转时间。
+Boost可以防止长任务饥饿。
+问题：需要调整许多参数，如优先级队列的数量、时间片大小及最大运行时间，Boost的周期等等。&lt;/p&gt;
+&lt;h1 id=&#34;公平共享调度&#34;&gt;公平共享调度&lt;/h1&gt;
+&lt;p&gt;公平共享调度（Fair-Share Scheduling）考虑用户占用的资源比例：用&lt;strong&gt;份额&lt;/strong&gt;（share）量化每个任务对CPU时间的使用，明确任务应该使用的&lt;strong&gt;系统资源比例&lt;/strong&gt;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Ticket Transfer:&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;lottery-scheduling&#34;&gt;Lottery Scheduling&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Lottery Scheduling（彩票调度）&lt;/strong&gt;：根据每个任务的份额比例分配每个任务的彩票数量，任务拥有的彩票数量越多，越有可能被调度：
+每次调度根据生成随机数确定任务是否被调度。
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/Pasted%20image%2020210417160615.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Ticket Transfer(彩票转让)：与优先级反转类似。
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/Pasted%20image%2020210417155347.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Lottery Scheduling的随机化实现简单，但会带来不确定性，在调度次数较少时将达不到预期效果（即频率和概率在次数较少的情况下下相差过大）。&lt;/p&gt;
+&lt;h2 id=&#34;stride-scheduling&#34;&gt;Stride Scheduling&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Stride Scheduling(步幅调度)&lt;/strong&gt;：&lt;strong&gt;确定性&lt;/strong&gt;版本的&lt;a href=&#34;#Lottery%20Scheduling&#34;&gt;Lottery Scheduling&lt;/a&gt;，核心是&lt;strong&gt;步幅（Stride）&lt;/strong&gt;：任务一次执行增加的虚拟时间，和份额成反比。
+机制：每次调度选择当前虚拟时间最小的任务调度并增加虚拟时间（即步幅）大小。
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/Pasted%20image%2020210420173316.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;新的任务进入时虚拟时间应该设置成当前所有任务的最小虚拟时间，防止新的任务长时间占有CPU。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;优先级反转&#34;&gt;优先级反转&lt;/h1&gt;
+&lt;p&gt;线程执行顺序违反预先优先级。&lt;/p&gt;
+&lt;h2 id=&#34;产生原因&#34;&gt;产生原因&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/Pasted%20image%2020210420183342.png&#34; alt=&#34;&#34;&gt;
+高优先级A线程抢占了低优先级C线程并尝试获取被C线程持有的资源，导致A线程阻塞，另一个比A线程优先级低的线程B却可以正常执行。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;操作系统：基于优先级调度&lt;/li&gt;
+&lt;li&gt;锁：按照锁使用的策略进行调度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;根本原因：双重调度不协调&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;解决方案&#34;&gt;解决方案&lt;/h2&gt;
+&lt;h3 id=&#34;不可打断临界区协议&#34;&gt;不可打断临界区协议&lt;/h3&gt;
+&lt;p&gt;不可打断临界区协议(Non-preemptive Critical Sections, NCP)：进入临界区后不允许其他进程打断：禁止操作系统调度。&lt;/p&gt;
+&lt;h3 id=&#34;优先级继承协议&#34;&gt;优先级继承协议&lt;/h3&gt;
+&lt;p&gt;优先级继承协议(Priority Inheritance Protocol, PIP)：将被阻塞的高优先级任务的优先级转移给占用资源的低优先级任务。
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/Pasted%20image%2020210420172518.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;优先级置顶协议&#34;&gt;优先级置顶协议&lt;/h3&gt;
+&lt;p&gt;优先级置顶协议(Priority Ceiling Protocols, PCP)：将获取锁的线程的优先级设置为该锁的所有竞争线程的最高优先级。
+根据获取锁的时间分类，该协议可分为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;即时优先级置顶协议(Immediate Priority Ceiling Protocols, IPCP)：在获取锁后立刻提升优先级。
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/Pasted%20image%2020210417152449.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;原生优先级置顶协议(Original Priority Ceiling Protocols, OPCP)：在检测到高优先级竞争该锁时再提升优先级。
+&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/Pasted%20image%2020210420183357.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;实时调度&#34;&gt;实时调度&lt;/h1&gt;
+&lt;p&gt;对于&lt;strong&gt;周期任务&lt;/strong&gt;，主要有两种调度算法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;速率单调&lt;/li&gt;
+&lt;li&gt;最早截止时间优先&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;速率单调&#34;&gt;速率单调&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;速率单调（Rate-Monotonic, RM）&lt;/strong&gt;：&lt;strong&gt;速率&lt;/strong&gt;越高，则优先级越高。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;速率：任务周期的倒数&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在基于静态优先级的实时调度策略中，RM策略是最优的。但在一组任务的CPU利用率U不大于1的情况下，不一定能够满足这组任务的截止时间要求。&lt;/p&gt;
+&lt;h2 id=&#34;最早截止时间优先&#34;&gt;最早截止时间优先&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;最早截止时间优先(Earliest Deadline First, EDF)&lt;/strong&gt;：根据任务的&lt;strong&gt;截止时间&lt;/strong&gt;动态调整任务的优先级。
+在CPU利用率U不大于1的情况下，EDF一定能够满足这组任务的截止时间要求，是在U不大于1的情况下的最优实时调度策略。
+若U大于1，则会引发多米诺效应：EDF没有任务的运行时间信息，无法提前拒绝任务，也没有中断机制调度其他任务。&lt;/p&gt;
+&lt;h1 id=&#34;reference&#34;&gt;Reference&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched-mlfq.pdf&#34;&gt;Multilevel Feedback Queues (MLFQ) - LASS-PDF&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://ipads.se.sjtu.edu.cn/courses/os/2020/schedule.shtml&#34;&gt;上海交通大学SE-315 · 操作系统（2020春)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    </description>
+    </item>
+    
+  </channel>
+</rss>

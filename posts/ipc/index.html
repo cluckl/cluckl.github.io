@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="dark">
+    <title> IPC | Julan&#39;s Blog</title>
+    
+    
+    
+    <link rel="stylesheet" href="/sass/main.min.4e90cee935c47394b47f9cb7ffe8e3ffab18b88d82fea203918cc3f92eec5eb2.css">
+</head>
+
+    <body class="dark">
+        <nav class="navbar">
+    <div class="container">
+        <div class="flex">
+            <div>
+                <a class="brand" href="/">
+                    
+                    <span class="emoji">
+                        😎
+                    </span>
+                    
+                    Julan&#39;s Blog
+                    </a>
+            </div>
+            <div class="flex">
+                
+                <a href="/articles/">Articles</a>
+                
+                <button id="dark-mode-button"></button>
+            </div>
+            </div>
+    </div>
+</nav>
+        <main>
+            
+
+<div class="container">
+    <article>
+        <header class="article-header">
+            <div class="thumb">
+                <div>
+                    <h1>IPC</h1>
+                    <div class="post-meta">
+                        <div>
+                            By  on <time>April 24, 2021</time>
+                        </div>
+                        <div class="tags">
+                            
+                            <a href="/tags/os/">OS</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </article>
+
+    <div class="article-post">
+    <h1 id="overview">Overview</h1>
+<p><strong>进程间通信 (Inter-process Communication, IPC)</strong>: 两个(或多个)不同的进程，通过内核或其他共享资源进行通信，来传递控制信息或数据。
+<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124736.png" alt="300"></p>
+<h2 id="直接通信和间接通信">直接通信和间接通信</h2>
+<ul>
+<li>
+<p>直接通信：基于共享内存</p>
+<blockquote>
+<p>基于共享内存的消息传递核心抽象仍然是消息，而直接使用共享内存则不存在消息的抽象。</p>
+</blockquote>
+</li>
+<li>
+<p>间接通信：基于操作系统内核，每次发送消息经过一个信箱
+<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124737.png" alt="300"></p>
+</li>
+</ul>
+<h2 id="消息传递的同步与异步">消息传递的同步与异步</h2>
+<p>消息可以是阻塞的也可以是非阻塞的</p>
+<ul>
+<li>阻塞通常被认为是同步通信，发送者/接收者一直处于阻塞状态，直到消息发出/到来。</li>
+<li>非阻塞通常被认为是异步通信，发送者/接收者不等待操作结果，直接返回。
+<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124738.png" alt="300"></li>
+</ul>
+<h1 id="管道">管道</h1>
+<p>管道(Pipe)：a communication medium between two or more related or interrelated processes.
+<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124739.png" alt=""></p>
+<ul>
+<li>间接消息传递方式</li>
+<li><strong>单向的IPC</strong></li>
+<li>数据类型：字节流</li>
+<li>分为<a href="#%E5%8C%BF%E5%90%8D%E7%AE%A1%E9%81%93">匿名管道</a>和<a href="#%E5%91%BD%E5%90%8D%E7%AE%A1%E9%81%93">命名管道</a></li>
+</ul>
+<p>例如常见的Shell命令：<code>ls | grep</code>
+缺陷：</p>
+<ul>
+<li>固定的缓冲区间，分配过大资源容易造成浪费</li>
+<li>两个端口，最多对应两个进程</li>
+</ul>
+<h2 id="匿名管道">匿名管道</h2>
+<p>通常用于建立<strong>父子进程</strong>或者<strong>兄弟进程</strong>的连接，在创建的同时进程会拿到两个文件描述符用来使用它。
+管道是通过调用** pipe** 函数创建的，fd[0] 用于读，fd[1] 用于写:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">pipe</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>过程：</p>
+<ol>
+<li>父进程首先通过pipe创建对应的管道的两端，然后通过fork创建子进程，子进程继承包括管道端口的<strong>文件描述符</strong>。</li>
+<li>在完成继承后，父子进程关闭多余的端口。
+<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124740.png" alt=""></li>
+</ol>
+<h2 id="命名管道">命名管道</h2>
+<p>命名管道可以实现任意两个进程的通信，也称为<strong>FIFO</strong>。
+通过<strong>mkfifo</strong>命令创建，指定一个<strong>全局的文件名</strong>为管道名。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;sys/stat.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="kt">int</span> <span class="nf">mkfifo</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">path</span><span class="p">,</span> <span class="n">mode_t</span> <span class="n">mode</span><span class="p">);</span>
+<span class="kt">int</span> <span class="nf">mkfifoat</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">path</span><span class="p">,</span> <span class="n">mode_t</span> <span class="n">mode</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>FIFO 常用于<strong>客户-服务器应用程序</strong>中，FIFO 用作汇聚点，在客户进程和服务器进程之间传递数据。
+<img src="Pasted%20image%2020210418202912.png" alt=""></p>
+<h1 id="消息队列">消息队列</h1>
+<p>消息队列: 以链表的方式组织<strong>消息</strong>(类型 + 数据)。
+<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124741.png" alt="">
+基本遵循FIFO (First-In-First-Out)先进先出原则</p>
+<ul>
+<li>
+<p>消息队列的组织</p>
+<ul>
+<li>基本遵循FIFO (First-In-First-Out)先进先出原则</li>
+<li>消息队列的写入：增加在队列尾部</li>
+<li>消息队列的读取：默认从队首获取消息</li>
+</ul>
+</li>
+<li>
+<p>允许按照类型查询: Recv(A, <strong>type</strong>, message)</p>
+<ul>
+<li>类型为0时返回第一个消息 (FIFO)</li>
+<li>类型有值时按照类型查询并返回第一个类型为type的消息</li>
+</ul>
+</li>
+<li>
+<p>消息队列可以独立于读写进程存在，并允许任意数量的进程连接到统一队列上。</p>
+</li>
+<li>
+<p>读进程可以根据消息类型有选择地接收消息，而不像 FIFO 那样只能默认地接收。</p>
+</li>
+</ul>
+<h1 id="信号量">信号量</h1>
+<p>信号量一般来说只有一个共享的整型<strong>计数器</strong>，该计数器由内核维护和操作，通常用于<a href="%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD.md">同步原语</a>。</p>
+<h1 id="共享内存">共享内存</h1>
+<p>系统内核为两个进程映射<strong>共同的内存区域</strong>。
+<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124742.png" alt="">
+特点：数据不需要在进程之间复制，是<strong>速度最快</strong>的 IPC。但需要使用<a href="#%E4%BF%A1%E5%8F%B7%E9%87%8F">信号量</a>等同步机制。</p>
+<h1 id="套接字">套接字</h1>
+<p>套接字(Socket)用于不同机器间的进程通信。一般处于计算机网络中的<a href="../Net/%E4%BC%A0%E8%BE%93%E5%B1%82.md">传输层</a>。</p>
+
+    </div>
+</div>
+
+<div class="container">
+    
+    <nav class="flex container suggested">
+        
+        <a rel="prev" href="/posts/test/" title="Previous post (older)">
+            <span>Previous</span>
+            Test
+            </a>
+        
+        
+        
+    </nav>
+    
+</div>
+</main>
+
+
+        </main>
+        <footer class="footer flex">
+    <section class="container">
+        <nav class="footer-links">
+            
+            <a href="/index.xml">RSS</a>
+            
+        </nav>
+    </section>
+    
+    <script async src="/js/features.min.c5d8f3350f5a652f526b982306299353824299adb7a3bd261ecffacc47087f66.js"></script>
+</footer>
+    </body>
+</html>
