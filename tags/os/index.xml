@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>OS on Julan&#39;s Blog</title>
-    <link>https://example.com/tags/OS/</link>
+    <link>https://example.com/tags/os/</link>
     <description>Recent content in OS on Julan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 24 Apr 2021 00:13:24 +0800</lastBuildDate><atom:link href="https://example.com/tags/OS/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 24 Apr 2021 00:13:24 +0800</lastBuildDate><atom:link href="https://example.com/tags/os/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>IPC</title>
-      <link>https://example.com/posts/OS/IPC/</link>
+      <link>https://example.com/posts/os/ipc/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/OS/IPC/</guid>
+      <guid>https://example.com/posts/os/ipc/</guid>
       <description>Overview 进程间通信 (Inter-process Communication, IPC): 两个(或多个)不同的进程，通过内核或其他共享资源进行通信，来传递控制信息或数据。 直接通信和间接通信   直接通信：基于共享内存
  基于共享内存的消息传递核心抽象仍然是消息，而直接使用共享内存则不存在消息的抽象。
    间接通信：基于操作系统内核，每次发送消息经过一个信箱   消息传递的同步与异步 消息可以是阻塞的也可以是非阻塞的
@@ -24,10 +24,10 @@
     
     <item>
       <title>内存管理</title>
-      <link>https://example.com/posts/OS/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+      <link>https://example.com/posts/os/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/OS/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+      <guid>https://example.com/posts/os/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
       <description>Overview 虚拟内存： 为了让不同的应用程序高效安全地使用物理内存资源，加入一个在应用程序与物理内存之间的抽象。
  高效性：虚拟内存抽象下，程序使用虚拟地址访问主存，不会造成明显的性能开销。 安全性：每个应用程序拥有独立的虚拟地址空间，且只能访问属于自己的物理内存区域。  应用程序认为自己独占整个内存 应用程序不再看到物理地址     地址翻译： 在程序执行过程中，CPU中的内存管理单元（MMU, Memory Management Unit）会根据翻译规则把虚拟地址转换成物理地址，然后通过物理地址访问物理内存。
  翻译规则取决于虚拟内存采用的组织机制，包括：分段机制和分页机制。
@@ -45,10 +45,10 @@
     
     <item>
       <title>同步原语</title>
-      <link>https://example.com/posts/OS/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</link>
+      <link>https://example.com/posts/os/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/OS/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</guid>
+      <guid>https://example.com/posts/os/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</guid>
       <description>在多道程序的环境下，存在着不同的制约关系，为了协调进程间互相制约的关系，实现资源共享和进程协作，引入了进程同步。
  临界资源：只能同时被一个进程使用的资源。 临界区 ：访问临界资源的代码段。  同步机制的原则 空闲让进 当无进程处于临界区时，请求进入临界区的进程立即进入
 忙则等待 当有进程进入临界区时，其他要求访问临界资源的进程必须等待
@@ -58,10 +58,10 @@
     
     <item>
       <title>死锁</title>
-      <link>https://example.com/posts/OS/%E6%AD%BB%E9%94%81/</link>
+      <link>https://example.com/posts/os/%E6%AD%BB%E9%94%81/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/OS/%E6%AD%BB%E9%94%81/</guid>
+      <guid>https://example.com/posts/os/%E6%AD%BB%E9%94%81/</guid>
       <description>死锁(deadlock)： 在同步原语的情况下，有一组线程因为组内所有线程都在等待组内其他线程释放资源而相互无限等待的现象。 死锁产生的原因  互斥访问：资源只能最多被一个线程持有。 资源非抢占：资源只能由持有的线程主动放弃，不能被其他线程抢占。 持有并等待：线程拥有一些资源并等待一些资源。 循环等待： 多个线程形成一个循环，在该循环中每个线程都在等待下一个线程释放资源。  死锁的检测与恢复 不试图阻止死锁，而是当检测到死锁发生时，由操作系统等第三者采取措施进行恢复。
   检测： 检测资源和线程形成的有向图是否形成环路，若有环路说明出现循环等待，即出现死锁。  对于一种资源可被多个线程占有的情况下，需要使用拓扑排序算法。
    恢复
@@ -78,10 +78,10 @@
     
     <item>
       <title>进程与线程</title>
-      <link>https://example.com/posts/OS/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</link>
+      <link>https://example.com/posts/os/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/OS/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</guid>
+      <guid>https://example.com/posts/os/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</guid>
       <description>进程 进程是计算机程序运行时的抽象。
 进程的状态  新生状态（ new ）：进程刚被创建 运行状态（ running ）：进程正在处理器上运行 准备状态（ ready ）：进程可以运行，但没有被调度 阻塞状态（ blocked ）：进程进入等待状态，短时间不再运行 终结状态（ terminated ）：进程完成了执行  地址空间 进程具有独立的虚拟地址空间
  每个进程都具有&amp;quot;独占全部内存&amp;quot;的假象 内核中同样包含内核栈和内核代码、数据   进程是计算机程序运行时的抽象
@@ -96,10 +96,10 @@
     
     <item>
       <title>进程调度</title>
-      <link>https://example.com/posts/OS/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</link>
+      <link>https://example.com/posts/os/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</link>
       <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://example.com/posts/OS/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</guid>
+      <guid>https://example.com/posts/os/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</guid>
       <description>Overview 为了在有限的资源下通过对多个程序执行过程的管理，满足系统和应用的指标，调度器需要对线程进行调度(Scheduling)。
  线程是调度器的调度对象，但在Linux等OS常用任务(job/task)描述线程。
  执行结束条件  时间片结束 出现I/O请求 主动停止或进入睡眠 被系统打断（抢占式调度）  调度决策  下一个执行的任务 执行该任务的CPU核心 执行的时长，即时间片  调度指标 Scheduling Criteria（调度指标）
