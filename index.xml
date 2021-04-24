@@ -127,17 +127,6 @@
     </item>
     
     <item>
-    <title>Test</title>
-    <link>https://example.com/posts/test/</link>
-    <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
-    
-    <guid>https://example.com/posts/test/</guid>
-    <description>
-        
-    </description>
-    </item>
-    
-    <item>
     <title>内存管理</title>
     <link>https://example.com/posts/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
     <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
