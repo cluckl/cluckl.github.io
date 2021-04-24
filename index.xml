@@ -394,8 +394,8 @@
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;进程的执行exec&#34;&gt;进程的执行：exec&lt;/h3&gt;
 &lt;p&gt;在fork完成之后，在多数情况下需要子进程执行与父进程不同的任务。为了实现该目标，Linux提供了exec接口。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124853.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124852.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1 id=&#34;线程&#34;&gt;线程&lt;/h1&gt;
 &lt;p&gt;线程是OS&lt;strong&gt;资源分配和调度&lt;/strong&gt;的基本单位。&lt;/p&gt;
@@ -409,8 +409,7 @@
 &lt;p&gt;线程只包含&lt;strong&gt;运行时的状态&lt;/strong&gt;，静态部分由进程提供。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;每个线程包括了执行所需的最小状态（主要是寄存器和栈）&lt;/li&gt;
-&lt;li&gt;其它区域共享：	数据、代码、堆……
-&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124853.png&#34; alt=&#34;&#34;&gt;&lt;/li&gt;
+&lt;li&gt;其它区域共享：	数据、代码、堆……&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;线程模型&#34;&gt;线程模型&lt;/h2&gt;
 &lt;p&gt;根据线程是否受内核管理，可以将线程分为两类&lt;/p&gt;
@@ -419,8 +418,7 @@
 &lt;li&gt;用户态线程（&lt;strong&gt;纤程&lt;/strong&gt;）：不受内核直接管理，在应用态创建，线程相关信息主要存放在应用数据中&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;p&gt;&lt;strong&gt;线程模型&lt;/strong&gt;会建立用户态线程与内核态线程之间的联系。这种联系可分为&lt;a href=&#34;#%E5%A4%9A%E5%AF%B9%E4%B8%80%E6%A8%A1%E5%9E%8B&#34;&gt;多对一模型&lt;/a&gt;、&lt;a href=&#34;#%E4%B8%80%E5%AF%B9%E4%B8%80%E6%A8%A1%E5%9E%8B&#34;&gt;一对一模型&lt;/a&gt;和&lt;a href=&#34;#%E5%A4%9A%E5%AF%B9%E5%A4%9A%E6%A8%A1%E5%9E%8B&#34;&gt;多对多模型&lt;/a&gt;。
-&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124854.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;线程模型&lt;/strong&gt;会建立用户态线程与内核态线程之间的联系。这种联系可分为&lt;a href=&#34;#%E5%A4%9A%E5%AF%B9%E4%B8%80%E6%A8%A1%E5%9E%8B&#34;&gt;多对一模型&lt;/a&gt;、&lt;a href=&#34;#%E4%B8%80%E5%AF%B9%E4%B8%80%E6%A8%A1%E5%9E%8B&#34;&gt;一对一模型&lt;/a&gt;和&lt;a href=&#34;#%E5%A4%9A%E5%AF%B9%E5%A4%9A%E6%A8%A1%E5%9E%8B&#34;&gt;多对多模型&lt;/a&gt;。&lt;img src=&#34;https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124852.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;多对一模型&#34;&gt;多对一模型&lt;/h3&gt;
 &lt;p&gt;将多个用户态线程映射给单一的内核线程。内核管理简单但可扩展性差，无法适应多核机器的发展。&lt;/p&gt;
 &lt;p&gt;用途：在主流操作系统中被弃用，用于各种&lt;strong&gt;用户态线程库&lt;/strong&gt;。&lt;/p&gt;

@@ -115,8 +115,8 @@
 </blockquote>
 <h3 id="进程的执行exec">进程的执行：exec</h3>
 <p>在fork完成之后，在多数情况下需要子进程执行与父进程不同的任务。为了实现该目标，Linux提供了exec接口。</p>
+<p><img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124853.png" alt=""></p>
 <blockquote>
-<p><img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124852.png" alt=""></p>
 </blockquote>
 <h1 id="线程">线程</h1>
 <p>线程是OS<strong>资源分配和调度</strong>的基本单位。</p>
@@ -130,8 +130,7 @@
 <p>线程只包含<strong>运行时的状态</strong>，静态部分由进程提供。</p>
 <ul>
 <li>每个线程包括了执行所需的最小状态（主要是寄存器和栈）</li>
-<li>其它区域共享：	数据、代码、堆……
-<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124853.png" alt=""></li>
+<li>其它区域共享：	数据、代码、堆……</li>
 </ul>
 <h2 id="线程模型">线程模型</h2>
 <p>根据线程是否受内核管理，可以将线程分为两类</p>
@@ -140,8 +139,7 @@
 <li>用户态线程（<strong>纤程</strong>）：不受内核直接管理，在应用态创建，线程相关信息主要存放在应用数据中</li>
 </ul>
 <hr>
-<p><strong>线程模型</strong>会建立用户态线程与内核态线程之间的联系。这种联系可分为<a href="#%E5%A4%9A%E5%AF%B9%E4%B8%80%E6%A8%A1%E5%9E%8B">多对一模型</a>、<a href="#%E4%B8%80%E5%AF%B9%E4%B8%80%E6%A8%A1%E5%9E%8B">一对一模型</a>和<a href="#%E5%A4%9A%E5%AF%B9%E5%A4%9A%E6%A8%A1%E5%9E%8B">多对多模型</a>。
-<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124854.png" alt=""></p>
+<p><strong>线程模型</strong>会建立用户态线程与内核态线程之间的联系。这种联系可分为<a href="#%E5%A4%9A%E5%AF%B9%E4%B8%80%E6%A8%A1%E5%9E%8B">多对一模型</a>、<a href="#%E4%B8%80%E5%AF%B9%E4%B8%80%E6%A8%A1%E5%9E%8B">一对一模型</a>和<a href="#%E5%A4%9A%E5%AF%B9%E5%A4%9A%E6%A8%A1%E5%9E%8B">多对多模型</a>。<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124852.png" alt=""></p>
 <h3 id="多对一模型">多对一模型</h3>
 <p>将多个用户态线程映射给单一的内核线程。内核管理简单但可扩展性差，无法适应多核机器的发展。</p>
 <p>用途：在主流操作系统中被弃用，用于各种<strong>用户态线程库</strong>。</p>
