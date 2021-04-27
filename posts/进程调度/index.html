@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="zh-CN">
     
 <head>
     <meta charset="utf-8" />
@@ -21,7 +21,7 @@
                 <a class="brand" href="/">
                     
                     <span class="emoji">
-                        😎
+                        🥝
                     </span>
                     
                     Julan&#39;s Blog
@@ -47,7 +47,7 @@
                     <h1>进程调度</h1>
                     <div class="post-meta">
                         <div>
-                            By  on <time>April 24, 2021</time>
+                            By  on <time>April 27, 2021</time>
                         </div>
                         <div class="tags">
                             
@@ -61,9 +61,10 @@
     </article>
 
     <div class="article-post">
-    <h1 id="overview">Overview</h1>
+    <p>[TOC]</p>
+<h1 id="overview">Overview</h1>
 <p><img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/Pasted%20image%2020210416211921.png" alt="">
-为了在有限的资源下通过对多个程序执行过程的管理，满足系统和应用的指标，调度器需要对<a href="%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B#%E7%BA%BF%E7%A8%8B">线程</a>进行调度(Scheduling)。</p>
+为了在有限的资源下通过对多个程序执行过程的管理，满足系统和应用的指标，调度器需要对<a href="%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B.md#%E7%BA%BF%E7%A8%8B">线程</a>进行调度(Scheduling)。</p>
 <blockquote>
 <p>线程是调度器的调度对象，但在Linux等OS常用任务(job/task)描述线程。</p>
 </blockquote>
@@ -114,7 +115,7 @@ goal: <strong>regulates the program and select process from the queue and loads 
 goal:This helps you to select from a group of processes that are ready to execute and allocates CPU to one of them.
 负责进程再就绪状态、运行状态和阻塞状态的转换。</p>
 <h2 id="medium-term-scheduler">Medium-Term Scheduler</h2>
-<p>中期调度是换页机制(swapping)的一部分，能够降低进程占用的内存。
+<p>中期调度是<a href="%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86#%E6%8D%A2%E9%A1%B5%E6%9C%BA%E5%88%B6">换页机制</a>的一部分，能够降低进程占用的内存。
 机制：将被短期调度器管理的处于就绪状态或阻塞状态的进程挂起，转为挂起就绪状态或挂起阻塞状态，并在适当时机重新激活被挂机的进程。</p>
 <h1 id="批处理任务调度">批处理任务调度</h1>
 <p>批处理任务调度算法的关注指标主要是<strong>周转时间</strong>。</p>
@@ -164,14 +165,14 @@ Multi-level Queue(多级队列)属于静态优先级调度策略，严重依赖�
 <ul>
 <li>提高I/O密集型任务的优先级，避免造成I/O利用率低下</li>
 <li>低优先级任务饥饿问题：需要为等待时间过长的任务提高优先级</li>
-<li><a href="#%E4%BC%98%E5%85%88%E7%BA%A7%E5%8F%8D%E8%BD%AC">优先级反转</a></li>
+<li><a href="%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6.md#%E4%BC%98%E5%85%88%E7%BA%A7%E5%8F%8D%E8%BD%AC">优先级反转</a></li>
 </ul>
 <h2 id="mlfq">MLFQ</h2>
 <p>多级反馈队列(Multi-Level Feedback Queue, MLFQ)，属于经典的基于多级队列的动态<a href="%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6.md#%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6">优先级调度</a>。
 <img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/Pasted%20image%2020210417155733.png" alt="">
 we arrive at the first two basic rules for MLFQ:
 • Rule 1: If Priority(A) &gt; Priority(B), A runs (B doesn’t).
-• Rule 2: If Priority(A) = Priority(B), A &amp; B run in <a href="#RR">RR</a>.优先级越低，时间片越长。
+• Rule 2: If Priority(A) = Priority(B), A &amp; B run in <a href="%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6.md#RR">RR</a>.优先级越低，时间片越长。
 • Rule 3: When a job enters the system, it is placed at the highest priority (the topmost queue).
 动态调节机制：
 • <strong>Penaly</strong>: If a job uses up an entire <strong>time slice while 					running</strong>, its <strong>priority is reduced</strong> (i.e., it moves down one queue).
@@ -193,7 +194,7 @@ Boost可以防止长任务饥饿。
 </blockquote>
 <p>Lottery Scheduling的随机化实现简单，但会带来不确定性，在调度次数较少时将达不到预期效果（即频率和概率在次数较少的情况下下相差过大）。</p>
 <h2 id="stride-scheduling">Stride Scheduling</h2>
-<p><strong>Stride Scheduling(步幅调度)</strong>：<strong>确定性</strong>版本的<a href="#Lottery%20Scheduling">Lottery Scheduling</a>，核心是<strong>步幅（Stride）</strong>：任务一次执行增加的虚拟时间，和份额成反比。
+<p><strong>Stride Scheduling(步幅调度)</strong>：<strong>确定性</strong>版本的<a href="%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6.md#Lottery%20Scheduling">Lottery Scheduling</a>，核心是<strong>步幅（Stride）</strong>：任务一次执行增加的虚拟时间，和份额成反比。
 机制：每次调度选择当前虚拟时间最小的任务调度并增加虚拟时间（即步幅）大小。
 <img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/Pasted%20image%2020210420173316.png" alt=""></p>
 <blockquote>
@@ -244,7 +245,7 @@ Boost可以防止长任务饥饿。
 <p><strong>最早截止时间优先(Earliest Deadline First, EDF)</strong>：根据任务的<strong>截止时间</strong>动态调整任务的优先级。
 在CPU利用率U不大于1的情况下，EDF一定能够满足这组任务的截止时间要求，是在U不大于1的情况下的最优实时调度策略。
 若U大于1，则会引发多米诺效应：EDF没有任务的运行时间信息，无法提前拒绝任务，也没有中断机制调度其他任务。</p>
-<h1 id="reference">Reference</h1>
+<h2 id="reference">Reference</h2>
 <ul>
 <li><a href="https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-sched-mlfq.pdf">Multilevel Feedback Queues (MLFQ) - LASS-PDF</a></li>
 <li><a href="https://ipads.se.sjtu.edu.cn/courses/os/2020/schedule.shtml">上海交通大学SE-315 · 操作系统（2020春)</a></li>
@@ -256,6 +257,11 @@ Boost可以防止长任务饥饿。
 <div class="container">
     
     <nav class="flex container suggested">
+        
+        <a rel="prev" href="/posts/net/%E4%BC%A0%E8%BE%93%E5%B1%82/" title="Previous post (older)">
+            <span>Previous</span>
+            传输层
+            </a>
         
         
         

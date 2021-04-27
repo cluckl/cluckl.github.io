@@ -6,59 +6,32 @@
     <description>Recent content in OS on Julan&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 24 Apr 2021 00:13:24 +0800</lastBuildDate><atom:link href="https://cluckl.github.io/tags/os/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>IPC</title>
-      <link>https://cluckl.github.io/posts/os/ipc/</link>
-      <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
-      
-      <guid>https://cluckl.github.io/posts/os/ipc/</guid>
-      <description>Overview 进程间通信 (Inter-process Communication, IPC): 两个(或多个)不同的进程，通过内核或其他共享资源进行通信，来传递控制信息或数据。 直接通信和间接通信 直接通信：基于共享内存 基</description>
-    </item>
-    
+    <lastBuildDate>Tue, 27 Apr 2021 00:13:24 +0800</lastBuildDate><atom:link href="https://cluckl.github.io/tags/os/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>内存管理</title>
-      <link>https://cluckl.github.io/posts/os/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
-      <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
+      <link>https://cluckl.github.io/posts/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Tue, 27 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://cluckl.github.io/posts/os/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
-      <description>Overview 虚拟内存： 为了让不同的应用程序高效安全地使用物理内存资源，加入一个在应用程序与物理内存之间的抽象。 高效性：虚拟内存抽象下，程序使用虚拟地址</description>
-    </item>
-    
-    <item>
-      <title>同步原语</title>
-      <link>https://cluckl.github.io/posts/os/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</link>
-      <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
-      
-      <guid>https://cluckl.github.io/posts/os/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/</guid>
-      <description>在多道程序的环境下，存在着不同的制约关系，为了协调进程间互相制约的关系，实现资源共享和进程协作，引入了进程同步。 临界资源：只能同时被一个进程</description>
-    </item>
-    
-    <item>
-      <title>死锁</title>
-      <link>https://cluckl.github.io/posts/os/%E6%AD%BB%E9%94%81/</link>
-      <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
-      
-      <guid>https://cluckl.github.io/posts/os/%E6%AD%BB%E9%94%81/</guid>
-      <description>死锁(deadlock)： 在同步原语的情况下，有一组线程因为组内所有线程都在等待组内其他线程释放资源而相互无限等待的现象。 死锁产生的原因 互斥</description>
+      <guid>https://cluckl.github.io/posts/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+      <description>[TOC] 内存管理 虚拟内存 虚拟内存： 为了让不同的进程高效安全地使用物理内存资源，加入一个在应用程序与物理内存之间的抽象。 高效性：虚拟内存抽象下，程序</description>
     </item>
     
     <item>
       <title>进程与线程</title>
-      <link>https://cluckl.github.io/posts/os/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</link>
-      <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
+      <link>https://cluckl.github.io/posts/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</link>
+      <pubDate>Tue, 27 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://cluckl.github.io/posts/os/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</guid>
-      <description>进程 进程是计算机程序运行时的抽象。 进程的状态 新生状态（ new ）：进程刚被创建 运行状态（ running ）：进程正在处理器上运行 准备状态（ ready ）：进程可以运行，但</description>
+      <guid>https://cluckl.github.io/posts/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/</guid>
+      <description>[TOC] 进程 进程是计算机程序运行时的抽象。 进程的状态 新生状态（ new ）：进程刚被创建 运行状态（ running ）：进程正在处理器上运行 准备状态（ ready ）：进程可以运行，</description>
     </item>
     
     <item>
       <title>进程调度</title>
-      <link>https://cluckl.github.io/posts/os/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</link>
-      <pubDate>Sat, 24 Apr 2021 00:13:24 +0800</pubDate>
+      <link>https://cluckl.github.io/posts/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</link>
+      <pubDate>Tue, 27 Apr 2021 00:13:24 +0800</pubDate>
       
-      <guid>https://cluckl.github.io/posts/os/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</guid>
-      <description>Overview 为了在有限的资源下通过对多个程序执行过程的管理，满足系统和应用的指标，调度器需要对线程进行调度(Scheduling)。 线程是调度器的调度</description>
+      <guid>https://cluckl.github.io/posts/%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6/</guid>
+      <description>[TOC] Overview 为了在有限的资源下通过对多个程序执行过程的管理，满足系统和应用的指标，调度器需要对线程进行调度(Scheduling)。 线程是调度器的调</description>
     </item>
     
   </channel>

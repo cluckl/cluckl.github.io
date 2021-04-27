@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="zh-CN">
     
 <head>
     <meta charset="utf-8" />
@@ -21,7 +21,7 @@
                 <a class="brand" href="/">
                     
                     <span class="emoji">
-                        😎
+                        🥝
                     </span>
                     
                     Julan&#39;s Blog
@@ -47,7 +47,7 @@
                     <h1>内存管理</h1>
                     <div class="post-meta">
                         <div>
-                            By  on <time>April 24, 2021</time>
+                            By  on <time>April 27, 2021</time>
                         </div>
                         <div class="tags">
                             
@@ -61,8 +61,10 @@
     </article>
 
     <div class="article-post">
-    <h1 id="overview">Overview</h1>
-<p>虚拟内存： 为了让不同的应用程序<strong>高效安全</strong>地使用物理内存资源，加入一个在<strong>应用程序</strong>与<strong>物理内存</strong>之间的抽象。</p>
+    <p>[TOC]</p>
+<h1 id="内存管理">内存管理</h1>
+<h2 id="虚拟内存">虚拟内存</h2>
+<p>虚拟内存： 为了让不同的<a href="%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B#%E8%BF%9B%E7%A8%8B">进程</a><strong>高效安全</strong>地使用物理内存资源，加入一个在<strong>应用程序</strong>与<strong>物理内存</strong>之间的抽象。</p>
 <ul>
 <li>高效性：虚拟内存抽象下，<strong>程序</strong>使用虚拟地址访问主存，不会造成明显的性能开销。</li>
 <li>安全性：每个应用程序拥有<strong>独立</strong>的虚拟地址空间，且只能访问属于自己的物理内存区域。
@@ -78,7 +80,7 @@
 <p>翻译规则取决于虚拟内存采用的组织机制，包括：分段机制和分页机制。</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124456.png" alt=""></p>
-<h1 id="分段机制">分段机制</h1>
+<h2 id="分段机制">分段机制</h2>
 <p>虚拟地址空间分成若干个<strong>不同大小</strong>的<strong>逻辑段</strong>，如代码段、数据段等。</p>
 <p>翻译过程：
 <img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124457.png" alt=""></p>
@@ -90,66 +92,78 @@
 <ul>
 <li>分配的粒度太粗，容易导致物理内存上段与段之间留下<strong>碎片空间</strong>，不足以映射虚拟地址空间的段，<strong>降低主存利用率</strong>。</li>
 </ul>
-<p>因此Intel在x86-64架构之后，<a href="#%E5%88%86%E9%A1%B5%E6%9C%BA%E5%88%B6">分页机制</a>成为主流。</p>
-<h1 id="分页机制">分页机制</h1>
-<p>分页机制：</p>
+<p>因此Intel在x86-64架构之后，<a href="%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.md#%E5%88%86%E9%A1%B5%E6%9C%BA%E5%88%B6">分页机制</a>成为主流。</p>
+<h2 id="分页机制">分页机制</h2>
+<p><img src="https://cdn.buttercms.com/KdQFc7OFQDeBANYrl2ff" alt="undefined"></p>
+<p>分页机制：将<strong>虚拟内存</strong>划分成<strong>连续的、等长的虚拟页</strong>。
+<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124458.png" alt="100"></p>
 <ul>
-<li><strong>虚拟内存</strong>划分成<strong>连续的、等长的虚拟页</strong>
-<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124458.png" alt="100"></li>
 <li><strong>物理内存</strong>也划分成<strong>连续的、等长的物理页</strong></li>
 <li>虚拟页和物理页<strong>页长固定</strong>且<strong>相等</strong></li>
 <li>虚拟地址 = <strong>虚拟页号</strong>+<strong>页内偏移</strong></li>
 </ul>
 <p>页表：包含多个页表项，<strong>存储虚拟页到物理页的映射</strong>，分页机制的核心数据结构。</p>
 <p>翻译过程（和分段机制的翻译过程类似）：
-<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124459.png" alt=""></p>
+<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124502.png" alt="200"></p>
 <ol>
 <li>MMU解析虚拟地址中的<strong>虚拟页号</strong>，通过虚拟页号找到该进程的<strong>页表</strong>，得到物理页号。</li>
 <li>根据物理页号对应的<strong>物理页起始地址</strong>加上虚拟地址中的<strong>页内偏移地址</strong>得到最终的物理地址。</li>
 </ol>
-<p>该机制实现了相比<a href="#%E5%88%86%E6%AE%B5%E6%9C%BA%E5%88%B6">分段机制</a>更细粒度的内存管理，大大缓解分段机制中常见的外部碎片。</p>
-<h2 id="多级页表">多级页表</h2>
+<p>该机制实现了相比<a href="%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.md#%E5%88%86%E6%AE%B5%E6%9C%BA%E5%88%B6">分段机制</a>更细粒度的内存管理，大大缓解分段机制中常见的外部碎片。</p>
+<h3 id="多级页表">多级页表</h3>
 <p>使用多级页表可以减少空间占用：</p>
 <ul>
-<li>若某级页表中的某条目为空，那么对应的下一级页表无需存在</li>
-<li>实际应用的虚拟地址空间大部分都未被使用，因此无需分配页表</li>
-<li>减少空间的原因：允许页表中出现&quot;空洞&quot;</li>
+<li>
+<p>若某级页表中的某条目为空，那么对应的下一级页表无需存在</p>
+</li>
+<li>
+<p>实际应用的虚拟地址空间大部分都未被使用，因此无需分配页表</p>
+</li>
+<li>
+<p>减少空间的原因：允许页表中出现&quot;空洞&quot;</p>
+<p><img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124459.png" alt=""></p>
+</li>
 </ul>
+<p>在多级页表中，除了0级页表，其他页表的位置由上一级页表的页表项存储，而非以数组的索引形式表示，因此能够允许<strong>空洞</strong>，即允许页表部分创建，极大减少页表占用的空间。</p>
+<h3 id="tlb">TLB</h3>
+<p>TLB:Translation Lookaside Buffer，起到类似于cache的作用，缓存了虚拟页号到物理页号的映射关系。</p>
 <p><img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124500.png" alt=""></p>
-<h2 id="tlb">TLB</h2>
-<p>TLB:Translation Lookaside Buffer，起到类似于cache的作用，缓存了虚拟页号到物理页号的映射关系。
-<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124501.png" alt="">
-在地址翻译过程中，MMU首先查询TLB：</p>
+<p>在地址翻译过程中，MMU首先查询TLB：</p>
 <ul>
 <li>TLB命中，则不再查询页表（fastpath）</li>
 <li>TLB未命中，再查询页表</li>
 </ul>
+<h4 id="tlb刷新">TLB刷新</h4>
+<p>为了保证TCB存储的是页表当前的内容，在<strong>页表（进程）进行切换</strong>或<strong>修改页表</strong>内容时，需要主动刷新。</p>
+<ul>
+<li>进行页表切换时，可以在TLB中缓存页表的ID，从而区分属于不同进程的缓存项，避免刷新。</li>
+</ul>
+<h2 id="换页机制">换页机制</h2>
+<p>当物理内存不够时，OS把若干物理页的内容写到磁盘（在Linux中，写到Swap分区）并回收这些物理页以供新的虚拟页映射，使<strong>虚拟内存使用不受物理内存大小限制</strong>。</p>
+<p>​	<img src="https://cdn.buttercms.com/q84MO5qnTSuClge4MUmW" alt="undefined"></p>
+<ul>
+<li>
+<p>swap out(换出)：当某进程的物理页需要被回收时，将该物理页的内容写到磁盘，并在对应的进程的页表中去除虚拟页的映射，同时记录该物理页被换到磁盘上的对应位置。</p>
+</li>
+<li>
+<p>swap in(换入)：当发生缺页异常时，将之前写到磁盘的内容重写到物理页中，同时更新虚拟地址到该物理页的映射。</p>
 <blockquote>
-<p>切换页表时需要全部刷新TLB</p>
+<p>当进程访问一个处于未分配状态或已分配但未映射到物理内存转态时，将触发<strong>缺页异常(page fault)</strong>。</p>
 </blockquote>
-<h1 id="换页机制">换页机制</h1>
-<ul>
-<li>换页的基本思想
-<ul>
-<li>将物理内存里面存不下的内容放到<strong>磁盘</strong>上</li>
-<li>虚拟内存使用不受物理内存大小限制</li>
-</ul>
-</li>
-<li>如何实现Swap
-<ul>
-<li>磁盘上划分专门的<strong>Swap</strong>分区</li>
-<li>在处理<strong>缺页异常</strong>时，触发物理内存页的换入换出</li>
-</ul>
 </li>
 </ul>
-<h2 id="页面置换算法">页面置换算法</h2>
-<h3 id="opt">OPT</h3>
-<p>最佳(OPT, Optimal replacement algorithm)：所选择的被换出的页面将是==理论上==<strong>最长时间内不再被访问</strong>，通常可以保证获得最低的缺页率。</p>
-<h3 id="lru">LRU</h3>
-<p>最近最久未使用(LRU, Least Recently Used)：将<strong>最近一次访问的时间最久</strong>的页面替换出去。</p>
-<h3 id="fifo">FIFO</h3>
-<p>先进先出(FIFO, First In First Out)：将<strong>最先进入内存</strong>的页面换出去。</p>
-<h3 id="nru">NRU</h3>
+<p>优化磁盘操作：</p>
+<ul>
+<li>预取（Prefetching）：换入时，将被访问的物理页临近的物理页也都换入，从而减少缺页异常的次数。</li>
+<li>按需页分配：当进程申请分配内存时，只将新分配的虚拟页标记成已分配但未映射至物理内存状态，不分配物理页。可节约内存但增加缺页异常的次数。</li>
+</ul>
+<p>在实际使用中，一般同时使用预取和按需页分配机制。</p>
+<h3 id="页面置换算法">页面置换算法</h3>
+<h4 id="opt">OPT</h4>
+<p>最佳(OPT, Optimal replacement algorithm)：又称为MIN(Minimum)，所选择的被换出的页面将是==理论上==<strong>最长时间内不再被访问</strong>，通常可以保证获得最低的缺页率。</p>
+<h4 id="lru">LRU</h4>
+<p>最近最久未使用(LRU, Least Recently Used)：将<strong>最近一次访问的时间最久</strong>的页面替换出去。可以使用链表实现。</p>
+<h4 id="nru">NRU</h4>
 <p>最近未使用(NRU, Not Recently Used)：
 每个页面都有两个状态位：R 与 M，当页面被访问时设置页面的 R=1，当页面被修改时设置 M=1。其中 R 位会定时被清零。
 当发生缺页中断时，NRU 算法按如下<strong>顺序优先选择</strong>如下状态的页面将其置换出去（相同状态下随机选择）：</p>
@@ -162,10 +176,26 @@
 <blockquote>
 <p>可以看出，NRU 优先换出已经被修改的脏页面（R=0，M=1），而不是被频繁使用的干净页面（R=1，M=0）</p>
 </blockquote>
-<h3 id="clock">Clock</h3>
-<p>时钟(Clock)：和<a href="#NRU">NRU</a>类似，有一个状态位R，当页面被访问时设置页面的 R=1，同时定时清零R。
-<img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124502.png" alt="200">
-指针指向的页面若R=1则将指针向前移动一位（类似于时钟），直到找出R=0的页面将其替换出去。</p>
+<h4 id="mru">MRU</h4>
+<p>MRU(Most Recently Used) : 优先将最近访问的物理页换出，基于<u>程序不会反复访问相同的地址</u>的假设。如播放视频时，每帧数据一般不会读取第二次。但若该算法被用于具有很好局部性的场景下，可能导致出现<strong>颠簸现象</strong>。</p>
+<blockquote>
+<p>颠簸现象：选择的替换算法与实际的工作负载不匹配。</p>
+</blockquote>
+<h4 id="fifo">FIFO</h4>
+<p>先进先出(FIFO, First In First Out)：维护一个先进先出的队列，优先将<strong>最先换入内存</strong>的页换出去。</p>
+<h4 id="second-change">Second Change</h4>
+<p><a href="%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.md#FIFO">FIFO</a>的改进版本，同样使用一个先进先出的队列，但每个物理页号有一个<strong>访问标志位</strong>，如果访问的页号已经在队列中，则将该标志位置1。该策略优先查看队头的页号，若标志位为1则将其清零并将对应的页号移向队尾，否则将该页号对应的物理页换出。</p>
+<blockquote>
+<p>Second Change 和 FIFO算法有可能导致出现Belady异常，即物理页的数量越多，换页的数量也越多。</p>
+</blockquote>
+<h4 id="clock">Clock</h4>
+<p>时钟(Clock)：和<a href="%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86.md#Second%20Change">Second Change</a>类似，但不需要移动页号，所以更加高效。</p>
+<p><img src="https://raw.githubusercontent.com/cluckl/Pinnned-repo/master/img/20210424124501.png" alt=""></p>
+<p>指针指向的页号若标志位为1则将指针向前移动一位（类似于时钟），同时将该标志位清零，直到找出标志位为零的页面将其替换出去。</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://ipads.se.sjtu.edu.cn/courses/os/2020/schedule.shtml">上海交通大学SE-315 · 操作系统（2020春)</a></li>
+</ul>
 
     </div>
 </div>
@@ -174,17 +204,12 @@
     
     <nav class="flex container suggested">
         
-        <a rel="prev" href="/posts/%E5%90%8C%E6%AD%A5%E5%8E%9F%E8%AF%AD/" title="Previous post (older)">
+        <a rel="prev" href="/posts/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" title="Previous post (older)">
             <span>Previous</span>
-            同步原语
+            进程与线程
             </a>
         
         
-        
-        <a rel="next" href="/posts/ipc/" title="Next post (newer)">
-            <span>Next</span>
-            IPC
-            </a> 
         
     </nav>
     
